@@ -7,10 +7,10 @@ MoB (Multiplayer Online Bracket) est un gestionnaire d’arbre de tournoi e-spor
 Product owner: ***[Matthieu T.](https://github.com/mtoulet)***  
 Scrum master: ***[Matthieu T.](https://github.com/mtoulet)***  
 Lead dev front: ***[Laurent C.](https://github.com/LaurentCibil)***  
-Lead dev back: ***[Guillaume](https://github.com/GuillaumeDOLLE) D.***  
-Git master: ***[Guillaume](https://github.com/GuillaumeDOLLE) D.***  
+Lead dev back: ***[Guillaume D.](https://github.com/GuillaumeDOLLE)***  
+Git master: ***[Guillaume D.](https://github.com/GuillaumeDOLLE)***  
 Référent techno:  
-Back: ***[Guillaume](https://github.com/GuillaumeDOLLE) D.***  
+Back: ***[Guillaume D.](https://github.com/GuillaumeDOLLE)***  
 Front: ***[Arthur M.](https://github.com/Gab00n)***  
 ***[Guillaume L.](https://github.com/Guillaume-Ln)***
 
