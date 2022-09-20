@@ -4,23 +4,15 @@ MoB (Multiplayer Online Bracket) est un gestionnaire d’arbre de tournoi e-spor
 
 ## Ce projet est porté par :  
 
-Product owner: ***Matthieu T.***  
-
-Scrum master: ***Matthieu T.***  
-
-Lead dev front: ***Laurent C.***  
-
-Lead dev back: ***Guillaume D.***  
-
-Git master: ***Guillaume D.***  
-
-
+Product owner: ***[Matthieu T.](https://github.com/mtoulet)***  
+Scrum master: ***[Matthieu T.](https://github.com/mtoulet)***  
+Lead dev front: ***[Laurent C.](https://github.com/LaurentCibil)***  
+Lead dev back: ***[Guillaume](https://github.com/GuillaumeDOLLE) D.***  
+Git master: ***[Guillaume](https://github.com/GuillaumeDOLLE) D.***  
 Référent techno:  
-
-Back: ***Guillaume D.***  
-
-Front: ***Arthur M.***  
-***Guillaume L.***
+Back: ***[Guillaume](https://github.com/GuillaumeDOLLE) D.***  
+Front: ***[Arthur M.](https://github.com/Gab00n)***  
+***[Guillaume L.](https://github.com/Guillaume-Ln)***
 
 ## Repos du projet:  
 https://github.com/O-clock-Flamel/projet-02-tournoi-e-sport-front  
