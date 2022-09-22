@@ -10,19 +10,23 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,500,0,0" />
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
 	<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@40,400,0,-25" />
 </head>
 <body>
 	<header class="header">
-		<img class="logo-header" style="width: 10%;" src="../src/assets/images/logo_mob.png" alt="logo MOB">
+		<img class="logo-header" src="../src/assets/images/logo_mob.png" alt="logo MOB">
 		<nav class="nav-bar">
 			<a href="">Les Tournois</a>
 			<a href="">Créer un tournoi</a>
 			<a href="">Mes tournois</a>
 		</nav>
 		<section class="header-search">
-			<span class="material-symbols-outlined">search</span>
+			<span class="material-symbols-outlined header-search-button">search</span>		
 			<div class="input-group">
 				<input required="" type="text" name="text" autocomplete="on" class="input">
 				<label class="user-label">Rechercher...</label>
@@ -35,6 +39,7 @@
 				account_circle
 				</span>
 		</section>
+		<span class="material-symbols-rounded header-menu">menu</span>
 	</header>
 
 	<main class="main">
@@ -55,9 +60,10 @@
         <section class="main-tournament">
             <div class="main-tournament-inscription">
                 <h3 class="main-tournament-inscription-title">Les Tournois</h3>
+				<!-- un tournoi -->
 				<article class="main-tournament-inscription-one-tournament">
 					<div class="main-tournament-inscription-one-tournament-info">
-						<img src="../src/assets/images/téléchargement.jpeg" alt="">
+						<img class="main-tournament-inscription-one-tournament-img" src="../src/assets/images/téléchargement.jpeg" alt="">
 						<div class="info">
 							<h3 class="info-title">Ocklock tournament</h3>
 							<p class="info-moderator">Modérateur: <span class="info-data">Michel</span></p>
@@ -67,93 +73,161 @@
 							<a  class="info-link" href="">lien vers tournoi</a>
 						</div>
 					</div>
-					<button class="main-tournament-inscription-one-tournament-info-btn">S'inscrire</button>
+					<button class="inscription-button">S'inscrire</button>
 				</article>
+				<!-- un tournoi -->
+				<!-- un tournoi -->
 				<article class="main-tournament-inscription-one-tournament">
 					<div class="main-tournament-inscription-one-tournament-info">
-						<img src="../src/assets/images/téléchargement.jpeg" alt="">
+						<img class="main-tournament-inscription-one-tournament-img" src="../src/assets/images/téléchargement.jpeg" alt="">
 						<div class="info">
 							<h3 class="info-title">Ocklock tournament</h3>
-							<p class="info-moderator">Modérateur: Michel</p>
-							<p class="info-count">Nombre de participants : 64</p>
-							<p class="info-date">Date de l'évènement : vendredi 15 juin 2042</p>
-							<p class="info-description">Info du tournoi : Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam tempore quasi facere, doloremque possimus dignissimos aspernatur at eius cumque blanditiis qui, consequatur ratione. Exercitationem, odit?</p>
+							<p class="info-moderator">Modérateur: <span class="info-data">Michel</span></p>
+							<p class="info-count">Nombre de participants : <span class="info-data">64</span></p>
+							<p class="info-date">Date de l'évènement : <span class="info-data">vendredi 15 juin 2042</span></p>
+							<p class="info-description">Info du tournoi : <span class="info-data">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam tempore quasi facere, doloremque possimus dignissimos aspernatur at eius cumque blanditiis qui, consequatur ratione. Exercitationem, odit?</span></p>
 							<a  class="info-link" href="">lien vers tournoi</a>
 						</div>
 					</div>
-					<button class="main-tournament-inscription-one-tournament-info-btn">S'inscrire</button>
+					<button class="inscription-button">S'inscrire</button>
 				</article>
+				<!-- un tournoi -->
+				<!-- un tournoi -->
 				<article class="main-tournament-inscription-one-tournament">
 					<div class="main-tournament-inscription-one-tournament-info">
-						<img src="../src/assets/images/téléchargement.jpeg" alt="">
+						<img class="main-tournament-inscription-one-tournament-img" src="../src/assets/images/téléchargement.jpeg" alt="">
 						<div class="info">
 							<h3 class="info-title">Ocklock tournament</h3>
-							<p class="info-moderator">Modérateur: Michel</p>
-							<p class="info-count">Nombre de participants : 64</p>
-							<p class="info-date">Date de l'évènement : vendredi 15 juin 2042</p>
-							<p class="info-description">Info du tournoi : Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam tempore quasi facere, doloremque possimus dignissimos aspernatur at eius cumque blanditiis qui, consequatur ratione. Exercitationem, odit?</p>
+							<p class="info-moderator">Modérateur: <span class="info-data">Michel</span></p>
+							<p class="info-count">Nombre de participants : <span class="info-data">64</span></p>
+							<p class="info-date">Date de l'évènement : <span class="info-data">vendredi 15 juin 2042</span></p>
+							<p class="info-description">Info du tournoi : <span class="info-data">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam tempore quasi facere, doloremque possimus dignissimos aspernatur at eius cumque blanditiis qui, consequatur ratione. Exercitationem, odit?</span></p>
 							<a  class="info-link" href="">lien vers tournoi</a>
 						</div>
 					</div>
-					<button class="main-tournament-inscription-one-tournament-info-btn">S'inscrire</button>
+					<button class="inscription-button">S'inscrire</button>
 				</article>
+				<!-- un tournoi -->
+				<!-- un tournoi -->
 				<article class="main-tournament-inscription-one-tournament">
 					<div class="main-tournament-inscription-one-tournament-info">
-						<img src="../src/assets/images/téléchargement.jpeg" alt="">
+						<img class="main-tournament-inscription-one-tournament-img" src="../src/assets/images/téléchargement.jpeg" alt="">
 						<div class="info">
 							<h3 class="info-title">Ocklock tournament</h3>
-							<p class="info-moderator">Modérateur: Michel</p>
-							<p class="info-count">Nombre de participants : 64</p>
-							<p class="info-date">Date de l'évènement : vendredi 15 juin 2042</p>
-							<p class="info-description">Info du tournoi : Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam tempore quasi facere, doloremque possimus dignissimos aspernatur at eius cumque blanditiis qui, consequatur ratione. Exercitationem, odit?</p>
+							<p class="info-moderator">Modérateur: <span class="info-data">Michel</span></p>
+							<p class="info-count">Nombre de participants : <span class="info-data">64</span></p>
+							<p class="info-date">Date de l'évènement : <span class="info-data">vendredi 15 juin 2042</span></p>
+							<p class="info-description">Info du tournoi : <span class="info-data">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam tempore quasi facere, doloremque possimus dignissimos aspernatur at eius cumque blanditiis qui, consequatur ratione. Exercitationem, odit?</span></p>
 							<a  class="info-link" href="">lien vers tournoi</a>
 						</div>
 					</div>
-					<button class="main-tournament-inscription-one-tournament-info-btn">S'inscrire</button>
+					<button class="inscription-button">S'inscrire</button>
 				</article>
+				<!-- un tournoi -->				<!-- un tournoi -->
 				<article class="main-tournament-inscription-one-tournament">
 					<div class="main-tournament-inscription-one-tournament-info">
-						<img src="../src/assets/images/téléchargement.jpeg" alt="">
+						<img class="main-tournament-inscription-one-tournament-img" src="../src/assets/images/téléchargement.jpeg" alt="">
 						<div class="info">
 							<h3 class="info-title">Ocklock tournament</h3>
-							<p class="info-moderator">Modérateur: Michel</p>
-							<p class="info-count">Nombre de participants : 64</p>
-							<p class="info-date">Date de l'évènement : vendredi 15 juin 2042</p>
-							<p class="info-description">Info du tournoi : Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam tempore quasi facere, doloremque possimus dignissimos aspernatur at eius cumque blanditiis qui, consequatur ratione. Exercitationem, odit?</p>
+							<p class="info-moderator">Modérateur: <span class="info-data">Michel</span></p>
+							<p class="info-count">Nombre de participants : <span class="info-data">64</span></p>
+							<p class="info-date">Date de l'évènement : <span class="info-data">vendredi 15 juin 2042</span></p>
+							<p class="info-description">Info du tournoi : <span class="info-data">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam tempore quasi facere, doloremque possimus dignissimos aspernatur at eius cumque blanditiis qui, consequatur ratione. Exercitationem, odit?</span></p>
 							<a  class="info-link" href="">lien vers tournoi</a>
 						</div>
 					</div>
-					<button class="main-tournament-inscription-one-tournament-info-btn">S'inscrire</button>
+					<button class="inscription-button">S'inscrire</button>
 				</article>
+				<!-- un tournoi -->				<!-- un tournoi -->
 				<article class="main-tournament-inscription-one-tournament">
 					<div class="main-tournament-inscription-one-tournament-info">
-						<img src="../src/assets/images/téléchargement.jpeg" alt="">
+						<img class="main-tournament-inscription-one-tournament-img" src="../src/assets/images/téléchargement.jpeg" alt="">
 						<div class="info">
 							<h3 class="info-title">Ocklock tournament</h3>
-							<p class="info-moderator">Modérateur: Michel</p>
-							<p class="info-count">Nombre de participants : 64</p>
-							<p class="info-date">Date de l'évènement : vendredi 15 juin 2042</p>
-							<p class="info-description">Info du tournoi : Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam tempore quasi facere, doloremque possimus dignissimos aspernatur at eius cumque blanditiis qui, consequatur ratione. Exercitationem, odit?</p>
+							<p class="info-moderator">Modérateur: <span class="info-data">Michel</span></p>
+							<p class="info-count">Nombre de participants : <span class="info-data">64</span></p>
+							<p class="info-date">Date de l'évènement : <span class="info-data">vendredi 15 juin 2042</span></p>
+							<p class="info-description">Info du tournoi : <span class="info-data">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam tempore quasi facere, doloremque possimus dignissimos aspernatur at eius cumque blanditiis qui, consequatur ratione. Exercitationem, odit?</span></p>
 							<a  class="info-link" href="">lien vers tournoi</a>
 						</div>
 					</div>
-					<button class="main-tournament-inscription-one-tournament-info-btn">S'inscrire</button>
+					<button class="inscription-button">S'inscrire</button>
 				</article>
+				<!-- un tournoi -->				<!-- un tournoi -->
+				<article class="main-tournament-inscription-one-tournament">
+					<div class="main-tournament-inscription-one-tournament-info">
+						<img class="main-tournament-inscription-one-tournament-img" src="../src/assets/images/téléchargement.jpeg" alt="">
+						<div class="info">
+							<h3 class="info-title">Ocklock tournament</h3>
+							<p class="info-moderator">Modérateur: <span class="info-data">Michel</span></p>
+							<p class="info-count">Nombre de participants : <span class="info-data">64</span></p>
+							<p class="info-date">Date de l'évènement : <span class="info-data">vendredi 15 juin 2042</span></p>
+							<p class="info-description">Info du tournoi : <span class="info-data">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam tempore quasi facere, doloremque possimus dignissimos aspernatur at eius cumque blanditiis qui, consequatur ratione. Exercitationem, odit?</span></p>
+							<a  class="info-link" href="">lien vers tournoi</a>
+						</div>
+					</div>
+					<button class="inscription-button">S'inscrire</button>
+				</article>
+				<!-- un tournoi -->				<!-- un tournoi -->
+				<article class="main-tournament-inscription-one-tournament">
+					<div class="main-tournament-inscription-one-tournament-info">
+						<img class="main-tournament-inscription-one-tournament-img" src="../src/assets/images/téléchargement.jpeg" alt="">
+						<div class="info">
+							<h3 class="info-title">Ocklock tournament</h3>
+							<p class="info-moderator">Modérateur: <span class="info-data">Michel</span></p>
+							<p class="info-count">Nombre de participants : <span class="info-data">64</span></p>
+							<p class="info-date">Date de l'évènement : <span class="info-data">vendredi 15 juin 2042</span></p>
+							<p class="info-description">Info du tournoi : <span class="info-data">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam tempore quasi facere, doloremque possimus dignissimos aspernatur at eius cumque blanditiis qui, consequatur ratione. Exercitationem, odit?</span></p>
+							<a  class="info-link" href="">lien vers tournoi</a>
+						</div>
+					</div>
+					<button class="inscription-button">S'inscrire</button>
+				</article>
+				<!-- un tournoi -->				<!-- un tournoi -->
+				<article class="main-tournament-inscription-one-tournament">
+					<div class="main-tournament-inscription-one-tournament-info">
+						<img class="main-tournament-inscription-one-tournament-img" src="../src/assets/images/téléchargement.jpeg" alt="">
+						<div class="info">
+							<h3 class="info-title">Ocklock tournament</h3>
+							<p class="info-moderator">Modérateur: <span class="info-data">Michel</span></p>
+							<p class="info-count">Nombre de participants : <span class="info-data">64</span></p>
+							<p class="info-date">Date de l'évènement : <span class="info-data">vendredi 15 juin 2042</span></p>
+							<p class="info-description">Info du tournoi : <span class="info-data">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam tempore quasi facere, doloremque possimus dignissimos aspernatur at eius cumque blanditiis qui, consequatur ratione. Exercitationem, odit?</span></p>
+							<a  class="info-link" href="">lien vers tournoi</a>
+						</div>
+					</div>
+					<button class="inscription-button">S'inscrire</button>
+				</article>
+				<!-- un tournoi -->
+				
             </div>
 
             <div class="main-tournament-leaderboard">
                 <h3 class="main-tournament-leaderboard-title">LEADERBOARD</h3>
 				<article class="main-tournament-leaderboard-categories">
 					<div class="main-tournament-leaderboard-categories-header">
-						<img class="arrow" src="../src/assets/icons/arrow_back_ios_FILL0_wght400_GRAD0_opsz48.svg" alt="arrow back">
+						<span class="material-symbols-rounded leaderboard-arrow">
+							arrow_circle_left
+						</span>
 						<h4 class="main-tournament-leaderboard-categories-header-title">Nombre de victoires</h4>
-						<img class="arrow" src="../src/assets/icons/arrow_forward_ios_FILL0_wght400_GRAD0_opsz48.svg" alt="arrow forward">
+						<span class="material-symbols-rounded leaderboard-arrow">
+							arrow_circle_right
+						</span>
 					</div>
 					<div class="main-tournament-leaderboard-game">
 						<ul class="leaderboard">
-							<li class="leaderboard-list first"><p>1st : </p><span class="leaderboard-list-data">michel avec 9999 victoires.</span></li>
-							<li class="leaderboard-list second"><p>2nd : </p><span class="leaderboard-list-data">michel avec 666 victoires.</span></li>
-							<li class="leaderboard-list third"><p>3rd : </p><span class="leaderboard-list-data">michel avec 266 victoires.</span></li>
+							<li class="leaderboard-list first">
+								<span class="material-symbols-rounded color-gold">
+									military_tech
+								</span><p>1st : </p><span class="leaderboard-list-data">michel avec 9999 victoires.</span></li>
+							<li class="leaderboard-list second">								
+								<span class="material-symbols-rounded color-silver">
+									military_tech
+								</span><p>2nd : </p><span class="leaderboard-list-data">michel avec 666 victoires.</span></li>
+							<li class="leaderboard-list third">								
+								<span class="material-symbols-rounded color-copper">
+									military_tech
+								</span><p>3rd : </p><span class="leaderboard-list-data">michel avec 266 victoires.</span></li>
 							<li class="leaderboard-list"><p>4th : </p><span class="leaderboard-list-data">michel avec 173 victoires.</span></li>
 							<li class="leaderboard-list"><p>5th : </p><span class="leaderboard-list-data">michel avec 122 victoires.</span></li>
 							<li class="leaderboard-list"><p>6th : </p><span class="leaderboard-list-data">michel avec 99 victoires.</span></li>
@@ -174,14 +248,12 @@
 	</main>
 
     <footer class="footer">
-        <div class="footer-container">
-			<div class="footer-container-copyright">
-				<p>Copyright © 2022, MoB All Rights Reserved.</p>
-			</div>
-			<div class="footer-container-nav">
-				<a href="">A PROPOS</a>
-				<a href="">CONTACT</a>
-			</div>
+		<div class="footer-copyright">
+			<p>Copyright © 2022, MoB All Rights Reserved.</p>
+		</div>
+		<div class="footer-nav">
+			<a class="footer-nav-link" href="">A PROPOS</a>
+			<a class="footer-nav-link" href="">CONTACT</a>
 		</div>
     </footer>
 
