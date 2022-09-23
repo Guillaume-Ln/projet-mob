@@ -39,7 +39,6 @@ h1, h2, h3, h4, h5, h6, a{
   z-index: 5;
   border-bottom: 1px solid #08F57E;
   filter: drop-shadow(0px 0px 15px #08f57f64);
-
 }
 .header span{
   color: #08F57E;
