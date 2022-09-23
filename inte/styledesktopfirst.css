@@ -431,7 +431,6 @@ font-size: .9rem;
 
 .footer{
   filter: drop-shadow(0px 0px 15px #08f57f64);
-
   display: flex;
   width: 100%;
   margin-top: 2rem;
@@ -452,18 +451,18 @@ font-size: .9rem;
   padding: 1rem;
 }
 
-.footer-container-nav a{
+.footer-nav a{
   position: relative;
   color: #08F57E;
   text-decoration: none;
   transition: all .2s;
   margin-left: 2rem;
 }
-.footer-container-nav a:hover{
+.footer-nav a:hover{
   filter: drop-shadow(0px 0px 15px #08f57f64);
   font-size: 1.2rem;
 }
-.footer-container-nav a::after{
+.footer-nav a::after{
   content: '';
   width: 0%;
   border-bottom: 1px solid #08F57E;
@@ -472,7 +471,7 @@ font-size: .9rem;
   left: 10%;
   transition: all .2s;
 }
-.footer-container-nav a:hover::after{
+.footer-nav a:hover::after{
   width: 80%;
 }
 
