@@ -133,14 +133,12 @@ filter: drop-shadow(0 0 10px #08F57E);
   filter: drop-shadow(0px 0px 15px #08f57f64);
   font-size: .8rem;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 1rem;
 }
 .main-tournament-inscription-title{
-  position: absolute;
-  top: -2.5%;
   background-color: #364561;
   border-radius: 10px;
   text-align: center;
@@ -150,6 +148,14 @@ filter: drop-shadow(0 0 10px #08F57E);
   padding: .5rem;
   z-index: 5;
   color: #F3F400;
+}
+.main-tournament-inscription-container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
 }
 .main-tournament-inscription{
   width: 90%;
@@ -192,6 +198,9 @@ filter: drop-shadow(0 0 10px #08F57E);
   display: flex;
   justify-content: space-between;
   max-height: 3rem;
+}
+.image-container{
+  display: none;
 }
 .image-container-img{
   display: none;
@@ -238,7 +247,7 @@ gap: .5rem;
   flex-direction: column;
   align-items: center;
   gap: .5rem;
-  margin-top: 1rem;
+  padding-top: 1rem;
   padding-bottom: 1rem;
   overflow-y: scroll;
 }
@@ -256,8 +265,6 @@ gap: .5rem;
 }
 
 .main-tournament-leaderboard-title{
-  position: absolute;
-  top: 51%;
   filter: drop-shadow(0px 0px 15px #08f57f64);
   border-radius: 10px;
   background-color: #364561;
@@ -386,12 +393,6 @@ gap: .5rem;
     width: 25rem;
     height: 5rem;
   }
-  .image-container-img{
-    display: inline;
-    width: 10rem;
-    height: 5rem;
-    border-radius: 10px;
-  }
   .inscription-button{
     font-size: .8rem;
     padding: auto;
@@ -421,9 +422,7 @@ gap: .5rem;
 }
 
 @media screen and (min-width: 768px) {
-  .info{
-    margin-left: 1rem;
-  }
+
   .info-moderator{
     display: inline;
   }
@@ -437,10 +436,6 @@ gap: .5rem;
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  .image-container-img{
-    display: inline;
-    width: 40%;
   }
   .leaderboard-list{
     width: 150%;
@@ -612,37 +607,64 @@ gap: .5rem;
     align-items: center;
     width: 100%;
   }
+  .info-title{
+    font-size: 1rem;
+  }
   .main-tournament-inscription{
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
     width: calc(60% - 0.5rem);
-    max-height: 50vh;
+    max-height: 60vh;
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
     margin: 0;
   }
-  .main-tournament-inscription-title{
-    top: -4.5%;
+  .image-container{
+    display: inline;
+    overflow: hidden;
+    width: 100%;
+  }
+  .image-container-img{
+    display: inline;
+    width: 100%;
+  }
+  .main-tournament-inscription-one-tournament-info{
+    display: flex;
+    flex-direction: column;
+    
   }
   .main-tournament-inscription-one-tournament{
-    padding: 2rem 1rem;
+    display: flex;
     justify-content: space-between;
+    flex-direction: column;
+    width: 25%;
+    height: 25rem;
+  }
+  .main-tournament-inscription-one-tournament:hover{
+    transform: scale(1.02);
+    filter: drop-shadow(0px 0px 15px #f4f40029);
+    border: 1px solid #F3F400;
+    transition: all .2s;
   }
   .main-tournament-leaderboard{
     width: calc(30% - 0.5rem);
-    max-height: 50vh;
+    max-height: 60vh;
     margin: 0;
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
-  }
-  .main-tournament-leaderboard-title{
-    top: -4.5%;
   }
   .main-tournament-leaderboard-categories{
     padding-top: 0;
   }
   .leaderboard-list{
     width: 80%;
+  }
+  .leaderboard-list:hover{
+    transform: scale(1.02);
+    filter: drop-shadow(0px 0px 15px #f4f40029);
+    border: 1px solid #F3F400;
+    transition: all .2s;
   }
   .footer-nav{
     width: 20%;
