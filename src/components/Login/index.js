@@ -1,6 +1,23 @@
 import './style.scss';
 
+import {useDispatch, useSelector} from 'react-redux';
+import {actionChangeInputLoginConnexionValue, actionChangeInputPasswordConnexionValue} from 'src/actions';
+
 function Login() {
+  const inputLoginValue = useSelector ((state) => state.inputConnexion.login);
+  const inputPasswordValue = useSelector((state) => state.inputConnexion.password);
+  const dispatch = useDispatch();
+  const handleChangeLogin = (event) => {
+    dispatch(
+        actionChangeInputLoginConnexionValue(event.target.value) 
+    )
+  }
+  const handleChangePassword = (event) => {
+    dispatch(
+      actionChangeInputPasswordConnexionValue(event.target.value)
+
+    )
+  }
   return (
     <section className="main-connection">
       <div className="main-connection-page">
@@ -14,13 +31,13 @@ function Login() {
             </section>
             <div className="input-group">
               <label htmlFor="inputLogin" className="input-group-label">
-                <input required="" id="inputLogin" type="text" name="text" placeholder="Identifiant" autoComplete="on" className="input-connection" />
+                <input value={inputLoginValue} onChange={handleChangeLogin} required="" id="inputLogin" type="email" name="email" placeholder="Identifiant" autoComplete="on" className="input-connection" />
               </label>
             </div>
             <div className="input-group">
               <label htmlFor="inputPassword" className="input-group-label">
                 
-                <input required="" id="inputPassword" type="password" name="password" placeholder="Mot de passe" autoComplete="off" className="input-connection" />
+                <input value={inputPasswordValue} onChange={handleChangePassword} required="" id="inputPassword" type="password" name="password" placeholder="Mot de passe" autoComplete="off" className="input-connection" />
               </label>
             </div>
             <button type="button" className="connection-button">Se connecter</button>
