@@ -12,3 +12,9 @@ export const actionChangeInputPasswordConnexionValue = (newValue) => ({
   value: newValue,
 
 });
+
+export const AJAX_LOGIN = 'AJAX_LOGIN';
+
+export const actionLogin = () => ({
+  type: AJAX_LOGIN,
+});

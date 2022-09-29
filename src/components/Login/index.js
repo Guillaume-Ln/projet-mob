@@ -1,7 +1,7 @@
 import './style.scss';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { actionChangeInputLoginConnexionValue, actionChangeInputPasswordConnexionValue } from 'src/actions';
+import { actionLogin, actionChangeInputLoginConnexionValue, actionChangeInputPasswordConnexionValue } from 'src/actions';
 
 function Login() {
   const inputLoginValue = useSelector((state) => state.inputConnexion.login);
@@ -13,10 +13,16 @@ function Login() {
       actionChangeInputLoginConnexionValue(event.target.value),
     );
   };
+
   const handleChangePassword = (event) => {
     dispatch(
       actionChangeInputPasswordConnexionValue(event.target.value),
     );
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    dispatch(actionLogin());
   };
 
   return (
@@ -24,7 +30,7 @@ function Login() {
       <div className="main-connection-page">
         <h3 className="main-connection-page-title">Connexion</h3>
         <article>
-          <div className="main-connection-input-container">
+          <form onSubmit={handleSubmit} className="main-connection-input-container">
             <section>
               <span className="material-symbols-outlined">
                 account_circle
@@ -40,8 +46,8 @@ function Login() {
                 <input value={inputPasswordValue} onChange={handleChangePassword} required="" id="inputPassword" type="password" name="password" placeholder="Mot de passe" autoComplete="off" className="input-connection" />
               </label>
             </div>
-            <button type="button" className="connection-button">Se connecter</button>
-          </div>
+            <button type="submit" className="connection-button">Se connecter</button>
+          </form>
         </article>
       </div>
     </section>

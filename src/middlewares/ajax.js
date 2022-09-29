@@ -1,14 +1,21 @@
+/* eslint-disable no-console */
 import axios from 'axios';
+import { AJAX_LOGIN } from '../actions';
 
-// ! test middleware pour les requettes ajax, ceci sera suprimer dans un prochain commit
 const instance = axios.create({
-  baseURL: 'https://pokeapi.co/api/v2',
+  baseURL: 'https://mob-multiplayer-online-bracket.herokuapp.com',
 });
 
 const ajax = (store) => (next) => (action) => {
   switch (action.type) {
-    case 'FETCH_POKEMON': {
-      instance.get('/pokemon')
+    case AJAX_LOGIN: {
+      const state = store.getState();
+      console.log(state);
+
+      instance.post('/api/login', {
+        mail: state.inputConnexion.login,
+        password: state.inputConnexion.password,
+      })
         .then((response) => {
           // handle success
           console.log(response);
