@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import axios from 'axios';
-import { AJAX_LOGIN } from '../actions';
+import { actionIsLogged, AJAX_LOGIN } from '../actions';
 
 const instance = axios.create({
   baseURL: 'https://mob-multiplayer-online-bracket.herokuapp.com',
@@ -18,7 +18,12 @@ const ajax = (store) => (next) => (action) => {
       })
         .then((response) => {
           // handle success
-          console.log(response);
+          console.log('auth success');
+          console.log(response.data);
+          // eslint-disable-next-line dot-notation
+          instance.defaults.headers.common['authorization'] = `Bearer ${response.data.accessToken}`;
+          localStorage.setItem('authorization', response.data.accessToken);
+          store.dispatch(actionIsLogged());
         })
         .catch((error) => {
           // handle error

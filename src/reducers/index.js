@@ -1,6 +1,22 @@
-import { CHANGE_INPUT_LOGIN_CONNEXION_VALUE, CHANGE_INPUT_PASSWORD_CONNEXION_VALUE } from '../actions';
+import {
+  CHANGE_INPUT_LOGIN_CONNEXION_VALUE,
+  CHANGE_INPUT_PASSWORD_CONNEXION_VALUE,
+  CLEAR_INPUT_LOGIN,
+  IS_LOGGED,
+} from '../actions';
 
 const initialState = {
+  isConnected: false,
+  user: {
+    id: null,
+    firstname: null,
+    lastname: null,
+    mail: null,
+    nickname: null,
+    team: null,
+    honor_point: null,
+    trophies: null,
+  },
   inputConnexion: {
     login: '',
     password: '',
@@ -29,6 +45,20 @@ function reducer(state = initialState, action = {}) {
         },
       };
 
+    case IS_LOGGED:
+      return {
+        ...state,
+        isConnected: true,
+      };
+
+    case CLEAR_INPUT_LOGIN:
+      return {
+        ...state,
+        inputConnexion: {
+          login: '',
+          password: '',
+        },
+      };
     default:
       return state;
   }

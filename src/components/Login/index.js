@@ -1,7 +1,12 @@
 import './style.scss';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { actionLogin, actionChangeInputLoginConnexionValue, actionChangeInputPasswordConnexionValue } from 'src/actions';
+import {
+  actionLogin,
+  actionClearInputLogin,
+  actionChangeInputLoginConnexionValue,
+  actionChangeInputPasswordConnexionValue,
+} from 'src/actions';
 
 function Login() {
   const inputLoginValue = useSelector((state) => state.inputConnexion.login);
@@ -23,6 +28,7 @@ function Login() {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(actionLogin());
+    dispatch(actionClearInputLogin());
   };
 
   return (
