@@ -9,6 +9,7 @@ const initialState = {
     search: '',
     searchable: '',
   },
+
 };
 
 function reducer(state = initialState, action = {}) {

@@ -9,7 +9,6 @@ import logo from '../../assets/images/logo_mob.png';
 function Header() {
   const checkIsActive =({ isActive }) => isActive ? 'nav-bar-link nav-bar-link--active':'nav-bar-link';
   const navigate = useNavigate();
-  const handleConnectionButton = () => (console.log('hello'));
 
   const inputSearchValue = useSelector((state) => state.inputSearch.searchable);
   const dispatch = useDispatch();
@@ -32,7 +31,7 @@ function Header() {
         <input value={inputSearchValue} onChange={handleChangeSearch} required="" id="inputSearch" type="text" name="text" placeholder="Rechercher..." autoComplete="on" className="input" />
       </section>
       <section className="header-account">
-        <button type="button" className="header-account pointer" onClick={handleConnectionButton}>Se connecter</button>
+        <button type="button" className="header-account pointer" onClick={() => navigate('/login')/* handleConnectionButton */}>Se connecter</button>
         <button type="button" className="header-account pointer" onClick={() => navigate('/signup')}>S'inscrire</button>
         <span className="material-symbols-outlined logo-account pointer">
           account_circle
