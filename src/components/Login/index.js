@@ -50,7 +50,7 @@ function Login() {
         <div className="modal-connection-page">
           <h3 className="modal-connection-page-title">Connexion</h3>
           <article>
-            <form onSubmit={handleSubmit} className="main-connection-input-container">
+            <form onSubmit={handleSubmit} className="modal-connection-input-container">
               <section className="main-connection-input-container-header">
                 <span className="material-symbols-outlined">
                   account_circle
