@@ -37,3 +37,15 @@ export const actionChangeInputSearchValue = (newValue) => ({
   value: newValue,
 
 });
+
+export const SIGNIN_IS_VISIBLE = 'SIGNIN_IS_VISIBLE';
+
+export const actionSigninIsVisible = () => ({
+  type: SIGNIN_IS_VISIBLE,
+});
+
+export const DISCONNECT = 'DISCONNECT';
+
+export const actionDisconnect = () => ({
+  type: DISCONNECT,
+});

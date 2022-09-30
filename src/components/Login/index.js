@@ -6,6 +6,7 @@ import {
   actionClearInputLogin,
   actionChangeInputLoginConnexionValue,
   actionChangeInputPasswordConnexionValue,
+  actionSigninIsVisible,
 } from 'src/actions';
 
 function Login() {
@@ -28,6 +29,13 @@ function Login() {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(actionLogin());
+    dispatch(actionClearInputLogin());
+    // eslint-disable-next-line max-len
+    dispatch(actionSigninIsVisible()); // todo gérer la fermeture uniquement si connecté, sinon afficher un message d'erreur.
+  };
+
+  const handleCancelClick = () => {
+    dispatch(actionSigninIsVisible());
     dispatch(actionClearInputLogin());
   };
 
@@ -54,6 +62,7 @@ function Login() {
                 </label>
               </div>
               <button type="submit" className="connection-button">Se connecter</button>
+              <button onClick={handleCancelClick} type="button" className="connection-button-cancel">Annuler</button>
             </form>
           </article>
         </div>

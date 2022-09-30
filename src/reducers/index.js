@@ -4,6 +4,8 @@ import {
   CLEAR_INPUT_LOGIN,
   IS_LOGGED,
   CHANGE_INPUT_SEARCH_VALUE,
+  SIGNIN_IS_VISIBLE,
+  DISCONNECT,
 } from '../actions';
 
 const initialState = {
@@ -70,6 +72,27 @@ function reducer(state = initialState, action = {}) {
         inputConnexion: {
           login: '',
           password: '',
+        },
+      };
+    case SIGNIN_IS_VISIBLE:
+      return {
+        ...state,
+        signinIsVisible: !state.signinIsVisible,
+      };
+    case DISCONNECT:
+      localStorage.removeItem('authorization');
+      return {
+        ...state,
+        isConnected: false,
+        user: {
+          id: null,
+          firstname: null,
+          lastname: null,
+          mail: null,
+          nickname: null,
+          team: null,
+          honor_point: null,
+          trophies: null,
         },
       };
     default:
