@@ -24,6 +24,20 @@
 .header-account{
   display: none;
 }
+.profil-connected{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #08F57E;
+  &-disconnect{
+    padding: .3rem;
+    text-decoration: underline;
+    &:hover{
+      font-weight: 800;
+    }
+  }
+}
 .header-menu{
   color: #08F57E;
   transform: scale(1.3);
