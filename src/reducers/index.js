@@ -7,6 +7,7 @@ import {
 } from '../actions';
 
 const initialState = {
+  signinIsVisible: false,
   isConnected: false,
   user: {
     id: null,

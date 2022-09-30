@@ -1,5 +1,5 @@
 // == Import
-import { Route, Routes } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import Footer from '../Footer';
 import Header from '../Header';
 import Login from '../Login';
@@ -8,12 +8,12 @@ import './styles.css';
 
 // == Composant
 function App() {
+  const signinIsVisible = useSelector((state) => state.signinIsVisible);
+
   return (
     <div className="app">
       <Header />
-      <Routes>
-        <Route path="/login" element={<Login />} />
-      </Routes>
+      {signinIsVisible && <Login /> }
       <Footer />
     </div>
   );
