@@ -12,7 +12,7 @@ function Header() {
 
   const inputSearchValue = useSelector((state) => state.inputSearch.searchable);
   const isConnected = useSelector((state) => state.isConnected);
-  // const user = useSelector((state) => state.user); //todo afficher le pseudo quand connecté
+  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   const handleChangeSearch = (event) => {
@@ -21,7 +21,7 @@ function Header() {
     );
   };
   const handleConnectionButton = () => {
-    dispatch(actionSigninIsVisible());
+    dispatch(actionSigninIsVisible(true));
   };
   const handleDisconnectClick = () => {
     dispatch(actionDisconnect());
@@ -46,6 +46,7 @@ function Header() {
             <span className="material-symbols-outlined logo-account pointer">
               account_circle
             </span>
+            <p>Bonjour {user.nickname}.</p>
             <p onClick={handleDisconnectClick} className="profil-connected-disconnect pointer">Déconnexion</p>
           </div>
         )}
