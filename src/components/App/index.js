@@ -1,8 +1,10 @@
 // == Import
+import { Route, Routes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import Footer from '../Footer';
 import Header from '../Header';
+import Footer from '../Footer';
 import Login from '../Login';
+import Home from '../Home';
 
 import './styles.css';
 
@@ -14,6 +16,9 @@ function App() {
     <div className="app">
       <Header />
       {signinIsVisible && <Login /> }
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
       <Footer />
     </div>
   );
