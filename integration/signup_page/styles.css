@@ -334,7 +334,6 @@ filter: drop-shadow(0 0 10px #08F57E);
     color: #f5f5f5;
     transition: border 150ms cubic-bezier(0.4,0,0.2,1);
   }
-  
   .user-label {
     position: absolute;
     left: 15px;
@@ -343,12 +342,10 @@ filter: drop-shadow(0 0 10px #08F57E);
     transform: translateY(1rem);
     transition: 150ms cubic-bezier(0.4,0,0.2,1);
   }
-  
   .input:focus, input:valid {
     outline: none;
     border: 1.5px solid #08F57E;
   }
-  
   .input:focus ~ label, input:valid ~ label {
     transform: translateY(-50%) scale(0.8);
     background-color: #3D4351;
@@ -360,6 +357,94 @@ filter: drop-shadow(0 0 10px #08F57E);
   .header-menu{
     /* ici on utilise important car le display none ne fonctionne pas */
     display: none !important;
+  }
+  .main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .main-signup{
+    filter: drop-shadow(0px 0px 15px #08f57f64);
+    font-size: .8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+  .main-signup-page-title{
+    margin-top: .5rem;
+    background-color: #364561;
+    border-radius: 10px;
+    text-align: center;
+    font-size: .8rem;
+    filter: drop-shadow(0px 0px 15px #08f57f64);
+    border: 1px solid #08F57E;
+    padding: .5rem;
+    z-index: 5;
+    color: #F3F400;
+  }
+  .account_circle{
+    color: #08F57E;
+  }
+  .main-signup-page{
+    width: 50%;
+    max-height: 80vh;
+    border: 1px solid #08F57E;
+    background-color: #3d4351b7;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .signup-input-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 65vh;
+    gap: 1rem;
+  }
+  .input-left-and-right{
+    padding: 1rem 0rem;
+    gap: .5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  .input-left{
+    gap: .5rem;
+    margin: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .input-right{
+    gap: .5rem;
+    margin: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .user-label{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    margin: .5rem;
+  }
+  .input-signup{
+    padding: .5rem;
+    padding-left: 1rem;
+    font-size: .8rem;
+    color: white;
+    width: fit-content;
+    height: 1.3rem;
+    background-color: transparent;
+    border-radius: 7px;
+    border: 1px solid #08F57E;
   }
   .footer-nav{
     width: 20%;
