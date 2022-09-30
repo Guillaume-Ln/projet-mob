@@ -6,9 +6,16 @@ import {
   CHANGE_INPUT_SEARCH_VALUE,
   SIGNIN_IS_VISIBLE,
   DISCONNECT,
+  ERROR_MESSAGE,
+  SAVE_USER,
+  CLEAR_ERROR_MESSAGE,
+  IS_LOADING,
 } from '../actions';
 
 const initialState = {
+  isLoading: false,
+  isErrored: false,
+  errorMessage: '',
   signinIsVisible: false,
   isConnected: false,
   user: {
@@ -77,12 +84,13 @@ function reducer(state = initialState, action = {}) {
     case SIGNIN_IS_VISIBLE:
       return {
         ...state,
-        signinIsVisible: !state.signinIsVisible,
+        signinIsVisible: action.value,
       };
     case DISCONNECT:
       localStorage.removeItem('authorization');
       return {
         ...state,
+        isLoadind: false,
         isConnected: false,
         user: {
           id: null,
@@ -94,6 +102,38 @@ function reducer(state = initialState, action = {}) {
           honor_point: null,
           trophies: null,
         },
+      };
+    case ERROR_MESSAGE:
+      return {
+        ...state,
+        errorMessage: action.error,
+        isErrored: true,
+        isLoading: false,
+        signinIsVisible: true,
+      };
+    case SAVE_USER:
+      return {
+        ...state,
+        user: action.user,
+        isConnected: true,
+        isLoading: false,
+        isErrored: false,
+        signinIsVisible: false,
+        errorMessage: '',
+        inputConnexion: {
+          login: '',
+          password: '',
+        },
+      };
+    case CLEAR_ERROR_MESSAGE:
+      return {
+        ...state,
+        errorMessage: '',
+      };
+    case IS_LOADING:
+      return {
+        ...state,
+        isLoading: action.value,
       };
     default:
       return state;

@@ -7,11 +7,16 @@ import {
   actionChangeInputLoginConnexionValue,
   actionChangeInputPasswordConnexionValue,
   actionSigninIsVisible,
+  actionClearErrorMessage,
+  actionIsLoading,
 } from 'src/actions';
 
 function Login() {
+  // todo utiliser isLoading pour mettre un loader
+  // const isLoading = useSelector((state) => state.isLoading);
   const inputLoginValue = useSelector((state) => state.inputConnexion.login);
   const inputPasswordValue = useSelector((state) => state.inputConnexion.password);
+  const errorMessage = useSelector((state) => state.errorMessage);
   const dispatch = useDispatch();
 
   const handleChangeLogin = (event) => {
@@ -27,16 +32,16 @@ function Login() {
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault();
-    dispatch(actionLogin());
-    dispatch(actionClearInputLogin());
-    // eslint-disable-next-line max-len
-    dispatch(actionSigninIsVisible()); // todo gérer la fermeture uniquement si connecté, sinon afficher un message d'erreur.
+    event.preventDefault(); // on suprime le comportement par default
+    dispatch(actionIsLoading(true)); // on entre en chargement
+    dispatch(actionLogin()); // on demande a ce loggué
   };
 
   const handleCancelClick = () => {
-    dispatch(actionSigninIsVisible());
-    dispatch(actionClearInputLogin());
+    dispatch(actionSigninIsVisible(false)); // on ferme la modale
+    dispatch(actionClearInputLogin()); // on néttoie les inputs login/password
+    dispatch(actionClearErrorMessage()); // on néttoie le message d'erreur
+    dispatch(actionIsLoading(false)); // on n'est plus en chargement
   };
 
   return (
@@ -46,10 +51,11 @@ function Login() {
           <h3 className="main-connection-page-title">Connexion</h3>
           <article>
             <form onSubmit={handleSubmit} className="main-connection-input-container">
-              <section>
+              <section className="main-connection-input-container-header">
                 <span className="material-symbols-outlined">
                   account_circle
                 </span>
+                {errorMessage !== '' && <p className="error-message">{errorMessage}</p>}
               </section>
               <div className="input-group">
                 <label htmlFor="inputLogin" className="input-group-label">
