@@ -1,8 +1,9 @@
 // == Import
 import { Route, Routes } from 'react-router-dom';
-import Footer from '../Footer';
 import Header from '../Header';
+import Footer from '../Footer';
 import Login from '../Login';
+import Home from '../Home';
 
 import './styles.css';
 
@@ -13,6 +14,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Home />} />
       </Routes>
       <Footer />
     </div>

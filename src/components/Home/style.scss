@@ -1,0 +1,507 @@
+body {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  font-family: 'Ubuntu', sans-serif;
+  background-color: #3a60a7;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: scroll;
+  overflow-x: hidden;
+
+}
+ /* *******************************main */
+ .main{
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem .5rem;
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+}
+.main-informations{
+  display: none;
+}
+.main-tournament{
+  filter: drop-shadow(0px 0px 15px #08f57f64);
+  font-size: .8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.main-tournament-inscription-title{
+  background-color: #364561;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 1.2rem;
+  filter: drop-shadow(0px 0px 15px #08f57f64);
+  border: 1px solid #08F57E;
+  padding: .5rem;
+  z-index: 5;
+  color: #F3F400;
+}
+.main-tournament-inscription-container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.main-tournament-inscription{
+  width: 90%;
+  max-height: 50vh;
+  border: 1px solid #08F57E;
+  background-color: #3d4351b7;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  overflow-y: scroll;
+}
+.main-tournament-inscription::-webkit-scrollbar{
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  width: 10px;
+  height: 18px;
+  background-color: #3645616d;
+}
+.main-tournament-inscription::-webkit-scrollbar-thumb{
+  border-radius: 20px;
+  background-color: #08f57f74;
+}
+.main-tournament-inscription-one-tournament{
+  border: 1px solid #08F57E;
+  border-radius: 12px;
+  padding: 1rem .8rem;
+  width: 85%;
+  background-color: #364561;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+.main-tournament-inscription-one-tournament-info{
+  display: flex;
+  justify-content: space-between;
+  max-height: 3rem;
+}
+.image-container{
+  display: none;
+}
+.image-container-img{
+  display: none;
+}
+.info{
+color: #6CFFF2;
+text-align: center;display: flex;
+flex-direction: column;
+gap: .5rem;
+}
+.info-title{
+  font-size: .8rem;
+}
+.info-moderator{
+  display: none;
+}
+.info-count{
+  display: none;
+}
+.info-date{
+  display: none;
+}
+.info-description{
+  display: none;
+}
+.info-link{
+  font-size: .65rem;
+  color: #08F57E;
+}
+.info-data{
+  color: white;
+}
+.inscription-button{
+  font-size: .5rem;
+}
+
+.main-tournament-leaderboard{
+  width: 90%;
+  max-height: 50vh;
+  border: 1px solid #08F57E;
+  background-color: #3d4351b7;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  overflow-y: scroll;
+}
+
+.main-tournament-leaderboard::-webkit-scrollbar{
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  width: 10px;
+  height: 18px;
+  background-color: #3645616d;
+}
+.main-tournament-leaderboard::-webkit-scrollbar-thumb{
+  border-radius: 20px;
+  background-color: #08f57f74;
+}
+
+.main-tournament-leaderboard-title{
+  filter: drop-shadow(0px 0px 15px #08f57f64);
+  border-radius: 10px;
+  background-color: #364561;
+  border: 1px solid #08F57E;
+  padding: .5rem;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #F3F400;
+}
+.main-tournament-leaderboard-categories{
+  padding-top: 1rem;
+}
+.main-tournament-leaderboard-categories-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 1rem;
+}
+.leaderboard-arrow{
+  border-radius: 50%;
+  text-align: center;
+  padding: .5rem;
+}
+.leaderboard-list{
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #FF6868;
+  border: 1px solid #08F57E;
+  border-radius: 10px;
+  padding: .3rem .3rem;
+  margin: .3rem 0;
+}
+.leaderboard-list-data{
+  text-align: center;
+  max-width: 50%;
+  color: #6CFFF2;
+}
+ /* *******************************main */
+
+ @media screen and (min-width: 375px) {
+  .info-title{
+    font-size: 1rem;
+  }
+  .info-link{
+    font-size: .8rem;
+  }
+  .inscription-button{
+    font-size: .8rem;
+  }
+  .leaderboard{
+    font-size: 1rem;
+  }
+  .leaderboard-list{
+  padding: .6rem 1rem;
+  }
+  .main-tournament-leaderboard-categories-header-title{
+    font-size: 1rem;
+  }
+}
+
+@media screen and (min-width: 425px) {
+  .info-title{
+    font-size: 1.3rem;
+  }
+  .leaderboard{
+    font-size: 1.3rem;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: .4rem;
+    width: 80%;
+  }
+  .main-tournament-inscription-one-tournament{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    min-height: 10rem;
+  }
+  .main-tournament-inscription-one-tournament-info{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 25rem;
+    height: 5rem;
+  }
+  .inscription-button{
+    font-size: .8rem;
+    padding: auto;
+    width: 8rem;
+  }
+  .leaderboard{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .leaderboard-list{
+    width: 120%;
+  }
+
+}
+
+@media screen and (min-width: 768px) {
+
+  .info-moderator{
+    display: inline;
+  }
+  .info-count{
+    display: inline;
+  }
+  .info-date{
+    display: inline;
+  }
+  .main-tournament-inscription-one-tournament-info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .leaderboard-list{
+    width: 150%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+
+  .main{
+    display: flex;
+    flex-direction: column;
+  }
+  .main-informations {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    filter: drop-shadow(0px 0px 15px #08f57f64);
+    background-color: #364561;
+    border-radius: 10px;
+    border:1px solid #08F57E;
+    margin-bottom: 3rem;
+  }
+  .main-informations-slogan{
+    max-height: 15rem;
+    position: relative;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid #08F57E;
+    overflow: hidden;
+  }
+  .slogan-img{
+    position: relative;
+    max-height: 15rem;
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+  .hover-slogan{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    position: absolute;
+    width: fit-content;
+    text-align: center;
+    left: 2%;
+    bottom: 0%;
+  }
+  .slogan-logo{
+    padding: 1rem;
+    width: 10%;
+  }
+  .slogan-desc{
+    padding: 1rem;
+    color: white;
+  }
+  .main-informations-new{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .main-tournament{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  .info-title{
+    font-size: 1rem;
+  }
+  .main-tournament-inscription{
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    width: calc(60% - 0.5rem);
+    max-height: 60vh;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    margin: 0;
+  }
+  .image-container{
+    display: inline;
+    overflow: hidden;
+    width: 100%;
+  }
+  .image-container-img{
+    display: inline;
+    width: 100%;
+  }
+  .main-tournament-inscription-one-tournament-info{
+    display: flex;
+    flex-direction: column;
+    
+  }
+  .main-tournament-inscription-one-tournament{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 25%;
+    height: 25rem;
+  }
+  .main-tournament-inscription-one-tournament:hover{
+    transform: scale(1.02);
+    filter: drop-shadow(0px 0px 15px #f4f40029);
+    border: 1px solid #F3F400;
+    transition: all .2s;
+  }
+  .main-tournament-leaderboard{
+    width: calc(30% - 0.5rem);
+    max-height: 60vh;
+    margin: 0;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+  .main-tournament-leaderboard-categories{
+    padding-top: 0;
+  }
+  .leaderboard-list{
+    width: 80%;
+  }
+  .leaderboard-list:hover{
+    transform: scale(1.02);
+    filter: drop-shadow(0px 0px 15px #f4f40029);
+    border: 1px solid #F3F400;
+    transition: all .2s;
+  }
+
+}
+
+@media screen and (min-width: 1440px){
+
+
+/*   .main-tournament-inscription-one-tournament{
+    display: flex;
+    justify-content: space-between;
+
+  }
+
+  .main-tournament-inscription-one-tournament-info{
+
+    display: flex;
+    
+
+  }
+
+  .info{
+
+    display: flex;
+    
+
+  }
+*/
+  .info-description{
+    display: flex;
+    flex-direction: column;
+  }
+  .text-overflow{
+    width: 8rem  ;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .text-overflow::after{
+    content: '[...]';
+  }
+  .info-data {
+    display: flex;
+    flex-direction: column;
+    
+  }
+
+  
+
+}
+
+@media screen and (min-width: 1920px){
+
+  .leaderboard-list{
+    width: 120%;
+  }
+  .footer-nav{
+    width: 15%;
+  }
+}
+
+@media screen and (min-width: 2000px) {
+
+  .main-tournament-inscription-one-tournament{
+    height: 25rem;
+    width: 20%;
+  }
+  
+}
+
+@media screen and (min-width: 2540px){
+
+  .main-tournament-inscription-one-tournament{
+    height: 28rem;
+    width: 20%;
+  }
+
+  .leaderboard-list{
+    width: 160%;
+  }
+
+
+}
