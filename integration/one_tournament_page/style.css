@@ -179,6 +179,9 @@ filter: drop-shadow(0 0 10px #08F57E);
   justify-content: center;
   align-items: center;
 }
+.one-tournament-description-description{
+  padding: .5rem;
+}
 .one-tournament-data{
   color: white;
 }
@@ -204,7 +207,7 @@ filter: drop-shadow(0 0 10px #08F57E);
 }
 .one-tournament-container-bracket-and-participants{
   border-radius: 10px;
-  background-color: #364561;
+  background-color: #364561b6;
   border: 1px solid #08F57E;
   filter: drop-shadow(0 0 10px #08F57E);
   min-width: 100%;
@@ -212,13 +215,41 @@ filter: drop-shadow(0 0 10px #08F57E);
   min-height: 10rem;
 }
 .bracket{
-min-width: 100%;
-max-width: 100%;
-min-height: 15rem;
-background-color: rgb(196, 111, 111);
-border-top-left-radius: 10px;
-border-top-right-radius: 10px;
-
+  padding: .8rem 0;
+  font-size: 1rem;
+  color: #08F57E;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: row;
+  min-width: 100%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  overflow-x: auto;
+}
+.row{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.row-spacer{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  gap: 4.5rem;
+}
+.text-bracket{
+  font-weight: 100;
+  font-size: 6rem;
+}
+.encounter{
+  border: 1px solid #08F57E;
+  margin: .5rem;
+}
+.player{
+  padding: .5rem;
 }
 .one-tournament-container-bracket-and-participants-participants{
   display: flex;
@@ -235,8 +266,14 @@ border-top-right-radius: 10px;
   max-width: 90%;
   height: 50px;
 }
+.participant-number{
+  min-width: 10%;
+  text-align: center;
+  color: #333635;
+}
 .participant-nickname{
-  text-align: start;
+  width: 90%;
+  text-align: center;
   color: black;
 }
 .live{
@@ -291,9 +328,28 @@ border-top-right-radius: 10px;
 }
 
 @media screen and (min-width: 425px) {
+  .one-tournament-container{
+    font-size: 1.2rem;
+    padding: 1rem;
+  }
+  .one-tournament-info-title{
+    font-size: 1.7rem;
+  }
+  .one-tournament-container-info-and-description{
+    min-width: 60%;
+  }
 }
 
 @media screen and (min-width: 600px) {
+  .bracket{
+    font-size: 1.4rem;
+  }
+  .button-inscription{
+    font-size: 1.2rem;
+  }
+  .button-moderate{
+    font-size: 1.2rem;
+  }
   .footer{
     display: flex;
     flex-direction: column;
