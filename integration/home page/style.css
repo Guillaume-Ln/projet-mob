@@ -447,7 +447,7 @@ gap: .5rem;
 
 @media screen and (min-width: 1024px) {
   body{
-  background-image: url('../src/assets/images/pexels-ben-taylor-109998.jpg');
+  background-image: url('../../src/assets/images/raining\ city\ glass\ night.jpeg');
   background-size: 100% 100%;
   background-attachment: local;
   }

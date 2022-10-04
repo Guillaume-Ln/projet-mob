@@ -14,9 +14,16 @@ import {
   CHANGE_INPUT_CREATE_PASSWORD_VALUE,
   CHANGE_INPUT_CONFIRM_PASSWORD_VALUE,
   DISCONNECT,
+  ERROR_MESSAGE,
+  SAVE_USER,
+  CLEAR_ERROR_MESSAGE,
+  IS_LOADING,
 } from '../actions';
 
 const initialState = {
+  isLoading: false,
+  isErrored: false,
+  errorMessage: '',
   signinIsVisible: false,
   signupIsVisible: false,
   isConnected: false,
@@ -108,7 +115,7 @@ function reducer(state = initialState, action = {}) {
     case SIGNIN_IS_VISIBLE:
       return {
         ...state,
-        signinIsVisible: !state.signinIsVisible,
+        signinIsVisible: action.value,
       };
 
     case SIGNUP_IS_VISIBLE:
@@ -192,6 +199,7 @@ function reducer(state = initialState, action = {}) {
       localStorage.removeItem('authorization');
       return {
         ...state,
+        isLoadind: false,
         isConnected: false,
         user: {
           id: null,
@@ -203,6 +211,38 @@ function reducer(state = initialState, action = {}) {
           honor_point: null,
           trophies: null,
         },
+      };
+    case ERROR_MESSAGE:
+      return {
+        ...state,
+        errorMessage: action.error,
+        isErrored: true,
+        isLoading: false,
+        signinIsVisible: true,
+      };
+    case SAVE_USER:
+      return {
+        ...state,
+        user: action.user,
+        isConnected: true,
+        isLoading: false,
+        isErrored: false,
+        signinIsVisible: false,
+        errorMessage: '',
+        inputConnexion: {
+          login: '',
+          password: '',
+        },
+      };
+    case CLEAR_ERROR_MESSAGE:
+      return {
+        ...state,
+        errorMessage: '',
+      };
+    case IS_LOADING:
+      return {
+        ...state,
+        isLoading: action.value,
       };
     default:
       return state;
