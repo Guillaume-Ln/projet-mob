@@ -1,14 +1,18 @@
-import { NavLink, Link, useNavigate } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import './style.scss';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { actionChangeInputSearchValue, actionSigninIsVisible, actionDisconnect } from 'src/actions';
+import {
+  actionChangeInputSearchValue,
+  actionSigninIsVisible,
+  actionSignupIsVisible,
+  actionDisconnect,
+} from 'src/actions';
 
 import logo from '../../assets/images/logo_mob.png';
 
 function Header() {
   const checkIsActive = ({ isActive }) => (isActive ? 'nav-bar-link nav-bar-link--active' : 'nav-bar-link');
-  const navigate = useNavigate();
 
   const inputSearchValue = useSelector((state) => state.inputSearch.searchable);
   const isConnected = useSelector((state) => state.isConnected);
@@ -22,6 +26,9 @@ function Header() {
   };
   const handleConnectionButton = () => {
     dispatch(actionSigninIsVisible());
+  };
+  const handleSignupButton = () => {
+    dispatch(actionSignupIsVisible(true));
   };
   const handleDisconnectClick = () => {
     dispatch(actionDisconnect());
@@ -40,7 +47,7 @@ function Header() {
       </section>
       <section className="header-account">
         {!isConnected && <button type="button" className="header-account pointer" onClick={handleConnectionButton}>Se connecter</button> }
-        {!isConnected && <button type="button" className="header-account pointer" onClick={() => navigate('/signup')}>S'inscrire</button>}
+        {!isConnected && <button type="button" className="header-account pointer" onClick={handleSignupButton}>S'inscrire</button>}
         {isConnected && (
           <div className="profil-connected">
             <span className="material-symbols-outlined logo-account pointer">
