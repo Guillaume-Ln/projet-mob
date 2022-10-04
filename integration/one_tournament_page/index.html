@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>MoB</title>
+	<link rel="stylesheet" href="./reset.css">
+	<link rel="stylesheet" href="./style.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,500,0,0" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
+	<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@40,400,0,-25" />
+</head>
+<body>
+	<header class="header">
+		<img class="logo-header pointer" src="../../src/assets/images/logo_mob.png" alt="logo MOB">
+		<nav class="nav-bar">
+			<a href="">Les Tournois</a>
+			<a href="">Créer un tournoi</a>
+			<a href="">Mes tournois</a>
+		</nav>
+		<section class="header-search">
+			<span class="material-symbols-outlined header-search-button pointer">search</span>		
+			<div class="input-group">
+				<input required="" type="text" name="text" autocomplete="on" class="input">
+				<label class="user-label">Rechercher...</label>
+			</div>
+		</section>
+		<section class="header-account">
+			<button class="header-account pointer">Se connecter</button>
+			<button class="header-account pointer">S'inscrire</button>
+				<span class="material-symbols-outlined logo-account pointer">
+				account_circle
+				</span>
+		</section>
+		<span class="material-symbols-rounded header-menu">menu</span>
+	</header>
+
+	<main class="main">
+		<div class="top">
+			<div class="container">
+				<section class="one-tournament-container">
+					<section class="one-tournament-container-info-and-description">
+						<!-- ici les info du tournois -->
+						<div class="one-tournament-container-info-and-description-info">
+							<img class="one-tournament-info-img" src="../../src/assets/images/téléchargement.jpeg" alt="">
+							<h3 class="one-tournament-info-title">Le tournoi du Dimanche</h3>
+							<p class="one-tournament-info">Tournois :<span class="one-tournament-data">166</span></p>
+							<p class="one-tournament-info">Jeu :<span class="one-tournament-data">xploz3D</span></p>
+							<p class="one-tournament-info">Participants :<span class="one-tournament-data">8</span></p>
+							<p class="one-tournament-info">Modérateur :<span class="one-tournament-data">Michel</span></p>
+						</div>
+						<div class="one-tournament-container-info-and-description-description">
+							<p class="one-tournament-description"><span class="one-tournament-description-description">Description :</span><span class="one-tournament-data">Tirez vous dans la tête ca fait mal mais dans les pied c’est rigolo, c’est un texte qui simule une description.</span></p>
+						</div>
+					</section>
+					<section class="one-tournament-container-button-container">
+						<button class="button-moderate">Moderation</button>
+						<button class="button-inscription">S'inscrire</button>
+					</section>
+			</div>
+				<div class="bracket">
+					<div class="row r1">
+						<div class="encounter e1">
+							<div class="player p1">1</div>
+							<div class="player p2">2</div>
+						</div>
+						<div class="encounter e2">
+							<div class="player p3">3</div>
+							<div class="player p4">4</div>
+						</div>
+						<div class="encounter e3">
+							<div class="player p5">5</div>
+							<div class="player p6">6</div>
+						</div>
+						<div class="encounter e4">
+							<div class="player p7">7</div>
+							<div class="player p8">8</div>
+						</div>
+					</div>
+					<div class="row-spacer">
+						<p class="text-bracket">]</p>
+						<p class="text-bracket">]</p>
+					</div>
+					<div class="row r2">
+						<div class="encounter e5">
+							<div class="player p1">2</div>
+							<div class="player p2">3</div>
+						</div>
+						<div class="encounter e6">
+							<div class="player p1">7</div>
+							<div class="player p2">8</div>
+						</div>
+					</div>
+					<div class="row-spacer">
+						<p class="text-bracket">]</p>
+					</div>
+					<div class="row r3">
+						<div class="encounter e7">
+							<div class="player p1">2</div>
+							<div class="player p2">7</div>
+						</div>
+					</div>
+			</section>
+			</div>
+		</div>
+			<section class="participants">
+				<!-- ici la liste des participants avec précision par couleur s'ils sont encore en jeu ou pas -->
+				<div class="participant dead"><span class="participant-number">1-</span><span class="participant-nickname">michel</span></div>
+				<div class="participant live"><span class="participant-number">2-</span><span class="participant-nickname">dark sasuke du 75</span></div>
+				<div class="participant dead"><span class="participant-number">3-</span><span class="participant-nickname">jason</span></div>
+				<div class="participant dead"><span class="participant-number">4-</span><span class="participant-nickname">joris</span></div>
+				<div class="participant dead"><span class="participant-number">5-</span><span class="participant-nickname">toto</span></div>
+				<div class="participant dead"><span class="participant-number">6-</span><span class="participant-nickname">jean-pierre-vigneron</span></div>
+				<div class="participant win"><span class="participant-number">7-</span><span class="participant-nickname">Maitre Daunat</span></div>
+				<div class="participant dead"><span class="participant-number">8-</span><span class="participant-nickname">bonhome pain d'épice</span></div>
+			</section>
+	</main>
+
+    <footer class="footer">
+		<div class="footer-nav">
+			<a class="footer-nav-link" href="">A PROPOS</a>
+			<a class="footer-nav-link" href="">CONTACT</a>
+		</div>
+		<div class="footer-copyright">
+			<p>Copyright © 2022, MoB All Rights Reserved.</p>
+		</div>
+    </footer>
+
+</body>
+</html>
