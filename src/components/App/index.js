@@ -7,6 +7,7 @@ import Login from '../Login';
 import Home from '../Home';
 
 import './styles.css';
+import Tournament from '../Tournament';
 
 // == Composant
 function App() {
@@ -15,9 +16,10 @@ function App() {
   return (
     <div className="app">
       <Header />
+      <Tournament />
       {signinIsVisible && <Login /> }
       <Routes>
-        <Route path="/" element={<Home />} />
+        {/* <Route path="/" element={<Home />} /> */}
       </Routes>
       <Footer />
     </div>
