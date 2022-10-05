@@ -1,3 +1,4 @@
+// export des actions de la page connexion
 export const CHANGE_INPUT_LOGIN_CONNEXION_VALUE = 'CHANGE_INPUT_LOGIN_CONNEXION_VALUE';
 export const CHANGE_INPUT_PASSWORD_CONNEXION_VALUE = 'CHANGE_INPUT_PASSWORD_CONNEXION_VALUE';
 export const CHANGE_INPUT_SEARCH_VALUE = 'CHANGE_INPUT_SEARCH_VALUE';
@@ -46,12 +47,10 @@ export const actionSigninIsVisible = (bool) => ({
 export const actionDisconnect = () => ({
   type: DISCONNECT,
 });
-
 export const actionErrorMessage = (error) => ({
   type: ERROR_MESSAGE,
   error: error,
 });
-
 export const actionSaveUser = (user) => ({
   type: SAVE_USER,
   user: {
@@ -65,12 +64,69 @@ export const actionSaveUser = (user) => ({
     trophies: user.trophies,
   },
 });
-
 export const actionClearErrorMessage = () => ({
   type: CLEAR_ERROR_MESSAGE,
 });
-
 export const actionIsLoading = (bool) => ({
   type: IS_LOADING,
   value: bool,
+});
+
+// export des actions de la page inscription
+
+export const CHANGE_INPUT_NAME_VALUE = 'CHANGE_INPUT_NAME_VALUE';
+export const actionChangeInputNameValue = (newValue) => ({
+  type: CHANGE_INPUT_NAME_VALUE,
+  value: newValue,
+});
+
+export const CHANGE_INPUT_FIRSTNAME_VALUE = 'CHANGE_INPUT_FIRSTNAME_VALUE';
+export const actionChangeInputFirstNameValue = (newValue) => ({
+  type: CHANGE_INPUT_FIRSTNAME_VALUE,
+  value: newValue,
+});
+
+export const CHANGE_INPUT_NICKNAME_VALUE = 'CHANGE_INPUT_NICKNAME_VALUE';
+export const actionChangeInputNickNameValue = (newValue) => ({
+  type: CHANGE_INPUT_NICKNAME_VALUE,
+  value: newValue,
+});
+
+export const CHANGE_INPUT_EMAIL_VALUE = 'CHANGE_INPUT_EMAIL_VALUE';
+export const actionChangeInputEmailValue = (newValue) => ({
+  type: CHANGE_INPUT_EMAIL_VALUE,
+  value: newValue,
+});
+
+export const CHANGE_INPUT_CREATE_PASSWORD_VALUE = 'CHANGE_INPUT_CREATE_PASSWORD_VALUE';
+export const actionChangeInputCreatePasswordValue = (newValue) => ({
+  type: CHANGE_INPUT_CREATE_PASSWORD_VALUE,
+  value: newValue,
+});
+
+export const CHANGE_INPUT_CONFIRM_PASSWORD_VALUE = 'CHANGE_INPUT_CONFIRM_PASSWORD_VALUE';
+export const actionChangeInputConfirmPasswordValue = (newValue) => ({
+  type: CHANGE_INPUT_CONFIRM_PASSWORD_VALUE,
+  value: newValue,
+});
+
+export const SIGNUP_IS_VISIBLE = 'SIGNUP_IS_VISIBLE';
+export const actionSignupIsVisible = (bool) => ({
+  type: SIGNUP_IS_VISIBLE,
+  value: bool,
+});
+
+export const CLEAR_INPUT_SIGNUP = 'CLEAR_INPUT_SIGNUP';
+export const actionClearInputSignup = () => ({
+  type: CLEAR_INPUT_SIGNUP,
+});
+
+export const AJAX_SIGNUP = 'AJAX_SIGNUP';
+export const actionSignup = () => ({
+  type: AJAX_SIGNUP,
+});
+
+export const IS_CREATED = 'IS_CREATED';
+export const actionIsCreated = () => ({
+  type: IS_CREATED,
 });
