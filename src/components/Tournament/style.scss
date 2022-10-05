@@ -167,8 +167,8 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
-  padding: .5rem 0;
 }
 .participant{
   margin: .5rem 0;
@@ -263,6 +263,7 @@
     max-width: 100%;
     flex-direction: row;
     gap: 1rem;
+    padding: .5rem 2rem;
   }
   .participant{
     min-width: 100px;
