@@ -6,6 +6,7 @@ import Footer from '../Footer';
 import Login from '../Login';
 import Signup from '../Signup';
 import Home from '../Home';
+import CreateTournament from '../CreateTournament';
 
 import Tournament from '../Tournament';
 
@@ -21,7 +22,8 @@ function App() {
       {signinIsVisible && <Login />}
       {signupIsVisible && <Signup />}
       <Routes>
-        {/* <Route path="/" element={<Home />} /> */}
+        <Route path="/newtournament" element={<CreateTournament />} />
+        <Route path="/" element={<Home />} />
       </Routes>
       <Footer />
     </div>
