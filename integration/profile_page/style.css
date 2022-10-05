@@ -204,7 +204,16 @@ filter: drop-shadow(0 0 10px #08F57E);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: .3rem;
+  align-items: center;
+  gap: .5rem;
+}
+.profile-edit-password{
+  text-decoration: underline;
+  color: #f2b705;
+}
+.profile-delete{
+  text-decoration: underline;
+  color: red;
 }
 .profil-infos-and-stats-stats{
   margin: 1rem 0 1rem 0;
@@ -281,9 +290,21 @@ filter: drop-shadow(0 0 10px #08F57E);
 }
 
 @media screen and (min-width: 425px) {
+  .main-profile{
+    font-size: 100%;
+  }
+  .profile-infos-and-stats-info{
+    width: 70%;
+  }
+  .profile-infos-button{
+    width: 100%;
+  }
 }
 
 @media screen and (min-width: 600px) {
+  .main-profile{
+    width: 80%;
+  }
   .footer{
     display: flex;
     flex-direction: column;
@@ -299,6 +320,9 @@ filter: drop-shadow(0 0 10px #08F57E);
 }
 
 @media screen and (min-width: 768px) {
+  .main-profile{
+    width: 60%;
+  }
   .footer-nav{
     width: 30%;
   }
@@ -398,6 +422,10 @@ filter: drop-shadow(0 0 10px #08F57E);
   .header-menu{
     /* ici on utilise important car le display none ne fonctionne pas */
     display: none !important;
+  }
+  .profile-infos-and-stats{
+    flex-direction: row;
+    gap: 5rem;
   }
   .footer-nav{
     width: 20%;
