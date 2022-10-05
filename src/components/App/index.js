@@ -5,6 +5,7 @@ import Header from '../Header';
 import Footer from '../Footer';
 import Login from '../Login';
 import Home from '../Home';
+import CreateTournament from '../CreateTournament';
 
 import './styles.css';
 
@@ -17,6 +18,7 @@ function App() {
       <Header />
       {signinIsVisible && <Login /> }
       <Routes>
+        <Route path="/newtournament" element={<CreateTournament />} />
         <Route path="/" element={<Home />} />
       </Routes>
       <Footer />
