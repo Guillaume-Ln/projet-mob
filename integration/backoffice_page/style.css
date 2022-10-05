@@ -213,6 +213,28 @@ filter: drop-shadow(0 0 10px #08F57E);
 .info-link{
   color: #FF2768;
 }
+.one-user{
+  max-width: 15rem;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #08F57E;
+  background-color: #333635;
+  padding: .3rem;
+}
+.one-user-pp{
+  width: 70px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+}
+.one-user-data{
+  color: #e37944;
+}
+.one-user-link{
+  color: #FF2768;
+}
  /* *******************************main */
 
  /* *******************************footer */
