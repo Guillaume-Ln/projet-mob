@@ -1,0 +1,318 @@
+.main-tournament{
+  margin: auto;
+  height: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0rem;
+  gap: 1rem;
+  width: 95%;
+}
+.top{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+.one-tournament-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: .8rem;
+  color: #6CFFF2;
+  gap: 1rem;
+}
+.one-tournament-container-info-and-description{
+  position: relative;
+  filter: drop-shadow(0 0 10px #08F57E);
+  border-radius: 10px;
+  background-color: #3d4351b7;
+  border: 1px solid #08F57E;
+  min-width: 100%;
+  max-width: 100%;
+  padding: .5rem 0;
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.one-tournament-info-img{
+  opacity: .15;
+  position: absolute;
+  border-radius: 10px;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+}
+.one-tournament-container-info-and-description-info{
+  width: 90%;
+}
+.one-tournament-info-title{
+  text-shadow: 0px 0px 5px white;
+
+  padding: .3rem;
+  margin-bottom: .3rem;
+  text-align: center;
+  color: #FF2768;
+  font-size: 1.2rem;
+}
+.one-tournament-info{
+  text-shadow: 0px 0px 5px rgb(0, 0, 0);
+  min-width: 100%;
+  max-width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.one-tournament-container-info-and-description-description{
+  text-shadow: 0px 0px 5px rgb(0, 0, 0);
+  width: 90%;
+}
+.one-tournament-description{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.one-tournament-description-description{
+  padding: .5rem;
+}
+.one-tournament-data{
+  color: white;
+}
+.one-tournament-container-button-container{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: .3rem;
+}
+.button-moderate{
+  flex-grow: 1;
+  width: 50%;
+  filter: drop-shadow(0 0 10px #08F57E);
+  font-size: .8rem;
+}
+.button-inscription{
+  flex-grow: 1;
+  width: 50%;
+  filter: drop-shadow(0 0 10px #08F57E);
+  font-size: .8rem;
+}
+.bracket{
+  border-radius: 10px;
+  background-color: #364561b6;
+  border: 1px solid #08F57E;
+  filter: drop-shadow(0 0 10px #08F57E);
+  min-width: 100%;
+  max-width: 100%;
+  padding: .8rem 0;
+  font-size: 1rem;
+  color: #08F57E;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: row;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  overflow-x: auto;
+}
+.row{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.row-spacer{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  gap: 4.5rem;
+}
+.text-bracket{
+  font-weight: 100;
+  font-size: 6rem;
+}
+.encounter{
+  border: 1px solid #08F57E;
+  margin: .5rem;
+}
+.player{
+  padding: .5rem;
+}
+.participants{
+  border-radius: 10px;
+  background-color: #364561b6;
+  border: 1px solid #08F57E;
+  filter: drop-shadow(0 0 10px #08F57E);
+  min-width: 100%;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.participant{
+  margin: .5rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 90%;
+  max-width: 90%;
+  height: 50px;
+}
+.participant-number{
+  min-width: 10%;
+  text-align: center;
+  color: #333635;
+}
+.participant-nickname{
+  width: 90%;
+  text-align: center;
+  color: black;
+}
+.live{
+  background-color: #08F57E;
+  border-radius: 10px;
+  filter: drop-shadow(0px 0px 15px #08F57E);
+}
+.dead{
+  background-color: #FF2768;
+  border-radius: 10px;
+  filter: drop-shadow(0px 0px 15px #FF2768);
+}
+.win{
+  background-color: #f2b705;
+  border-radius: 10px;
+  filter: drop-shadow(0px 0px 15px #f2b705);
+}
+
+@media screen and (min-width: 425px) {
+  .one-tournament-container{
+    font-size: 1.2rem;
+  }
+  .one-tournament-info-title{
+    font-size: 1.7rem;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .bracket{
+    font-size: 1.4rem;
+  }
+  .button-inscription{
+    font-size: 1.2rem;
+  }
+  .button-moderate{
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .main-tournament{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: 100%;
+    width: 90%;
+  }
+  .top{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    max-width: 100%;
+    height: 25rem;
+  }
+  .bracket{
+    height: 100%;
+    min-width: 50%;
+    padding: 0;
+  }
+  .container{
+    min-width: 50%;
+    width: 50%;
+    height: 100%;
+    margin-bottom: 0;
+  }
+  .one-tournament-container-button-container{
+    width: 70%;
+  }
+  .participants{
+    min-width: 100%;
+    width: 100%;
+    max-width: 100%;
+    flex-direction: row;
+    gap: 1rem;
+    padding: .5rem 2rem;
+  }
+  .participant{
+    min-width: 100px;
+    min-height: 100px;
+    max-width: 100px;
+    max-height: 100px;
+    flex-direction: column;
+  }
+  .participant:hover{
+    transition: all .1s;
+    transform: scale(1.02);
+    filter: drop-shadow(0px 0px 15px #f4f40029);
+  }
+  .participant-nickname{
+    width: 100%;
+  }
+  .participant-number{
+    width: 100%;
+  }
+  .one-tournament-container{
+    font-size: 1rem;
+    padding: 0 1rem 0 0;
+    min-width: 100%;
+    height: 100%;
+  }
+  .one-tournament-container-info-and-description{
+    min-width: 100%;
+    height: 100%;
+    padding: 0;
+  }
+  .one-tournament-container-button-container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: .3rem;
+  }
+  .button-moderate{
+    flex-grow: 1;
+    width: 50%;
+    filter: drop-shadow(0 0 10px #08F57E);
+    font-size: .8rem;
+  }
+  .button-inscription{
+    flex-grow: 1;
+    width: 50%;
+    filter: drop-shadow(0 0 10px #08F57E);
+    font-size: .8rem;
+  }
+  
+}

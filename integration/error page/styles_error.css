@@ -13,7 +13,7 @@ body {
 
   background-color: #3d4351;
   background-color: #333635;
-  background-image: url("../src/assets/images/pexels-aleksandar-pasaric-1820770.jpg");
+  background-image: url("../../src/assets/images/pexels-aleksandar-pasaric-1820770.jpg");
   background-size: auto;
 }
 .pointer{
@@ -197,7 +197,7 @@ filter: drop-shadow(0 0 10px #08F57E);
 
 @media screen and (min-width: 1024px) {
   body{
-  background-image: url('../src/assets/images/pexels-aleksandar-pasaric-1820770.jpg');
+  background-image: url('../../src/assets/images/pexels-aleksandar-pasaric-1820770.jpg');
   background-size: 100% 100%;
   background-attachment: local;
   }

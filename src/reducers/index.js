@@ -2,9 +2,17 @@ import {
   CHANGE_INPUT_LOGIN_CONNEXION_VALUE,
   CHANGE_INPUT_PASSWORD_CONNEXION_VALUE,
   CLEAR_INPUT_LOGIN,
+  CLEAR_INPUT_SIGNUP,
   IS_LOGGED,
   CHANGE_INPUT_SEARCH_VALUE,
   SIGNIN_IS_VISIBLE,
+  SIGNUP_IS_VISIBLE,
+  CHANGE_INPUT_NAME_VALUE,
+  CHANGE_INPUT_FIRSTNAME_VALUE,
+  CHANGE_INPUT_NICKNAME_VALUE,
+  CHANGE_INPUT_EMAIL_VALUE,
+  CHANGE_INPUT_CREATE_PASSWORD_VALUE,
+  CHANGE_INPUT_CONFIRM_PASSWORD_VALUE,
   DISCONNECT,
   ERROR_MESSAGE,
   SAVE_USER,
@@ -30,6 +38,7 @@ const initialState = {
   isErrored: false,
   errorMessage: '',
   signinIsVisible: false,
+  signupIsVisible: false,
   isConnected: false,
   user: {
     id: null,
@@ -72,6 +81,14 @@ const initialState = {
     description: '',
   },
 
+  inputSignup: {
+    name: '',
+    firstname: '',
+    nickname: '',
+    email: '',
+    createpassword: '',
+    confirmpassword: '',
+  },
 };
 
 function reducer(state = initialState, action = {}) {
@@ -118,12 +135,102 @@ function reducer(state = initialState, action = {}) {
         },
       };
 
+    case CLEAR_INPUT_SIGNUP:
+      return {
+        ...state,
+        inputSignup: {
+          name: '',
+          firstname: '',
+          nickname: '',
+          email: '',
+          createpassword: '',
+          confirmpassword: '',
+        },
+      };
+
     case SIGNIN_IS_VISIBLE:
       return {
         ...state,
         signinIsVisible: action.value,
       };
 
+    case SIGNUP_IS_VISIBLE:
+      return {
+        ...state,
+        signupIsVisible: !state.signupIsVisible,
+      };
+    case CHANGE_INPUT_NAME_VALUE:
+      return {
+        ...state,
+        inputSignup: {
+          name: action.value,
+          firstname: state.inputSignup.firstname,
+          nickname: state.inputSignup.nickname,
+          email: state.inputSignup.email,
+          createpassword: state.inputSignup.createpassword,
+          confirmpassword: state.inputSignup.confirmpassword,
+        },
+      };
+    case CHANGE_INPUT_FIRSTNAME_VALUE:
+      return {
+        ...state,
+        inputSignup: {
+          name: state.inputSignup.name,
+          firstname: action.value,
+          nickname: state.inputSignup.nickname,
+          email: state.inputSignup.email,
+          createpassword: state.inputSignup.createpassword,
+          confirmpassword: state.inputSignup.confirmpassword,
+        },
+      };
+    case CHANGE_INPUT_NICKNAME_VALUE:
+      return {
+        ...state,
+        inputSignup: {
+          name: state.inputSignup.name,
+          firstname: state.inputSignup.firstname,
+          nickname: action.value,
+          email: state.inputSignup.email,
+          createpassword: state.inputSignup.createpassword,
+          confirmpassword: state.inputSignup.confirmpassword,
+        },
+      };
+    case CHANGE_INPUT_EMAIL_VALUE:
+      return {
+        ...state,
+        inputSignup: {
+          name: state.inputSignup.name,
+          firstname: state.inputSignup.firstname,
+          nickname: state.inputSignup.nickname,
+          email: action.value,
+          createpassword: state.inputSignup.createpassword,
+          confirmpassword: state.inputSignup.confirmpassword,
+        },
+      };
+    case CHANGE_INPUT_CREATE_PASSWORD_VALUE:
+      return {
+        ...state,
+        inputSignup: {
+          name: state.inputSignup.name,
+          firstname: state.inputSignup.firstname,
+          nickname: state.inputSignup.nickname,
+          email: state.inputSignup.email,
+          createpassword: action.value,
+          confirmpassword: state.inputSignup.confirmpassword,
+        },
+      };
+    case CHANGE_INPUT_CONFIRM_PASSWORD_VALUE:
+      return {
+        ...state,
+        inputSignup: {
+          name: state.inputSignup.name,
+          firstname: state.inputSignup.firstname,
+          nickname: state.inputSignup.nickname,
+          email: state.inputSignup.email,
+          createpassword: state.inputSignup.createpassword,
+          confirmpassword: action.value,
+        },
+      };
     case DISCONNECT:
       localStorage.removeItem('authorization');
       return {
