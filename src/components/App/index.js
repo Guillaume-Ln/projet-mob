@@ -7,8 +7,6 @@ import Login from '../Login';
 import Signup from '../Signup';
 import Home from '../Home';
 
-
-import './styles.css';
 import Tournament from '../Tournament';
 
 // == Composant
