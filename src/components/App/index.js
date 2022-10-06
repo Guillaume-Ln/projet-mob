@@ -9,9 +9,10 @@ import Login from '../Login';
 import Signup from '../Signup';
 import Home from '../Home';
 import CreateTournament from '../CreateTournament';
+import Tournaments from '../Tournaments';
+import Tournament from '../Tournament';
 // == Import actions
 import { actionAjaxTournaments } from '../../actions';
-import Tournaments from '../Tournaments';
 
 // == Composant
 function App() {
@@ -31,6 +32,7 @@ function App() {
         <Route path="/tournaments" element={<Tournaments />} />
         <Route path="/newtournament" element={<CreateTournament />} />
         <Route path="/" element={<Home />} />
+        <Route path="/tournaments/:id" element={<Tournament />} />
       </Routes>
       <Footer />
     </div>
