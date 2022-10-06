@@ -5,30 +5,21 @@ import {
   actionClearInputCreateTournament,
   actionChangeInputNameCreateTournament,
   actionChangeInputGameCreateTournament,
-  actionChangeInputModeratorCreateTournament,
-  actionChangeInputParticipantsNumbersCreateTournament,
-  actionChangeInputStartDateCreateTournament,
-  actionChangeInputStartTimeCreateTournament,
+  actionChangeInputMaxPlayerCountCreateTournament,
+  actionChangeInputDateCreateTournament,
   actionChangeSelectFormatCreateTournament,
   actionChangeSelectTypeCreateTournament,
   actionChangeInputDescriptionCreateTournament,
 } from 'src/actions';
 
 function CreateTournament() {
-/*   const inputNameValue = useSelector((state) => ) */
-  const inputNameCreateTournament = useSelector((state) => state.inputCreateTournament.name);
+  const inputNameCreateTournament = useSelector((state) => state.inputCreateTournament.label);
   const inputGameCreateTournament = useSelector((state) => state.inputCreateTournament.game);
-  const inputModeratorCreateTournament = useSelector(
-    (state) => state.inputCreateTournament.moderator,
-  );
   const inputParticipantsNumbersCreateTournament = useSelector(
-    (state) => state.inputCreateTournament.participants_numbers,
+    (state) => state.inputCreateTournament.max_player_count,
   );
-  const inputStartDateCreateTournament = useSelector(
-    (state) => state.inputCreateTournament.start_date,
-  );
-  const inputStartTimeCreateTournament = useSelector(
-    (state) => state.inputCreateTournament.start_time,
+  const inputDateCreateTournament = useSelector(
+    (state) => state.inputCreateTournament.date,
   );
   const selectFormatCreateTournament = useSelector(
     (state) => state.inputCreateTournament.format,
@@ -53,27 +44,15 @@ function CreateTournament() {
     );
   };
 
-  const handleChangeModerator = (event) => {
-    dispatch(
-      actionChangeInputModeratorCreateTournament(event.target.value),
-    );
-  };
-
   const handleChangeParticipantsNumbers = (event) => {
     dispatch(
-      actionChangeInputParticipantsNumbersCreateTournament(event.target.value),
+      actionChangeInputMaxPlayerCountCreateTournament(event.target.value),
     );
   };
 
-  const handleChangeStartDate = (event) => {
+  const handleChangeDate = (event) => {
     dispatch(
-      actionChangeInputStartDateCreateTournament(event.target.value),
-    );
-  };
-
-  const handleChangeStartTime = (event) => {
-    dispatch(
-      actionChangeInputStartTimeCreateTournament(event.target.value),
+      actionChangeInputDateCreateTournament(event.target.value),
     );
   };
 
@@ -98,7 +77,7 @@ function CreateTournament() {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(
-      actionSaveCreateTournament(event.target.value),
+      actionSaveCreateTournament(),
     );
   };
 
@@ -129,23 +108,13 @@ function CreateTournament() {
                 </label>
               </div>
               <div className="creation-input-group">
-                <label htmlFor="inputModerator" className="create-label">Modérateur
-                  <input value={inputModeratorCreateTournament} onChange={handleChangeModerator} required="" id="inputModerator" type="text" name="text" autoComplete="off" className="creation-input" />
-                </label>
-              </div>
-              <div className="creation-input-group">
                 <label htmlFor="inputParticipantsNumbers" className="create-label">Nombre de Participants / Equipes
                   <input value={inputParticipantsNumbersCreateTournament} onChange={handleChangeParticipantsNumbers} required="" id="inputParticipantsNumbers" type="number" min="2" name="number" autoComplete="off" className="creation-input" />
                 </label>
               </div>
               <div className="creation-input-group">
-                <label htmlFor="inputStartDate" className="create-label">Date de début
-                  <input value={inputStartDateCreateTournament} onChange={handleChangeStartDate} required="" id="inputStartDate" type="date" name="date" autoComplete="off" className="creation-input" />
-                </label>
-              </div>
-              <div className="creation-input-group">
-                <label htmlFor="inputStartTime" className="create-label">Heure de début
-                  <input value={inputStartTimeCreateTournament} onChange={handleChangeStartTime} required="" id="inputStartTime" type="time" name="time" autoComplete="off" className="creation-input" />
+                <label htmlFor="inputDate" className="create-label">Date & Heure
+                  <input value={inputDateCreateTournament} onChange={handleChangeDate} required="" id="inputDate" type="datetime-local" name="date" autoComplete="off" className="creation-input" />
                 </label>
               </div>
               {/* ajout de format et type */}
@@ -153,7 +122,7 @@ function CreateTournament() {
                 <label htmlFor="inputFormat" className="create-label">Format
                   <select value={selectFormatCreateTournament} onChange={handleChangeFormat} required="" id="inputFormat" type="text" name="text" autoComplete="off" className="creation-input">
                     <option value="">--Choisissez une option--</option>
-                    <option value="play-off">play-off</option>
+                    <option value="single-elimination">single elimination</option>
                   </select>
                 </label>
               </div>
@@ -161,8 +130,8 @@ function CreateTournament() {
                 <label htmlFor="inputType" className="create-label">Type
                   <select value={selectTypeCreateTournament} onChange={handleChangeType} required="" id="inputType" type="text" name="text" autoComplete="off" className="creation-input">
                     <option value="">--Choisissez une option--</option>
-                    <option value="private">Privé</option>
-                    <option value="public">Public</option>
+                    <option value="privé">Privé</option>
+                    <option value="publique">Publique</option>
                   </select>
                 </label>
               </div>

@@ -12,13 +12,13 @@ export const SAVE_USER = 'SAVE_USER';
 export const CLEAR_ERROR_MESSAGE = 'CLEAR_ERROR_MESSAGE';
 export const IS_LOADING = 'IS_LOADING';
 // action create tournament
-export const SAVE_CREATE_TOURNAMENT = 'SAVE_CREATE_TOURNAMENT';
+export const AJAX_SAVE_CREATE_TOURNAMENT = 'AJAX_SAVE_CREATE_TOURNAMENT';
 export const CHANGE_INPUT_NAME_CREATE_TOURNAMENT = 'CHANGE_INPUT_NAME_CREATE_TOURNAMENT';
 export const CHANGE_INPUT_GAME_CREATE_TOURNAMENT = 'CHANGE_INPUT_GAME_CREATE_TOURNAMENT';
-export const CHANGE_INPUT_MODERATOR_CREATE_TOURNAMENT = 'CHANGE_INPUT_MODERATOR_CREATE_TOURNAMENT';
-export const CHANGE_INPUT_PARTICIPANTS_NUMBERS_CREATE_TOURNAMENT = 'CHANGE_INPUT_PARTICIPANTS_NUMBERS_CREATE_TOURNAMENT';
-export const CHANGE_INPUT_START_DATE_CREATE_TOURNAMENT = 'CHANGE_INPUT_START_DATE_CREATE_TOURNAMENT';
-export const CHANGE_INPUT_START_TIME_CREATE_TOURNAMENT = 'CHANGE_INPUT_START_TIME_CREATE_TOURNAMENT';
+// eslint-disable-next-line max-len
+/* export const CHANGE_INPUT_MODERATOR_CREATE_TOURNAMENT = 'CHANGE_INPUT_MODERATOR_CREATE_TOURNAMENT'; */
+export const CHANGE_INPUT_MAX_PLAYER_COUNT_CREATE_TOURNAMENT = 'CHANGE_INPUT_MAX_PLAYER_COUNT_CREATE_TOURNAMENT';
+export const CHANGE_INPUT_DATE_CREATE_TOURNAMENT = 'CHANGE_INPUT_DATE_CREATE_TOURNAMENT';
 export const CHANGE_SELECT_FORMAT_CREATE_TOURNAMENT = 'CHANGE_SELECT_FORMAT_CREATE_TOURNAMENT';
 export const CHANGE_SELECT_TYPE_CREATE_TOURNAMENT = 'CHANGE_SELECT_TYPE_CREATE_TOURNAMENT';
 export const CHANGE_INPUT_DESCRIPTION_CREATE_TOURNAMENT = 'CHANGE_INPUT_DESCRIPTION_CREATE_TOURNAMENT';
@@ -88,19 +88,9 @@ export const actionIsLoading = (bool) => ({
 
 // action create tournament componant
 
-export const actionSaveCreateTournament = (tournament) => ({
-  type: SAVE_CREATE_TOURNAMENT,
-  tournament: {
-    name: tournament.name,
-    game: tournament.game,
-    moderator: tournament.moderator,
-    participants_numbers: tournament.participants_numbers,
-    start_date: tournament.start_date,
-    start_time: tournament.start_time,
-    format: tournament.format,
-    type: tournament.type,
-    description: tournament.description,
-  },
+export const actionSaveCreateTournament = () => ({
+  type: AJAX_SAVE_CREATE_TOURNAMENT,
+
 });
 // action clear input create tournament componant
 export const actionClearInputCreateTournament = () => ({
@@ -117,23 +107,18 @@ export const actionChangeInputGameCreateTournament = (newValue) => ({
   value: newValue,
 });
 
-export const actionChangeInputModeratorCreateTournament = (newValue) => ({
+/* export const actionChangeInputModeratorCreateTournament = (newValue) => ({
   type: CHANGE_INPUT_MODERATOR_CREATE_TOURNAMENT,
   value: newValue,
-});
+}); */
 
-export const actionChangeInputParticipantsNumbersCreateTournament = (newValue) => ({
-  type: CHANGE_INPUT_PARTICIPANTS_NUMBERS_CREATE_TOURNAMENT,
+export const actionChangeInputMaxPlayerCountCreateTournament = (newValue) => ({
+  type: CHANGE_INPUT_MAX_PLAYER_COUNT_CREATE_TOURNAMENT,
   value: newValue,
 });
 
-export const actionChangeInputStartDateCreateTournament = (newValue) => ({
-  type: CHANGE_INPUT_START_DATE_CREATE_TOURNAMENT,
-  value: newValue,
-});
-
-export const actionChangeInputStartTimeCreateTournament = (newValue) => ({
-  type: CHANGE_INPUT_START_TIME_CREATE_TOURNAMENT,
+export const actionChangeInputDateCreateTournament = (newValue) => ({
+  type: CHANGE_INPUT_DATE_CREATE_TOURNAMENT,
   value: newValue,
 });
 
