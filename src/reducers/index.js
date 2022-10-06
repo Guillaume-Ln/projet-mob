@@ -29,11 +29,13 @@ import {
   CHANGE_SELECT_TYPE_CREATE_TOURNAMENT,
   CHANGE_INPUT_DESCRIPTION_CREATE_TOURNAMENT,
   CLEAR_INPUT_CREATE_TOURNAMENT,
+  SAVE_TOURNAMENTS,
   // ? action pour factoriser tous les change input - A VOIR
   // ? CHANGE_INPUT_CREATE_TOURNAMENT,
 } from '../actions';
 
 const initialState = {
+  tournaments: [],
   isLoading: false,
   isErrored: false,
   errorMessage: '',
@@ -389,6 +391,11 @@ function reducer(state = initialState, action = {}) {
           description: '',
 
         },
+      };
+    case SAVE_TOURNAMENTS:
+      return {
+        ...state,
+        tournaments: action.value,
       };
       // ? A VOIR POUR LA FACTORISATION des CHANGE_INPUT
       /*  case CHANGE_INPUT_CREATE_TOURNAMENT:

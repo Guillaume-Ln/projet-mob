@@ -1,24 +1,29 @@
 // == Import
 import { Route, Routes } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+// == Import components
 import Header from '../Header';
 import Footer from '../Footer';
 import Login from '../Login';
 import Signup from '../Signup';
 import Home from '../Home';
 import CreateTournament from '../CreateTournament';
-
-import Tournament from '../Tournament';
+// == Import actions
+import { actionAjaxTournaments } from '../../actions';
 
 // == Composant
 function App() {
+  const dispatch = useDispatch();
   const signinIsVisible = useSelector((state) => state.signinIsVisible);
   const signupIsVisible = useSelector((state) => state.signupIsVisible);
 
+  useEffect(() => {
+    dispatch(actionAjaxTournaments());
+  });
   return (
     <div className="app">
       <Header />
-      <Tournament />
       {signinIsVisible && <Login />}
       {signupIsVisible && <Signup />}
       <Routes>
