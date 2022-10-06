@@ -42,7 +42,6 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 1.5rem;
     height: 50vh;
   }
   .input-left-and-right{
@@ -73,6 +72,9 @@
     background-color: transparent;
     border-radius: 7px;
     border: 1px solid #08F57E;
+  }
+  .creation-account-button{
+    margin-bottom: 1rem;
   }
   .signup-button-cancel{
     font-size: .8rem;

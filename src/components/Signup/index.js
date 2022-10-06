@@ -14,6 +14,7 @@ import {
   actionSignup,
   actionIsLoading,
   actionErrorMessage,
+  actionClearErrorMessage,
 } from 'src/actions';
 
 function Signup() {
@@ -73,57 +74,40 @@ function Signup() {
       // eslint-disable-next-line no-plusplus
       check++;
     }
-    else {
-      error += 'Le champ Nom doit être remplis';
-    }
 
     if (inputFirstNameValue !== '') {
       // eslint-disable-next-line no-plusplus
       check++;
-    }
-    else {
-      error += 'Le champ Prénom doit être remplis';
     }
 
     if (inputNickNameValue !== '') {
       // eslint-disable-next-line no-plusplus
       check++;
     }
-    else {
-      error += 'Le champ Pseudo doit être remplis';
-    }
-
     if (inputMailValue !== '') {
       // eslint-disable-next-line no-plusplus
       check++;
-    }
-    else {
-      error += 'Le champ Mail doit être remplis';
     }
 
     if (inputCreatePasswordValue !== '') {
       // eslint-disable-next-line no-plusplus
       check++;
     }
-    else {
-      error += 'Le champ Mot de passe doit être remplis';
-    }
 
     if (inputConfirmPasswordValue !== '') {
       // eslint-disable-next-line no-plusplus
       check++;
     }
-    else {
-      // eslint-disable-next-line no-unused-vars
-      error += 'Le champ Confirmer mot de passe doit être remplis';
-    }
-
     if (inputCreatePasswordValue === inputConfirmPasswordValue) {
       // eslint-disable-next-line no-plusplus
       check++;
     }
     else {
       error += 'Les mots de passe ne correspondent pas';
+    }
+
+    if (check < 6) {
+      error = 'Veuillez remplir tous les champs';
     }
 
     if (check === 7) {
@@ -139,6 +123,7 @@ function Signup() {
     }
   };
   const handleCancelClick = () => {
+    dispatch(actionClearErrorMessage());
     dispatch(actionClearInputSignup());
     dispatch(actionSignupIsVisible(false));
     dispatch(actionIsLoading(false));
@@ -150,9 +135,6 @@ function Signup() {
           <h3 className="modale-signup-page-title">Inscription</h3>
           <article>
             <form onSubmit={handleSubmit} className="signup-input-container">
-              <span className="material-symbols-outlined account_circle">
-                account_circle
-              </span>
               {errorMessage !== '' && <p className="error-message">{errorMessage}</p>}
               <section className="input-left-and-right">
                 <section className="input-left">
@@ -178,7 +160,7 @@ function Signup() {
                   </label>
                 </section>
               </section>
-              <button type="submit" className="creation-button signup-button">Créer un compte</button>
+              <button type="submit" className="creation-account-button">Créer un compte</button>
               <button onClick={handleCancelClick} type="button" className="signup-button-cancel">Annuler</button>
             </form>
           </article>
