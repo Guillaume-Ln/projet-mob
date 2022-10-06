@@ -3,18 +3,37 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import tournamentImg from '../../assets/images/téléchargement.jpeg';
-import { actionTournamentById } from '../../actions';
+import { actionTournamentById, actionParticipants, actionRegisterToTheTournament } from '../../actions';
 
 function Tournament() {
   const dispatch = useDispatch();
+  // on récupère les infos du tournoi
   const dataTournament = useSelector((state) => state.dataTournament);
+  // on récupère les participants au tournoi
+  const participants = useSelector((state) => state.participants);
+  console.log(participants);
+  const isConnected = useSelector((state) => state.isConnected);
   const { id } = useParams(); // on récupère l'ID du tournoi
 
-  console.log('dataTournament: ', dataTournament);
   useEffect(() => {
-    dispatch(actionTournamentById(id)); // on récupère les infos d'un tournoi grace a l'ID
+    // on demande les infos d'un tournoi qu'on stock dans le store grace a l'ID
+    dispatch(actionTournamentById(id));
+    // on récupère les participants au tournoi que l'on stock dans le store
+    dispatch(actionParticipants(id));
   }, []);
 
+  const handleModerationClick = () => {
+    console.log('handleModerationClick');
+    // on dit au state qu'on veut modifier avec un editTournament true
+    // un formulaire aparrait avec les input, un bouton apply et un cancel
+    // si cancel on clear les inputs et on ferme le formulaire
+    // si apply on fait un ajax sur la route en patch api/tournaments/:id
+  };
+  const handleRegisterClick = () => {
+    console.log('handleRegisterClick');
+    // au clic on ajax l'user ID sur la route post api/tournaments/:id/profiles
+    dispatch(actionRegisterToTheTournament());
+  };
   return (
     <main className="main-tournament">
       <div className="top">
@@ -35,8 +54,9 @@ function Tournament() {
               </div>
             </section>
             <section className="one-tournament-container-button-container">
-              <button type="button" className="button-moderate">Moderation</button>
-              <button type="button" className="button-inscription">S'inscrire</button>
+              {/* // ! ce boutton 'moderation' ne doit être visible que si on est modérateur */}
+              { isConnected && <button onClick={handleModerationClick} type="button" className="button-moderate">Moderation</button> }
+              { isConnected && <button onClick={handleRegisterClick} type="button" className="button-inscription">S'inscrire</button> }
             </section>
           </section>
         </div>
@@ -85,6 +105,9 @@ function Tournament() {
         </div>
       </div>
       <section className="participants">
+      {/* // appliquer la meme chose que ca */}
+        {/* {tournaments.map((tournament) => <TournamentCard key={tournament.id} {...tournament} />)} */}
+
         <div className="participant dead"><span className="participant-number">1-</span><span className="participant-nickname">michel</span></div>
         <div className="participant live"><span className="participant-number">2-</span><span className="participant-nickname">dark sasuke du 75</span></div>
         <div className="participant dead"><span className="participant-number">3-</span><span className="participant-nickname">jason</span></div>

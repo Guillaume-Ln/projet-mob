@@ -11,6 +11,9 @@ import {
   actionSaveTournaments,
   AJAX_TOURNAMENT_BY_ID,
   actionSaveDataTournament,
+  AJAX_PARTICIPANTS,
+  actionSaveDataParticipants,
+  AJAX_REGISTER_TO_THE_TOURNAMENT,
 } from '../actions';
 
 const instance = axios.create({
@@ -28,8 +31,6 @@ const ajax = (store) => (next) => (action) => {
       })
         .then((response) => {
           // handle success
-          console.log('log ajax', response);
-
           if (response.status === 200) {
             store.dispatch(actionSaveUser(response.data.foundUser));
             // eslint-disable-next-line dot-notation
@@ -107,7 +108,7 @@ const ajax = (store) => (next) => (action) => {
         });
       break;
     }
-    case AJAX_TOURNAMENTS: {
+    case AJAX_TOURNAMENTS:
       instance.get('/api/tournaments')
         .then((response) => {
           // handle success
@@ -121,11 +122,30 @@ const ajax = (store) => (next) => (action) => {
           // always executed
         });
       break;
-    }
     case AJAX_TOURNAMENT_BY_ID:
       instance.get(`api/tournaments/${action.id}`)
         .then((response) => {
           store.dispatch(actionSaveDataTournament(response.data));
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      break;
+    case AJAX_PARTICIPANTS:
+      instance.get(`api/tournaments/${action.id}/profiles/`)
+        .then((response) => {
+          // ! 401 unautorized en étant connecter... que faire?
+          store.dispatch(actionSaveDataParticipants(response.data));
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      break;
+    case AJAX_REGISTER_TO_THE_TOURNAMENT:
+      instance.post(`api/tournaments/${action.id}/profiles/`)
+        .then((response) => {
+          // ! Bloquer par le CORS, besoin du token ici?
+          console.log(response);
         })
         .catch((error) => {
           console.log(error);
