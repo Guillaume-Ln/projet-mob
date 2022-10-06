@@ -1,7 +1,20 @@
 import './style.scss';
+import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import tournamentImg from '../../assets/images/téléchargement.jpeg';
+import { actionTournamentById } from '../../actions';
 
 function Tournament() {
+  const dispatch = useDispatch();
+  const dataTournament = useSelector((state) => state.dataTournament);
+  const { id } = useParams(); // on récupère l'ID du tournoi
+
+  console.log('dataTournament: ', dataTournament);
+  useEffect(() => {
+    dispatch(actionTournamentById(id)); // on récupère les infos d'un tournoi grace a l'ID
+  }, []);
+
   return (
     <main className="main-tournament">
       <div className="top">
@@ -10,14 +23,15 @@ function Tournament() {
             <section className="one-tournament-container-info-and-description">
               <div className="one-tournament-container-info-and-description-info">
                 <img className="one-tournament-info-img" src={tournamentImg} alt="" />
-                <h3 className="one-tournament-info-title">Le tournoi du Dimanche</h3>
-                <p className="one-tournament-info">Tournois :<span className="one-tournament-data">166</span></p>
-                <p className="one-tournament-info">Jeu :<span className="one-tournament-data">xploz3D</span></p>
-                <p className="one-tournament-info">Participants :<span className="one-tournament-data">8</span></p>
-                <p className="one-tournament-info">Modérateur :<span className="one-tournament-data">Michel</span></p>
+                <h3 className="one-tournament-info-title">{dataTournament.label}</h3>
+                <p className="one-tournament-info">Type :<span className="one-tournament-data">{dataTournament.type}</span></p>
+                <p className="one-tournament-info">Jeu :<span className="one-tournament-data">{dataTournament.game}</span></p>
+                <p className="one-tournament-info">Participants :<span className="one-tournament-data">{dataTournament.max_player_count}</span></p>
+                <p className="one-tournament-info">Format :<span className="one-tournament-data">{dataTournament.format}</span></p>
+                <p className="one-tournament-info">Modérateur :<span className="one-tournament-data">{dataTournament.user_id}</span></p>
               </div>
               <div className="one-tournament-container-info-and-description-description">
-                <p className="one-tournament-description"><span className="one-tournament-description-description">Description :</span><span className="one-tournament-data">Tirez vous dans la tête ca fait mal mais dans les pied c’est rigolo, c’est un texte qui simule une description.</span></p>
+                <p className="one-tournament-description"><span className="one-tournament-description-description">Description :</span><span className="one-tournament-data">{dataTournament.description}</span></p>
               </div>
             </section>
             <section className="one-tournament-container-button-container">

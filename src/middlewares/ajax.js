@@ -4,9 +4,13 @@ import {
   actionErrorMessage,
   actionSaveUser,
   AJAX_LOGIN,
-  actionIsCreated,
   AJAX_SIGNUP,
   AJAX_SAVE_CREATE_TOURNAMENT,
+  actionIsCreated,
+  AJAX_TOURNAMENTS,
+  actionSaveTournaments,
+  AJAX_TOURNAMENT_BY_ID,
+  actionSaveDataTournament,
 } from '../actions';
 
 const instance = axios.create({
@@ -50,21 +54,27 @@ const ajax = (store) => (next) => (action) => {
       console.log(state);
 
       instance.post('/api/register', {
-        name: state.inputSignup.name,
+        lastname: state.inputSignup.name,
         firstname: state.inputSignup.firstname,
         nickname: state.inputSignup.nickname,
-        email: state.inputSignup.email,
-        createpassword: state.inputSignup.createpassword,
-        confirmpassword: state.inputSignup.confirmpassword,
+        mail: state.inputSignup.mail,
+        password: state.inputSignup.createpassword,
       })
         .then((response) => {
           // handle success
-          console.log('register success', response);
-          store.dispatch(actionIsCreated());
+          console.log('register success');
+          console.log(response.data);
+
+          if (response.status === 200) {
+            store.dispatch(actionIsCreated());
+          }
         })
         .catch((error) => {
           // handle error
-          console.log(error);
+          console.log('coucou');
+          if (error.response.status === 500) {
+            store.dispatch(actionErrorMessage(error.response.data.message));
+          }
         })
         .then(() => {
           // always executed
@@ -97,6 +107,31 @@ const ajax = (store) => (next) => (action) => {
         });
       break;
     }
+    case AJAX_TOURNAMENTS: {
+      instance.get('/api/tournaments')
+        .then((response) => {
+          // handle success
+          store.dispatch(actionSaveTournaments(response.data));
+        })
+        .catch((error) => {
+          // handle error
+          console.log('ajax tournaments: ', error.code);
+        })
+        .then(() => {
+          // always executed
+        });
+      break;
+    }
+    case AJAX_TOURNAMENT_BY_ID:
+      instance.get(`api/tournaments/${action.id}`)
+        .then((response) => {
+          store.dispatch(actionSaveDataTournament(response.data));
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      break;
+
     default:
       break;
   }

@@ -32,7 +32,7 @@ function Login() {
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault(); // on suprime le comportement par default
+    event.preventDefault(); // on suprime le comportement par défaut
     dispatch(actionIsLoading(true)); // on entre en chargement
     dispatch(actionLogin()); // on demande a ce loggué
   };

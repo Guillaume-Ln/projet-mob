@@ -20,9 +20,7 @@ function Header() {
   const dispatch = useDispatch();
 
   const handleChangeSearch = (event) => {
-    dispatch(
-      actionChangeInputSearchValue(event.target.value),
-    );
+    dispatch(actionChangeInputSearchValue(event.target.value));
   };
   const handleConnectionButton = () => {
     dispatch(actionSigninIsVisible(true));

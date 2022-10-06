@@ -10,7 +10,7 @@ import {
   CHANGE_INPUT_NAME_VALUE,
   CHANGE_INPUT_FIRSTNAME_VALUE,
   CHANGE_INPUT_NICKNAME_VALUE,
-  CHANGE_INPUT_EMAIL_VALUE,
+  CHANGE_INPUT_MAIL_VALUE,
   CHANGE_INPUT_CREATE_PASSWORD_VALUE,
   CHANGE_INPUT_CONFIRM_PASSWORD_VALUE,
   DISCONNECT,
@@ -28,11 +28,26 @@ import {
   CHANGE_SELECT_TYPE_CREATE_TOURNAMENT,
   CHANGE_INPUT_DESCRIPTION_CREATE_TOURNAMENT,
   CLEAR_INPUT_CREATE_TOURNAMENT,
+  SAVE_TOURNAMENTS,
+  SAVE_DATA_TOURNAMENT,
   // ? action pour factoriser tous les change input - A VOIR
   // ? CHANGE_INPUT_CREATE_TOURNAMENT,
 } from '../actions';
 
 const initialState = {
+  dataTournament: {
+    date: null,
+    description: null,
+    format: null,
+    game: null,
+    id: null,
+    image: null,
+    label: null,
+    max_player_count: null,
+    type: null,
+    user_id: null,
+  },
+  tournaments: [],
   isLoading: false,
   isErrored: false,
   errorMessage: '',
@@ -72,7 +87,7 @@ const initialState = {
     name: '',
     firstname: '',
     nickname: '',
-    email: '',
+    mail: '',
     createpassword: '',
     confirmpassword: '',
   },
@@ -129,7 +144,7 @@ function reducer(state = initialState, action = {}) {
           name: '',
           firstname: '',
           nickname: '',
-          email: '',
+          mail: '',
           createpassword: '',
           confirmpassword: '',
         },
@@ -153,7 +168,7 @@ function reducer(state = initialState, action = {}) {
           name: action.value,
           firstname: state.inputSignup.firstname,
           nickname: state.inputSignup.nickname,
-          email: state.inputSignup.email,
+          mail: state.inputSignup.mail,
           createpassword: state.inputSignup.createpassword,
           confirmpassword: state.inputSignup.confirmpassword,
         },
@@ -165,7 +180,7 @@ function reducer(state = initialState, action = {}) {
           name: state.inputSignup.name,
           firstname: action.value,
           nickname: state.inputSignup.nickname,
-          email: state.inputSignup.email,
+          mail: state.inputSignup.mail,
           createpassword: state.inputSignup.createpassword,
           confirmpassword: state.inputSignup.confirmpassword,
         },
@@ -177,19 +192,19 @@ function reducer(state = initialState, action = {}) {
           name: state.inputSignup.name,
           firstname: state.inputSignup.firstname,
           nickname: action.value,
-          email: state.inputSignup.email,
+          mail: state.inputSignup.mail,
           createpassword: state.inputSignup.createpassword,
           confirmpassword: state.inputSignup.confirmpassword,
         },
       };
-    case CHANGE_INPUT_EMAIL_VALUE:
+    case CHANGE_INPUT_MAIL_VALUE:
       return {
         ...state,
         inputSignup: {
           name: state.inputSignup.name,
           firstname: state.inputSignup.firstname,
           nickname: state.inputSignup.nickname,
-          email: action.value,
+          mail: action.value,
           createpassword: state.inputSignup.createpassword,
           confirmpassword: state.inputSignup.confirmpassword,
         },
@@ -201,7 +216,7 @@ function reducer(state = initialState, action = {}) {
           name: state.inputSignup.name,
           firstname: state.inputSignup.firstname,
           nickname: state.inputSignup.nickname,
-          email: state.inputSignup.email,
+          mail: state.inputSignup.mail,
           createpassword: action.value,
           confirmpassword: state.inputSignup.confirmpassword,
         },
@@ -213,7 +228,7 @@ function reducer(state = initialState, action = {}) {
           name: state.inputSignup.name,
           firstname: state.inputSignup.firstname,
           nickname: state.inputSignup.nickname,
-          email: state.inputSignup.email,
+          mail: state.inputSignup.mail,
           createpassword: state.inputSignup.createpassword,
           confirmpassword: action.value,
         },
@@ -365,6 +380,16 @@ function reducer(state = initialState, action = {}) {
           type: '',
           description: '',
         },
+      };
+    case SAVE_TOURNAMENTS:
+      return {
+        ...state,
+        tournaments: action.value,
+      };
+    case SAVE_DATA_TOURNAMENT:
+      return {
+        ...state,
+        dataTournament: action.value,
       };
       // ? A VOIR POUR LA FACTORISATION des CHANGE_INPUT
       /*  case CHANGE_INPUT_CREATE_TOURNAMENT:
