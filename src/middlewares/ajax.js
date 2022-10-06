@@ -6,6 +6,8 @@ import {
   AJAX_LOGIN,
   AJAX_SIGNUP,
   actionIsCreated,
+  AJAX_TOURNAMENTS,
+  actionSaveTournaments,
 } from '../actions';
 
 const instance = axios.create({
@@ -70,6 +72,21 @@ const ajax = (store) => (next) => (action) => {
           if (error.response.status === 500) {
             store.dispatch(actionErrorMessage(error.response.data.message));
           }
+        })
+        .then(() => {
+          // always executed
+        });
+      break;
+    }
+    case AJAX_TOURNAMENTS: {
+      instance.get('/api/tournaments')
+        .then((response) => {
+          // handle success
+          store.dispatch(actionSaveTournaments(response.data));
+        })
+        .catch((error) => {
+          // handle error
+          console.log('ajax tournaments: ', error.code);
         })
         .then(() => {
           // always executed

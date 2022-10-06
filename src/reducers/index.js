@@ -18,9 +18,24 @@ import {
   SAVE_USER,
   CLEAR_ERROR_MESSAGE,
   IS_LOADING,
+  SAVE_CREATE_TOURNAMENT,
+  CHANGE_INPUT_NAME_CREATE_TOURNAMENT,
+  CHANGE_INPUT_GAME_CREATE_TOURNAMENT,
+  CHANGE_INPUT_MODERATOR_CREATE_TOURNAMENT,
+  CHANGE_INPUT_PARTICIPANTS_NUMBERS_CREATE_TOURNAMENT,
+  CHANGE_INPUT_START_DATE_CREATE_TOURNAMENT,
+  CHANGE_INPUT_START_TIME_CREATE_TOURNAMENT,
+  CHANGE_SELECT_FORMAT_CREATE_TOURNAMENT,
+  CHANGE_SELECT_TYPE_CREATE_TOURNAMENT,
+  CHANGE_INPUT_DESCRIPTION_CREATE_TOURNAMENT,
+  CLEAR_INPUT_CREATE_TOURNAMENT,
+  SAVE_TOURNAMENTS,
+  // ? action pour factoriser tous les change input - A VOIR
+  // ? CHANGE_INPUT_CREATE_TOURNAMENT,
 } from '../actions';
 
 const initialState = {
+  tournaments: [],
   isLoading: false,
   isErrored: false,
   errorMessage: '',
@@ -45,6 +60,29 @@ const initialState = {
     search: '',
     searchable: '',
   },
+  tournament: {
+    name: null,
+    game: null,
+    moderator: null,
+    participants_numbers: null,
+    start_date: null,
+    start_time: null,
+    format: null,
+    type: null,
+    description: null,
+  },
+  inputCreateTournament: {
+    name: '',
+    game: '',
+    moderator: '',
+    participants_numbers: '',
+    start_date: '',
+    start_time: '',
+    format: '',
+    type: '',
+    description: '',
+  },
+
   inputSignup: {
     name: '',
     firstname: '',
@@ -212,6 +250,7 @@ function reducer(state = initialState, action = {}) {
           trophies: null,
         },
       };
+
     case ERROR_MESSAGE:
       return {
         ...state,
@@ -220,6 +259,7 @@ function reducer(state = initialState, action = {}) {
         isLoading: false,
         signinIsVisible: true,
       };
+
     case SAVE_USER:
       return {
         ...state,
@@ -234,16 +274,135 @@ function reducer(state = initialState, action = {}) {
           password: '',
         },
       };
+
     case CLEAR_ERROR_MESSAGE:
       return {
         ...state,
         errorMessage: '',
       };
+
     case IS_LOADING:
       return {
         ...state,
         isLoading: action.value,
       };
+
+      // SAVE_CREATE TOURNAMENT
+    case SAVE_CREATE_TOURNAMENT:
+      return {
+        ...state,
+        tournament: action.tournament,
+      };
+
+    case CHANGE_INPUT_NAME_CREATE_TOURNAMENT:
+      return {
+        ...state,
+        inputCreateTournament: {
+          ...state.inputCreateTournament,
+          name: action.value,
+        },
+      };
+
+    case CHANGE_INPUT_GAME_CREATE_TOURNAMENT:
+      return {
+        ...state,
+        inputCreateTournament: {
+          ...state.inputCreateTournament,
+          game: action.value,
+        },
+      };
+
+    case CHANGE_INPUT_MODERATOR_CREATE_TOURNAMENT:
+      return {
+        ...state,
+        inputCreateTournament: {
+          ...state.inputCreateTournament,
+          moderator: action.value,
+        },
+      };
+
+    case CHANGE_INPUT_PARTICIPANTS_NUMBERS_CREATE_TOURNAMENT:
+      return {
+        ...state,
+        inputCreateTournament: {
+          ...state.inputCreateTournament,
+          participants_numbers: action.value,
+        },
+      };
+
+    case CHANGE_INPUT_START_DATE_CREATE_TOURNAMENT:
+      return {
+        ...state,
+        inputCreateTournament: {
+          ...state.inputCreateTournament,
+          start_date: action.value,
+        },
+      };
+
+    case CHANGE_INPUT_START_TIME_CREATE_TOURNAMENT:
+      return {
+        ...state,
+        inputCreateTournament: {
+          ...state.inputCreateTournament,
+          start_time: action.value,
+        },
+      };
+
+    case CHANGE_SELECT_FORMAT_CREATE_TOURNAMENT:
+      return {
+        ...state,
+        inputCreateTournament: {
+          ...state.inputCreateTournament,
+          format: action.value,
+        },
+      };
+
+    case CHANGE_SELECT_TYPE_CREATE_TOURNAMENT:
+      return {
+        ...state,
+        inputCreateTournament: {
+          ...state.inputCreateTournament,
+          type: action.value,
+        },
+      };
+
+    case CHANGE_INPUT_DESCRIPTION_CREATE_TOURNAMENT:
+      return {
+        ...state,
+        inputCreateTournament: {
+          ...state.inputCreateTournament,
+          description: action.value,
+        },
+
+      };
+
+    case CLEAR_INPUT_CREATE_TOURNAMENT:
+      return {
+        ...state,
+        inputCreateTournament: {
+          name: '',
+          game: '',
+          moderator: '',
+          participants_numbers: '',
+          start_date: '',
+          start_time: '',
+          format: '',
+          type: '',
+          description: '',
+
+        },
+      };
+    case SAVE_TOURNAMENTS:
+      return {
+        ...state,
+        tournaments: action.value,
+      };
+      // ? A VOIR POUR LA FACTORISATION des CHANGE_INPUT
+      /*  case CHANGE_INPUT_CREATE_TOURNAMENT:
+      return {
+        ...state,
+        [action.key]: action.value,
+      }; */
     default:
       return state;
   }
