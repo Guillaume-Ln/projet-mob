@@ -61,10 +61,6 @@ export const actionSigninIsVisible = (bool) => ({
 export const actionDisconnect = () => ({
   type: DISCONNECT,
 });
-export const actionErrorMessage = (error) => ({
-  type: ERROR_MESSAGE,
-  error: error,
-});
 export const actionSaveUser = (user) => ({
   type: SAVE_USER,
   user: {
@@ -77,6 +73,10 @@ export const actionSaveUser = (user) => ({
     honor_point: user.honor_point,
     trophies: user.trophies,
   },
+});
+export const actionErrorMessage = (error) => ({
+  type: ERROR_MESSAGE,
+  error: error,
 });
 export const actionClearErrorMessage = () => ({
   type: CLEAR_ERROR_MESSAGE,
@@ -179,9 +179,9 @@ export const actionChangeInputNickNameValue = (newValue) => ({
   value: newValue,
 });
 
-export const CHANGE_INPUT_EMAIL_VALUE = 'CHANGE_INPUT_EMAIL_VALUE';
-export const actionChangeInputEmailValue = (newValue) => ({
-  type: CHANGE_INPUT_EMAIL_VALUE,
+export const CHANGE_INPUT_MAIL_VALUE = 'CHANGE_INPUT_MAIL_VALUE';
+export const actionChangeInputMailValue = (newValue) => ({
+  type: CHANGE_INPUT_MAIL_VALUE,
   value: newValue,
 });
 

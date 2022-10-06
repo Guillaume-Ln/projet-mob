@@ -4,8 +4,8 @@ import {
   actionErrorMessage,
   actionSaveUser,
   AJAX_LOGIN,
-  actionIsCreated,
   AJAX_SIGNUP,
+  actionIsCreated,
   AJAX_TOURNAMENTS,
   actionSaveTournaments,
 } from '../actions';
@@ -51,22 +51,27 @@ const ajax = (store) => (next) => (action) => {
       console.log(state);
 
       instance.post('/api/register', {
-        name: state.inputSignup.name,
+        lastname: state.inputSignup.name,
         firstname: state.inputSignup.firstname,
         nickname: state.inputSignup.nickname,
-        email: state.inputSignup.email,
-        createpassword: state.inputSignup.createpassword,
-        confirmpassword: state.inputSignup.confirmpassword,
+        mail: state.inputSignup.mail,
+        password: state.inputSignup.createpassword,
       })
         .then((response) => {
           // handle success
           console.log('register success');
           console.log(response.data);
-          store.dispatch(actionIsCreated());
+
+          if (response.status === 200) {
+            store.dispatch(actionIsCreated()); // todo a faire
+          }
         })
         .catch((error) => {
           // handle error
-          console.log(error);
+          console.log('coucou');
+          if (error.response.status === 500) {
+            store.dispatch(actionErrorMessage(error.response.data.message));
+          }
         })
         .then(() => {
           // always executed

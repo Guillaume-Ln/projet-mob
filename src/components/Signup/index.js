@@ -5,22 +5,28 @@ import {
   actionChangeInputNameValue,
   actionChangeInputFirstNameValue,
   actionChangeInputNickNameValue,
-  actionChangeInputEmailValue,
+  actionChangeInputMailValue,
   actionChangeInputCreatePasswordValue,
   actionChangeInputConfirmPasswordValue,
   actionSignupIsVisible,
   actionClearInputSignup,
+  actionSigninIsVisible,
+  actionSignup,
+  actionIsLoading,
+  actionErrorMessage,
 } from 'src/actions';
 
 function Signup() {
+  // const State = useSelector((state) => state);
   const inputNameValue = useSelector((state) => state.inputSignup.name);
   const inputFirstNameValue = useSelector((state) => state.inputSignup.firstname);
   const inputNickNameValue = useSelector((state) => state.inputSignup.nickname);
-  const inputEmailValue = useSelector((state) => state.inputSignup.email);
+  const inputMailValue = useSelector((state) => state.inputSignup.mail);
   const inputCreatePasswordValue = useSelector((state) => state.inputSignup.createpassword);
   const inputConfirmPasswordValue = useSelector(
     // eslint-disable-next-line function-paren-newline
     (state) => state.inputSignup.confirmpassword);
+  const errorMessage = useSelector((state) => state.errorMessage);
   const dispatch = useDispatch();
 
   const handleChangeName = (event) => {
@@ -38,9 +44,9 @@ function Signup() {
       actionChangeInputNickNameValue(event.target.value),
     );
   };
-  const handleChangeEmail = (event) => {
+  const handleChangeMail = (event) => {
     dispatch(
-      actionChangeInputEmailValue(event.target.value),
+      actionChangeInputMailValue(event.target.value),
     );
   };
   const handleChangeCreatePassword = (event) => {
@@ -54,27 +60,100 @@ function Signup() {
     );
   };
   const handleSubmit = (event) => {
+    // console.log(State);
     event.preventDefault();
-    dispatch(actionClearInputSignup());
-    dispatch(actionSignupIsVisible(false));
-  };
 
+    // au submit on doit check:
+    // que les mdp soit egaux
+    // que les champ soit remplis
+    let check = 0;
+    let error = [];
+
+    if (inputNameValue !== '') {
+      // eslint-disable-next-line no-plusplus
+      check++;
+    }
+    else {
+      error += 'Le champ Nom doit être remplis';
+    }
+
+    if (inputFirstNameValue !== '') {
+      // eslint-disable-next-line no-plusplus
+      check++;
+    }
+    else {
+      error += 'Le champ Prénom doit être remplis';
+    }
+
+    if (inputNickNameValue !== '') {
+      // eslint-disable-next-line no-plusplus
+      check++;
+    }
+    else {
+      error += 'Le champ Pseudo doit être remplis';
+    }
+
+    if (inputMailValue !== '') {
+      // eslint-disable-next-line no-plusplus
+      check++;
+    }
+    else {
+      error += 'Le champ Mail doit être remplis';
+    }
+
+    if (inputCreatePasswordValue !== '') {
+      // eslint-disable-next-line no-plusplus
+      check++;
+    }
+    else {
+      error += 'Le champ Mot de passe doit être remplis';
+    }
+
+    if (inputConfirmPasswordValue !== '') {
+      // eslint-disable-next-line no-plusplus
+      check++;
+    }
+    else {
+      // eslint-disable-next-line no-unused-vars
+      error += 'Le champ Confirmer mot de passe doit être remplis';
+    }
+
+    if (inputCreatePasswordValue === inputConfirmPasswordValue) {
+      // eslint-disable-next-line no-plusplus
+      check++;
+    }
+    else {
+      error += 'Les mots de passe ne correspondent pas';
+    }
+
+    if (check === 7) {
+      dispatch(actionIsLoading(true));
+      dispatch(actionSignup());
+      dispatch(actionSignupIsVisible(false));
+      dispatch(actionClearInputSignup());
+      dispatch(actionSigninIsVisible(true));
+    }
+    else {
+      dispatch(actionErrorMessage(error));
+      dispatch(actionSigninIsVisible(false));
+    }
+  };
   const handleCancelClick = () => {
     dispatch(actionClearInputSignup());
     dispatch(actionSignupIsVisible(false));
+    dispatch(actionIsLoading(false));
   };
-
   return (
     <main className="modale">
-      <section className="main-signup">
-        <div className="main-signup-page">
-          <h3 className="main-signup-page-title">Inscription</h3>
+      <section className="modale-signup">
+        <div className="modale-signup-page">
+          <h3 className="modale-signup-page-title">Inscription</h3>
           <article>
-
             <form onSubmit={handleSubmit} className="signup-input-container">
               <span className="material-symbols-outlined account_circle">
                 account_circle
               </span>
+              {errorMessage !== '' && <p className="error-message">{errorMessage}</p>}
               <section className="input-left-and-right">
                 <section className="input-left">
                   <label htmlFor="inputName" className="signup-user-label">
@@ -89,7 +168,7 @@ function Signup() {
                 </section>
                 <section className="input-right">
                   <label htmlFor="inputEmail" className="signup-user-label">
-                    <input value={inputEmailValue} onChange={handleChangeEmail} required="" id="inputEmail" type="email" name="email" placeholder="Email" autoComplete="off" className="input-signup" />
+                    <input value={inputMailValue} onChange={handleChangeMail} required="" id="inputMail" type="email" name="email" placeholder="Email" autoComplete="off" className="input-signup" />
                   </label>
                   <label htmlFor="inputCreatePassword" className="signup-user-label">
                     <input value={inputCreatePasswordValue} onChange={handleChangeCreatePassword} required="" id="inputCreatePassword" type="password" name="password" placeholder="Mot de passe" autoComplete="off" className="input-signup" />
