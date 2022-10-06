@@ -63,7 +63,7 @@ const ajax = (store) => (next) => (action) => {
           console.log(response.data);
 
           if (response.status === 200) {
-            store.dispatch(actionIsCreated()); // todo a faire
+            store.dispatch(actionIsCreated());
           }
         })
         .catch((error) => {

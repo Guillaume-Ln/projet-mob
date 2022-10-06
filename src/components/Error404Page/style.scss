@@ -1,0 +1,23 @@
+.main{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem .5rem;
+
+  &-error-404-glow {
+    font-size: 3.5rem;
+    color: #fff;
+    text-align: center;
+    -webkit-animation: main-error-404-glow 1s ease-in-out infinite alternate;
+    -moz-animation: main-error-404-glow 1s ease-in-out infinite alternate;
+    animation: main-error-404-glow 1s ease-in-out infinite alternate;
+  }
+  @keyframes main-error-404-glow {
+    from {
+      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+    }
+    to {
+      text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+    }
+  }
+}
