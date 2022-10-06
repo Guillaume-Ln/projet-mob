@@ -217,3 +217,15 @@ export const IS_CREATED = 'IS_CREATED';
 export const actionIsCreated = () => ({
   type: IS_CREATED,
 });
+
+export const AJAX_TOURNAMENTS = 'AJAX_TOURNAMENTS';
+
+export const actionAjaxTournaments = () => ({
+  type: AJAX_TOURNAMENTS,
+});
+export const SAVE_TOURNAMENTS = 'SAVE_TOURNAMENTS';
+
+export const actionSaveTournaments = (array) => ({
+  type: SAVE_TOURNAMENTS,
+  value: array,
+});
