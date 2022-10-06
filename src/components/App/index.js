@@ -8,8 +8,6 @@ import Signup from '../Signup';
 import Home from '../Home';
 import CreateTournament from '../CreateTournament';
 
-import Tournament from '../Tournament';
-
 // == Composant
 function App() {
   const signinIsVisible = useSelector((state) => state.signinIsVisible);
@@ -18,7 +16,6 @@ function App() {
   return (
     <div className="app">
       <Header />
-      <Tournament />
       {signinIsVisible && <Login />}
       {signupIsVisible && <Signup />}
       <Routes>
