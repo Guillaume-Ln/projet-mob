@@ -77,7 +77,6 @@ const ajax = (store) => (next) => (action) => {
       instance.get('/api/tournaments')
         .then((response) => {
           // handle success
-          console.log('ajax tournaments check : ');
           store.dispatch(actionSaveTournaments(response.data));
         })
         .catch((error) => {

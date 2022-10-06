@@ -11,6 +11,7 @@ import Home from '../Home';
 import CreateTournament from '../CreateTournament';
 // == Import actions
 import { actionAjaxTournaments } from '../../actions';
+import Tournaments from '../Tournaments';
 
 // == Composant
 function App() {
@@ -27,6 +28,7 @@ function App() {
       {signinIsVisible && <Login />}
       {signupIsVisible && <Signup />}
       <Routes>
+        <Route path="/tournaments" element={<Tournaments />} />
         <Route path="/newtournament" element={<CreateTournament />} />
         <Route path="/" element={<Home />} />
       </Routes>
