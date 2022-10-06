@@ -9,6 +9,7 @@ function TournamentCard({
   description,
   format,
   game,
+  id,
   image,
   label,
   max_player_count,
@@ -28,7 +29,7 @@ function TournamentCard({
           <p className="info-date">Date : <span className="info-data">{date}</span></p>
           <p className="info-description">Info du tournoi : <span className="info-data text-overflow">{description}</span></p>
           <p className="info-type">Type  : <span className="info-data">{type}</span></p>
-          <Link className="info-link" to="/tournaments/:id">lien vers tournoi</Link>
+          <Link className="info-link" to={`/tournaments/${id}`}>lien vers tournoi</Link>
         </div>
       </div>
       {type !== 'privé' && <button type="button" className="inscription-button">S'inscrire</button> }
@@ -41,6 +42,7 @@ TournamentCard.propTypes = {
   description: PropTypes.string.isRequired,
   format: PropTypes.string.isRequired,
   game: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   image: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   max_player_count: PropTypes.number.isRequired,

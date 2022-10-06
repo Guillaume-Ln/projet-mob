@@ -30,11 +30,24 @@ import {
   CHANGE_INPUT_DESCRIPTION_CREATE_TOURNAMENT,
   CLEAR_INPUT_CREATE_TOURNAMENT,
   SAVE_TOURNAMENTS,
+  SAVE_DATA_TOURNAMENT,
   // ? action pour factoriser tous les change input - A VOIR
   // ? CHANGE_INPUT_CREATE_TOURNAMENT,
 } from '../actions';
 
 const initialState = {
+  dataTournament: {
+    date: null,
+    description: null,
+    format: null,
+    game: null,
+    id: null,
+    image: null,
+    label: null,
+    max_player_count: null,
+    type: null,
+    user_id: null,
+  },
   tournaments: [],
   isLoading: false,
   isErrored: false,
@@ -396,6 +409,11 @@ function reducer(state = initialState, action = {}) {
       return {
         ...state,
         tournaments: action.value,
+      };
+    case SAVE_DATA_TOURNAMENT:
+      return {
+        ...state,
+        dataTournament: action.value,
       };
       // ? A VOIR POUR LA FACTORISATION des CHANGE_INPUT
       /*  case CHANGE_INPUT_CREATE_TOURNAMENT:

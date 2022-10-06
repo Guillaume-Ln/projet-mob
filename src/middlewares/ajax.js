@@ -8,6 +8,8 @@ import {
   actionIsCreated,
   AJAX_TOURNAMENTS,
   actionSaveTournaments,
+  AJAX_TOURNAMENT_BY_ID,
+  actionSaveDataTournament,
 } from '../actions';
 
 const instance = axios.create({
@@ -93,6 +95,16 @@ const ajax = (store) => (next) => (action) => {
         });
       break;
     }
+    case AJAX_TOURNAMENT_BY_ID:
+      instance.get(`api/tournaments/${action.id}`)
+        .then((response) => {
+          store.dispatch(actionSaveDataTournament(response.data));
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      break;
+
     default:
       break;
   }
