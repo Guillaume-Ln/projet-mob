@@ -399,11 +399,11 @@ function reducer(state = initialState, action = {}) {
         tournamentParticipants: action.value,
       };
       // ? A VOIR POUR LA FACTORISATION des CHANGE_INPUT
-      /*  case CHANGE_INPUT_CREATE_TOURNAMENT:
-      return {
-        ...state,
-        [action.key]: action.value,
-      }; */
+    /*  case CHANGE_INPUT_CREATE_TOURNAMENT:
+    return {
+      ...state,
+      [action.key]: action.value,
+    }; */
     default:
       return state;
   }

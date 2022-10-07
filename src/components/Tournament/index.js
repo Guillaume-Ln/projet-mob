@@ -1,16 +1,18 @@
+/* eslint-disable max-len */
 import './style.scss';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import tournamentImg from '../../assets/images/téléchargement.jpeg';
 import { actionTournamentById, actionParticipants, actionRegisterToTheTournament } from '../../actions';
+import Participant from './Participant';
 
 function Tournament() {
   const dispatch = useDispatch();
   // on récupère les infos du tournoi
   const dataTournament = useSelector((state) => state.dataTournament);
   // on récupère les participants au tournoi
-  const participants = useSelector((state) => state.participants);
+  const participants = useSelector((state) => state.tournamentParticipants);
   console.log(participants);
   const isConnected = useSelector((state) => state.isConnected);
   const { id } = useParams(); // on récupère l'ID du tournoi
@@ -18,8 +20,10 @@ function Tournament() {
   useEffect(() => {
     // on demande les infos d'un tournoi qu'on stock dans le store grace a l'ID
     dispatch(actionTournamentById(id));
-    // on récupère les participants au tournoi que l'on stock dans le store
-    dispatch(actionParticipants(id));
+    // on récupère les participants au tournoi si l'on est connecté que l'on stock dans le store
+    if (isConnected) {
+      dispatch(actionParticipants(id));
+    }
   }, []);
 
   const handleModerationClick = () => {
@@ -30,7 +34,6 @@ function Tournament() {
     // si apply on fait un ajax sur la route en patch api/tournaments/:id
   };
   const handleRegisterClick = () => {
-    console.log('handleRegisterClick');
     // au clic on ajax l'user ID sur la route post api/tournaments/:id/profiles
     dispatch(actionRegisterToTheTournament(id));
   };
@@ -106,17 +109,9 @@ function Tournament() {
       </div>
       {isConnected && (
       <section className="participants">
-        {/* // appliquer la meme chose que ca */}
-        {/* {tournaments.map((tournament) => <TournamentCard key={tournament.id} {...tournament} />)} */}
-
-        <div className="participant dead"><span className="participant-number">1-</span><span className="participant-nickname">michel</span></div>
-        <div className="participant live"><span className="participant-number">2-</span><span className="participant-nickname">dark sasuke du 75</span></div>
-        <div className="participant dead"><span className="participant-number">3-</span><span className="participant-nickname">jason</span></div>
-        <div className="participant dead"><span className="participant-number">4-</span><span className="participant-nickname">joris</span></div>
-        <div className="participant dead"><span className="participant-number">5-</span><span className="participant-nickname">toto</span></div>
-        <div className="participant dead"><span className="participant-number">6-</span><span className="participant-nickname">jean-pierre-vigneron</span></div>
-        <div className="participant win"><span className="participant-number">7-</span><span className="participant-nickname">Maitre Daunat</span></div>
-        <div className="participant dead"><span className="participant-number">8-</span><span className="participant-nickname">bonhome pain d'épice</span></div>
+        {participants.map((participant, index) => (
+          <Participant key={index} index={index} participant={participant} />
+        ))}
       </section>
       )}
     </main>
