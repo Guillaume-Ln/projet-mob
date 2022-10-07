@@ -244,3 +244,9 @@ export const actionRegisterToTheTournament = (id) => ({
   type: AJAX_REGISTER_TO_THE_TOURNAMENT,
   id: id,
 });
+
+export const RELOG_ME = 'RELOG_ME';
+
+export const actionRelogMe = () => ({
+  type: RELOG_ME,
+});

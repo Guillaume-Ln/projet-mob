@@ -14,6 +14,7 @@ import {
   AJAX_PARTICIPANTS,
   actionSaveDataParticipants,
   AJAX_REGISTER_TO_THE_TOURNAMENT,
+  RELOG_ME,
 } from '../actions';
 
 const instance = axios.create({
@@ -132,25 +133,47 @@ const ajax = (store) => (next) => (action) => {
         });
       break;
     case AJAX_PARTICIPANTS:
-      instance.get(`api/tournaments/${action.id}/profiles/`)
+      console.log(localStorage.getItem('authorization'));
+      instance.get(`api/tournaments/${action.id}/profiles/`, {
+        headers: `bearer ${localStorage.getItem('authorization')}`,
+      })
         .then((response) => {
-          // ! 401 unautorized en étant connecter... que faire?
           store.dispatch(actionSaveDataParticipants(response.data));
         })
         .catch((error) => {
           console.log(error);
         });
       break;
-    case AJAX_REGISTER_TO_THE_TOURNAMENT:
-      instance.post(`api/tournaments/${action.id}/profiles/`)
+    case AJAX_REGISTER_TO_THE_TOURNAMENT: {
+      const state = store.getState();
+      instance.post(`api/tournaments/${action.id}/profiles/`, {
+        user_id: state.id,
+      })
         .then((response) => {
-          // ! Bloquer par le CORS, besoin du token ici?
           console.log(response);
         })
         .catch((error) => {
           console.log(error);
         });
       break;
+    }
+    case RELOG_ME: {
+      const yourJWTToken = localStorage.getItem('authorization');
+
+      instance.get('api/me', {
+        headers: {
+          Authorization: `Bearer ${yourJWTToken}`,
+        },
+      })
+        .then((response) => {
+          console.log(response);
+          store.dispatch(actionSaveUser(response.data.user));
+        })
+        .catch((error) => {
+          console.log('coucou la famille', error);
+        });
+      break;
+    }
 
     default:
       break;

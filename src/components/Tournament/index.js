@@ -32,7 +32,7 @@ function Tournament() {
   const handleRegisterClick = () => {
     console.log('handleRegisterClick');
     // au clic on ajax l'user ID sur la route post api/tournaments/:id/profiles
-    dispatch(actionRegisterToTheTournament());
+    dispatch(actionRegisterToTheTournament(id));
   };
   return (
     <main className="main-tournament">
@@ -104,8 +104,9 @@ function Tournament() {
           </div>
         </div>
       </div>
+      {isConnected && (
       <section className="participants">
-      {/* // appliquer la meme chose que ca */}
+        {/* // appliquer la meme chose que ca */}
         {/* {tournaments.map((tournament) => <TournamentCard key={tournament.id} {...tournament} />)} */}
 
         <div className="participant dead"><span className="participant-number">1-</span><span className="participant-nickname">michel</span></div>
@@ -117,6 +118,7 @@ function Tournament() {
         <div className="participant win"><span className="participant-number">7-</span><span className="participant-nickname">Maitre Daunat</span></div>
         <div className="participant dead"><span className="participant-number">8-</span><span className="participant-nickname">bonhome pain d'épice</span></div>
       </section>
+      )}
     </main>
   );
 }

@@ -13,7 +13,7 @@ import CreateTournament from '../CreateTournament';
 import Tournaments from '../Tournaments';
 import Tournament from '../Tournament';
 // == Import actions
-import { actionAjaxTournaments } from '../../actions';
+import { actionAjaxTournaments, actionRelogMe } from '../../actions';
 
 // == Composant
 function App() {
@@ -23,7 +23,13 @@ function App() {
 
   useEffect(() => {
     dispatch(actionAjaxTournaments());
+
+    // si on a un token, on se relog.
+    if (localStorage.getItem('authorization')) {
+      dispatch(actionRelogMe());
+    }
   });
+
   return (
     <div className="app">
       <Header />
