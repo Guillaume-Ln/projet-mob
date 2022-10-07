@@ -250,3 +250,8 @@ export const RELOG_ME = 'RELOG_ME';
 export const actionRelogMe = () => ({
   type: RELOG_ME,
 });
+export const REFRESH_TOKEN = 'REFRESH_TOKEN';
+
+export const actionRefreshToken = () => ({
+  type: REFRESH_TOKEN,
+});

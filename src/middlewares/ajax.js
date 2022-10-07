@@ -1,3 +1,4 @@
+/* eslint-disable dot-notation */
 /* eslint-disable no-console */
 import axios from 'axios';
 import {
@@ -15,6 +16,8 @@ import {
   actionSaveDataParticipants,
   AJAX_REGISTER_TO_THE_TOURNAMENT,
   RELOG_ME,
+  actionRefreshToken,
+  REFRESH_TOKEN,
 } from '../actions';
 
 const instance = axios.create({
@@ -33,10 +36,12 @@ const ajax = (store) => (next) => (action) => {
         .then((response) => {
           // handle success
           if (response.status === 200) {
+            console.log(response.data);
             store.dispatch(actionSaveUser(response.data.foundUser));
             // eslint-disable-next-line dot-notation
             instance.defaults.headers.common['authorization'] = `Bearer ${response.data.accessToken}`;
             localStorage.setItem('authorization', response.data.accessToken);
+            localStorage.setItem('authorizationRefreshToken', response.data.refreshToken);
           }
         })
         .catch((error) => {
@@ -166,11 +171,31 @@ const ajax = (store) => (next) => (action) => {
         },
       })
         .then((response) => {
-          console.log(response);
+          // console.log('log api/me', response);
+          instance.defaults.headers.common['authorization'] = `Bearer ${yourJWTToken}`;
           store.dispatch(actionSaveUser(response.data.user));
         })
         .catch((error) => {
-          console.log('coucou la famille', error);
+          console.log(error);
+          store.dispatch(actionRefreshToken());
+        });
+      break;
+    }
+    case REFRESH_TOKEN: {
+      const refreshToken = localStorage.getItem('authorizationRefreshToken');
+
+      instance.post('/api/refreshToken', {
+        headers: {
+          Authorization: `Bearer ${refreshToken}`,
+        },
+      })
+        .then((response) => {
+          console.log('token refreshed', response);
+          instance.defaults.headers.common['authorization'] = `Bearer ${response.data.accessToken}`;
+          localStorage.setItem('authorization', response.data.accessToken);
+        })
+        .catch((error) => {
+          console.log('refresh token error', error);
         });
       break;
     }
