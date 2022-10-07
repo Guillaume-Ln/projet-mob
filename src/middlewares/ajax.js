@@ -1,3 +1,4 @@
+/* eslint-disable dot-notation */
 /* eslint-disable no-console */
 import axios from 'axios';
 import {
@@ -11,6 +12,12 @@ import {
   actionSaveTournaments,
   AJAX_TOURNAMENT_BY_ID,
   actionSaveDataTournament,
+  AJAX_PARTICIPANTS,
+  actionSaveDataParticipants,
+  AJAX_REGISTER_TO_THE_TOURNAMENT,
+  RELOG_ME,
+  actionRefreshToken,
+  REFRESH_TOKEN,
 } from '../actions';
 
 const instance = axios.create({
@@ -28,13 +35,13 @@ const ajax = (store) => (next) => (action) => {
       })
         .then((response) => {
           // handle success
-          console.log('log ajax', response);
-
           if (response.status === 200) {
+            console.log(response.data);
             store.dispatch(actionSaveUser(response.data.foundUser));
             // eslint-disable-next-line dot-notation
             instance.defaults.headers.common['authorization'] = `Bearer ${response.data.accessToken}`;
             localStorage.setItem('authorization', response.data.accessToken);
+            localStorage.setItem('authorizationRefreshToken', response.data.refreshToken);
           }
         })
         .catch((error) => {
@@ -107,7 +114,7 @@ const ajax = (store) => (next) => (action) => {
         });
       break;
     }
-    case AJAX_TOURNAMENTS: {
+    case AJAX_TOURNAMENTS:
       instance.get('/api/tournaments')
         .then((response) => {
           // handle success
@@ -121,7 +128,6 @@ const ajax = (store) => (next) => (action) => {
           // always executed
         });
       break;
-    }
     case AJAX_TOURNAMENT_BY_ID:
       instance.get(`api/tournaments/${action.id}`)
         .then((response) => {
@@ -131,6 +137,68 @@ const ajax = (store) => (next) => (action) => {
           console.log(error);
         });
       break;
+    case AJAX_PARTICIPANTS:
+      console.log(localStorage.getItem('authorization'));
+      instance.get(`api/tournaments/${action.id}/profiles/`, {
+        headers: `bearer ${localStorage.getItem('authorization')}`,
+      })
+        .then((response) => {
+          store.dispatch(actionSaveDataParticipants(response.data));
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      break;
+    case AJAX_REGISTER_TO_THE_TOURNAMENT: {
+      const state = store.getState();
+      instance.post(`api/tournaments/${action.id}/profiles/`, {
+        user_id: state.id,
+      })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      break;
+    }
+    case RELOG_ME: {
+      const yourJWTToken = localStorage.getItem('authorization');
+
+      instance.get('api/me', {
+        headers: {
+          Authorization: `Bearer ${yourJWTToken}`,
+        },
+      })
+        .then((response) => {
+          // console.log('log api/me', response);
+          instance.defaults.headers.common['authorization'] = `Bearer ${yourJWTToken}`;
+          store.dispatch(actionSaveUser(response.data.user));
+        })
+        .catch((error) => {
+          console.log(error);
+          store.dispatch(actionRefreshToken());
+        });
+      break;
+    }
+    case REFRESH_TOKEN: {
+      const refreshToken = localStorage.getItem('authorizationRefreshToken');
+
+      instance.post('/api/refreshToken', {
+        headers: {
+          Authorization: `Bearer ${refreshToken}`,
+        },
+      })
+        .then((response) => {
+          console.log('token refreshed', response);
+          instance.defaults.headers.common['authorization'] = `Bearer ${response.data.accessToken}`;
+          localStorage.setItem('authorization', response.data.accessToken);
+        })
+        .catch((error) => {
+          console.log('refresh token error', error);
+        });
+      break;
+    }
 
     default:
       break;

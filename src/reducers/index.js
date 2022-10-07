@@ -30,11 +30,13 @@ import {
   CLEAR_INPUT_CREATE_TOURNAMENT,
   SAVE_TOURNAMENTS,
   SAVE_DATA_TOURNAMENT,
+  SAVE_DATA_PARTICIPANTS,
   // ? action pour factoriser tous les change input - A VOIR
   // ? CHANGE_INPUT_CREATE_TOURNAMENT,
 } from '../actions';
 
 const initialState = {
+  tournamentParticipants: [],
   dataTournament: {
     date: null,
     description: null,
@@ -390,6 +392,11 @@ function reducer(state = initialState, action = {}) {
       return {
         ...state,
         dataTournament: action.value,
+      };
+    case SAVE_DATA_PARTICIPANTS:
+      return {
+        ...state,
+        tournamentParticipants: action.value,
       };
       // ? A VOIR POUR LA FACTORISATION des CHANGE_INPUT
       /*  case CHANGE_INPUT_CREATE_TOURNAMENT:
