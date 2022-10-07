@@ -18,6 +18,7 @@ import {
   RELOG_ME,
   actionRefreshToken,
   REFRESH_TOKEN,
+  actionRelogMe,
 } from '../actions';
 
 const instance = axios.create({
@@ -36,12 +37,13 @@ const ajax = (store) => (next) => (action) => {
         .then((response) => {
           // handle success
           if (response.status === 200) {
-            console.log(response.data);
+            console.log('LoggedIn', response);
             store.dispatch(actionSaveUser(response.data.foundUser));
             // eslint-disable-next-line dot-notation
-            instance.defaults.headers.common['authorization'] = `Bearer ${response.data.accessToken}`;
             localStorage.setItem('authorization', response.data.accessToken);
+            console.log('accessToken saved to localStorage');
             localStorage.setItem('authorizationRefreshToken', response.data.refreshToken);
+            console.log('refreshToken saved to localStorage');
           }
         })
         .catch((error) => {
@@ -90,7 +92,7 @@ const ajax = (store) => (next) => (action) => {
     }
     case AJAX_SAVE_CREATE_TOURNAMENT: {
       const state = store.getState();
-      console.log('state', state);
+      const yourJWTToken = localStorage.getItem('authorization');
 
       instance.post('/api/tournaments', {
         label: state.inputCreateTournament.label,
@@ -101,6 +103,9 @@ const ajax = (store) => (next) => (action) => {
         max_player_count: state.inputCreateTournament.max_player_count,
         description: state.inputCreateTournament.description,
         user_id: state.user.id,
+        headers: {
+          Authorization: `Bearer ${yourJWTToken}`,
+        },
       })
         .then((response) => {
           console.log('new tournanemt created');
@@ -137,28 +142,39 @@ const ajax = (store) => (next) => (action) => {
           console.log(error);
         });
       break;
-    case AJAX_PARTICIPANTS:
-      console.log(localStorage.getItem('authorization'));
+    case AJAX_PARTICIPANTS: {
+      const yourJWTToken = localStorage.getItem('authorization');
+
       instance.get(`api/tournaments/${action.id}/profiles/`, {
-        headers: `bearer ${localStorage.getItem('authorization')}`,
+        headers: {
+          Authorization: `Bearer ${yourJWTToken}`,
+        },
       })
         .then((response) => {
+          // console.log('ajax participants succes');
           store.dispatch(actionSaveDataParticipants(response.data));
         })
         .catch((error) => {
+          console.log('ajax participants failled');
           console.log(error);
         });
       break;
+    }
     case AJAX_REGISTER_TO_THE_TOURNAMENT: {
       const state = store.getState();
+      const yourJWTToken = localStorage.getItem('authorization');
+
       instance.post(`api/tournaments/${action.id}/profiles/`, {
-        user_id: state.id,
+        user_id: state.user.id,
+        headers: {
+          Authorization: `Bearer ${yourJWTToken}`,
+        },
       })
         .then((response) => {
-          console.log(response);
+          console.log('register to the tournoi succes', response);
         })
         .catch((error) => {
-          console.log(error);
+          console.log('error register tournament', error);
         });
       break;
     }
@@ -171,12 +187,12 @@ const ajax = (store) => (next) => (action) => {
         },
       })
         .then((response) => {
-          // console.log('log api/me', response);
-          instance.defaults.headers.common['authorization'] = `Bearer ${yourJWTToken}`;
+          console.log('api/me succes', response);
           store.dispatch(actionSaveUser(response.data.user));
+          console.log(`accesToken lost in ${new Date(response.data.exp).getMinutes()} minutes.`);
         })
         .catch((error) => {
-          console.log(error);
+          console.log('api/me error', error);
           store.dispatch(actionRefreshToken());
         });
       break;
@@ -190,9 +206,10 @@ const ajax = (store) => (next) => (action) => {
         },
       })
         .then((response) => {
-          console.log('token refreshed', response);
-          instance.defaults.headers.common['authorization'] = `Bearer ${response.data.accessToken}`;
+          console.log('token refreshed');
+          console.log('new accesToken saved to localStorage');
           localStorage.setItem('authorization', response.data.accessToken);
+          store.dispatch(actionRelogMe());
         })
         .catch((error) => {
           console.log('refresh token error', error);
