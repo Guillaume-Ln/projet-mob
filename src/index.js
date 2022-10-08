@@ -9,15 +9,6 @@ import store from 'src/store';
 
 // Composants
 import App from 'src/components/App';
-// == Import actions
-import { actionAjaxTournaments, actionRelogMe } from './actions';
-
-store.dispatch(actionAjaxTournaments());
-if (localStorage.getItem('authorization')) {
-  console.log('call api/me');
-  store.dispatch(actionRelogMe());
-}
-
 // == Render
 // 1. Élément React racine (celui qui contient l'ensemble de l'app)
 //    => crée une structure d'objets imbriqués (DOM virtuel)

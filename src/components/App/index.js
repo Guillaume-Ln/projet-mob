@@ -28,7 +28,7 @@ function App() {
       console.log('call api/me');
       dispatch(actionRelogMe());
     }
-  },[location.pathname]);
+  }, [location.pathname]);
   return (
     <div className="app">
       <Header />
