@@ -207,7 +207,7 @@ const ajax = (store) => (next) => (action) => {
     case AJAX_USER_BY_ID: {
       instance.get(`/api/profiles/${action.id}`)
         .then((response) => {
-          console.log(response.data);
+          // console.log(response.data);
           store.dispatch(actionSaveUserProfil(response.data));
         })
         .catch((error) => {

@@ -267,3 +267,8 @@ export const actionSaveUserProfil = (obj) => ({
   type: SAVE_USER_PROFIL,
   value: obj,
 });
+export const CLEAR_TOURNAMENT_PARTICIPANTS = 'CLEAR_TOURNAMENT_PARTICIPANTS';
+
+export const actionClearTournamentParticipants = () => ({
+  type: CLEAR_TOURNAMENT_PARTICIPANTS,
+});

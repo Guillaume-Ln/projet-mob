@@ -4,7 +4,12 @@ import { useEffect } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import tournamentImg from '../../assets/images/téléchargement.jpeg';
-import { actionTournamentById, actionParticipants, actionRegisterToTheTournament, actionGetUserById } from '../../actions';
+import {
+  actionTournamentById,
+  actionParticipants,
+  actionRegisterToTheTournament,
+  actionGetUserById,
+} from '../../actions';
 import Participant from './Participant';
 
 function Tournament() {
@@ -27,9 +32,12 @@ function Tournament() {
     // on récupère les participants au tournoi si l'on est connecté que l'on stock dans le store
     if (isConnected) {
       dispatch(actionParticipants(id));
-      participantsId.forEach((p) => dispatch(actionGetUserById(p.user_id)));
     }
-  }, [location.pathname]);
+  }, []);
+
+  useEffect(() => {
+    participantsId.forEach((p) => dispatch(actionGetUserById(p.user_id)));
+  }, [participantsId]);
 
   const handleModerationClick = () => {
     console.log('handleModerationClick');

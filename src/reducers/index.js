@@ -32,6 +32,7 @@ import {
   SAVE_DATA_TOURNAMENT,
   SAVE_DATA_PARTICIPANTS,
   SAVE_USER_PROFIL,
+  CLEAR_TOURNAMENT_PARTICIPANTS,
   // ? action pour factoriser tous les change input - A VOIR
   // ? CHANGE_INPUT_CREATE_TOURNAMENT,
 } from '../actions';
@@ -405,6 +406,12 @@ function reducer(state = initialState, action = {}) {
       return {
         ...state,
         tournamentParticipants: [...state.tournamentParticipants, action.value],
+      };
+    case CLEAR_TOURNAMENT_PARTICIPANTS:
+      return {
+        ...state,
+        tournamentParticipantsid: [],
+        tournamentParticipants: [],
       };
       // ? A VOIR POUR LA FACTORISATION des CHANGE_INPUT
     /*  case CHANGE_INPUT_CREATE_TOURNAMENT:
