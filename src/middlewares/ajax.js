@@ -29,7 +29,6 @@ const instance = axios.create({
   headers: {
     Authorization: `Bearer ${yourJWTToken}`, // avec cette configuration d'axios, je n'ai pas besoins de préciser a chaque fois ou trouver le token
   },
-  timeout: 5000,
 });
 
 const ajax = (store) => (next) => (action) => {
@@ -176,6 +175,7 @@ const ajax = (store) => (next) => (action) => {
       instance.get('api/me')
         .then((response) => {
           console.log('api/me succes', response);
+          console.log(`your accesToken is :   ${yourJWTToken}`);
           store.dispatch(actionSaveUser(response.data.user));
           console.log(`accesToken lost in ${new Date(response.data.exp).getMinutes()} minutes.`);
         })
