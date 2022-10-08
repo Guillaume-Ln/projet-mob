@@ -21,8 +21,15 @@ import {
   actionRelogMe,
 } from '../actions';
 
+const yourJWTToken = localStorage.getItem('authorization');
+const refreshToken = localStorage.getItem('authorizationRefreshToken');
+
 const instance = axios.create({
   baseURL: 'https://mob-multiplayer-online-bracket.herokuapp.com',
+  headers: {
+    Authorization: `Bearer ${yourJWTToken}`, // avec cette configuration d'axios, je n'ai pas besoins de préciser a chaque fois ou trouver le token
+  },
+  timeout: 5000,
 });
 
 const ajax = (store) => (next) => (action) => {
@@ -92,7 +99,6 @@ const ajax = (store) => (next) => (action) => {
     }
     case AJAX_SAVE_CREATE_TOURNAMENT: {
       const state = store.getState();
-      const yourJWTToken = localStorage.getItem('authorization');
 
       instance.post('/api/tournaments', {
         label: state.inputCreateTournament.label,
@@ -103,9 +109,6 @@ const ajax = (store) => (next) => (action) => {
         max_player_count: state.inputCreateTournament.max_player_count,
         description: state.inputCreateTournament.description,
         user_id: state.user.id,
-        headers: {
-          Authorization: `Bearer ${yourJWTToken}`,
-        },
       })
         .then((response) => {
           console.log('new tournanemt created');
@@ -143,13 +146,7 @@ const ajax = (store) => (next) => (action) => {
         });
       break;
     case AJAX_PARTICIPANTS: {
-      const yourJWTToken = localStorage.getItem('authorization');
-
-      instance.get(`api/tournaments/${action.id}/profiles/`, {
-        headers: {
-          Authorization: `Bearer ${yourJWTToken}`,
-        },
-      })
+      instance.get(`api/tournaments/${action.id}/profiles/`)
         .then((response) => {
           // console.log('ajax participants succes');
           store.dispatch(actionSaveDataParticipants(response.data));
@@ -162,13 +159,10 @@ const ajax = (store) => (next) => (action) => {
     }
     case AJAX_REGISTER_TO_THE_TOURNAMENT: {
       const state = store.getState();
-      const yourJWTToken = localStorage.getItem('authorization');
+      console.log(`AJAX_REGISTER_TO_THE_TOURNAMENT user_id: ${state.user.id}`);
 
       instance.post(`api/tournaments/${action.id}/profiles/`, {
         user_id: state.user.id,
-        headers: {
-          Authorization: `Bearer ${yourJWTToken}`,
-        },
       })
         .then((response) => {
           console.log('register to the tournoi succes', response);
@@ -179,13 +173,7 @@ const ajax = (store) => (next) => (action) => {
       break;
     }
     case RELOG_ME: {
-      const yourJWTToken = localStorage.getItem('authorization');
-
-      instance.get('api/me', {
-        headers: {
-          Authorization: `Bearer ${yourJWTToken}`,
-        },
-      })
+      instance.get('api/me')
         .then((response) => {
           console.log('api/me succes', response);
           store.dispatch(actionSaveUser(response.data.user));
@@ -198,8 +186,6 @@ const ajax = (store) => (next) => (action) => {
       break;
     }
     case REFRESH_TOKEN: {
-      const refreshToken = localStorage.getItem('authorizationRefreshToken');
-
       instance.post('/api/refreshToken', {
         headers: {
           Authorization: `Bearer ${refreshToken}`,
