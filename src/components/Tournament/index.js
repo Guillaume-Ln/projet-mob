@@ -1,21 +1,25 @@
 /* eslint-disable max-len */
 import './style.scss';
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import tournamentImg from '../../assets/images/téléchargement.jpeg';
-import { actionTournamentById, actionParticipants, actionRegisterToTheTournament } from '../../actions';
+import { actionTournamentById, actionParticipants, actionRegisterToTheTournament, actionGetUserById } from '../../actions';
 import Participant from './Participant';
 
 function Tournament() {
   const dispatch = useDispatch();
-  // on récupère les infos du tournoi
+  const location = useLocation();
+
+  // * on récupère les infos du tournoi
   const dataTournament = useSelector((state) => state.dataTournament);
-  // on récupère les participants au tournoi
+  // * on récupère les participants au tournoi
+  const participantsId = useSelector((state) => state.tournamentParticipantsid);
   const participants = useSelector((state) => state.tournamentParticipants);
-  console.log(participants);
   const isConnected = useSelector((state) => state.isConnected);
+
   const { id } = useParams(); // on récupère l'ID du tournoi
+  // console.log('log de participants', participants);
 
   useEffect(() => {
     // on demande les infos d'un tournoi qu'on stock dans le store grace a l'ID
@@ -23,8 +27,9 @@ function Tournament() {
     // on récupère les participants au tournoi si l'on est connecté que l'on stock dans le store
     if (isConnected) {
       dispatch(actionParticipants(id));
+      participantsId.forEach((p) => dispatch(actionGetUserById(p.user_id)));
     }
-  }, []);
+  }, [location.pathname]);
 
   const handleModerationClick = () => {
     console.log('handleModerationClick');
@@ -37,6 +42,7 @@ function Tournament() {
     // au clic on ajax l'user ID sur la route post api/tournaments/:id/profiles
     dispatch(actionRegisterToTheTournament(id));
   };
+
   return (
     <main className="main-tournament">
       <div className="top">

@@ -31,11 +31,13 @@ import {
   SAVE_TOURNAMENTS,
   SAVE_DATA_TOURNAMENT,
   SAVE_DATA_PARTICIPANTS,
+  SAVE_USER_PROFIL,
   // ? action pour factoriser tous les change input - A VOIR
   // ? CHANGE_INPUT_CREATE_TOURNAMENT,
 } from '../actions';
 
 const initialState = {
+  tournamentParticipantsid: [],
   tournamentParticipants: [],
   dataTournament: {
     date: null,
@@ -394,9 +396,15 @@ function reducer(state = initialState, action = {}) {
         dataTournament: action.value,
       };
     case SAVE_DATA_PARTICIPANTS:
+      // console.log(action.value);
       return {
         ...state,
-        tournamentParticipants: action.value,
+        tournamentParticipantsid: action.value,
+      };
+    case SAVE_USER_PROFIL:
+      return {
+        ...state,
+        tournamentParticipants: [...state.tournamentParticipants, action.value],
       };
       // ? A VOIR POUR LA FACTORISATION des CHANGE_INPUT
     /*  case CHANGE_INPUT_CREATE_TOURNAMENT:

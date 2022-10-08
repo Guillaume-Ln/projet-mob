@@ -25,7 +25,7 @@ function App() {
     dispatch(actionAjaxTournaments());
 
     if (localStorage.getItem('authorization')) {
-      console.log('call api/me');
+      // console.log('call api/me');
       dispatch(actionRelogMe());
     }
   }, [location.pathname]);

@@ -255,3 +255,15 @@ export const REFRESH_TOKEN = 'REFRESH_TOKEN';
 export const actionRefreshToken = () => ({
   type: REFRESH_TOKEN,
 });
+export const AJAX_USER_BY_ID = 'AJAX_USER_BY_ID';
+
+export const actionGetUserById = (id) => ({
+  type: AJAX_USER_BY_ID,
+  id: id,
+});
+export const SAVE_USER_PROFIL = 'SAVE_USER_PROFIL';
+
+export const actionSaveUserProfil = (obj) => ({
+  type: SAVE_USER_PROFIL,
+  value: obj,
+});

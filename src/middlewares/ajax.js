@@ -19,6 +19,8 @@ import {
   actionRefreshToken,
   REFRESH_TOKEN,
   actionRelogMe,
+  AJAX_USER_BY_ID,
+  actionSaveUserProfil,
 } from '../actions';
 
 const yourJWTToken = localStorage.getItem('authorization');
@@ -147,7 +149,7 @@ const ajax = (store) => (next) => (action) => {
     case AJAX_PARTICIPANTS: {
       instance.get(`api/tournaments/${action.id}/profiles/`)
         .then((response) => {
-          // console.log('ajax participants succes');
+          // console.log('ajax participants succes', response.data);
           store.dispatch(actionSaveDataParticipants(response.data));
         })
         .catch((error) => {
@@ -174,10 +176,10 @@ const ajax = (store) => (next) => (action) => {
     case RELOG_ME: {
       instance.get('api/me')
         .then((response) => {
-          console.log('api/me succes', response);
-          console.log(`your accesToken is :   ${yourJWTToken}`);
+          // console.log('api/me succes', response);
+          // console.log(`your accesToken is :   ${yourJWTToken}`);
           store.dispatch(actionSaveUser(response.data.user));
-          console.log(`accesToken lost in ${new Date(response.data.exp).getMinutes()} minutes.`);
+          // console.log(`accesToken lost in ${new Date(response.data.exp).getMinutes()} minutes.`);
         })
         .catch((error) => {
           console.log('api/me error', error);
@@ -196,6 +198,17 @@ const ajax = (store) => (next) => (action) => {
           console.log('new accesToken saved to localStorage');
           localStorage.setItem('authorization', response.data.accessToken);
           store.dispatch(actionRelogMe());
+        })
+        .catch((error) => {
+          console.log('refresh token error', error);
+        });
+      break;
+    }
+    case AJAX_USER_BY_ID: {
+      instance.get(`/api/profiles/${action.id}`)
+        .then((response) => {
+          console.log(response.data);
+          store.dispatch(actionSaveUserProfil(response.data));
         })
         .catch((error) => {
           console.log('refresh token error', error);
