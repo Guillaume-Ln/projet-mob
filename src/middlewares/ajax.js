@@ -1,6 +1,7 @@
 /* eslint-disable dot-notation */
 /* eslint-disable no-console */
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
 import {
   actionErrorMessage,
   actionSaveUser,
@@ -21,6 +22,11 @@ import {
   actionRelogMe,
   AJAX_USER_BY_ID,
   actionSaveUserProfil,
+  PATCH_TOURNAMENT,
+  actionClearInputCreateTournament,
+  actionEditTournament,
+  AJAX_REMOVE_USER_FROM_TOURNAMENT,
+  AJAX_DELETE_TOURNAMENT,
 } from '../actions';
 
 const yourJWTToken = localStorage.getItem('authorization');
@@ -215,7 +221,57 @@ const ajax = (store) => (next) => (action) => {
         });
       break;
     }
+    case PATCH_TOURNAMENT: {
+      const state = store.getState();
 
+      instance.patch(`/api/tournaments/${action.tournamentId}`, {
+        label: state.inputCreateTournament.label,
+        type: state.inputCreateTournament.type,
+        date: state.inputCreateTournament.date,
+        game: state.inputCreateTournament.game,
+        format: state.inputCreateTournament.format,
+        max_player_count: state.inputCreateTournament.max_player_count,
+        description: state.inputCreateTournament.description,
+        user_id: state.user.id,
+      })
+        .then((response) => {
+          console.log('tournanemt updated');
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .then(() => {
+          // always executed
+        });
+      break;
+    }
+    case AJAX_REMOVE_USER_FROM_TOURNAMENT: {
+      instance.delete(`/api/tournaments/${action.idTournament}/profiles/${action.idUser}/`)
+        .then((response) => {
+          console.log('user correctly removed from tournament');
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .then(() => {
+          // always executed
+        });
+      break;
+    }
+    case AJAX_DELETE_TOURNAMENT: {
+      instance.delete(`/api/tournaments/${action.idTournament}`)
+        .then((response) => {
+          console.log('tournament correctly deleted');
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .then(() => {
+          // always executed
+        });
+      break;
+    }
     default:
       break;
   }
