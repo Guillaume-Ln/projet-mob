@@ -278,3 +278,9 @@ export const actionIsModerator = (bool) => ({
   type: IS_MODERATOR,
   value: bool,
 });
+export const IS_PARTICIPANT = 'IS_PARTICIPANT';
+
+export const actionIsParticipant = (bool) => ({
+  type: IS_PARTICIPANT,
+  value: bool,
+});

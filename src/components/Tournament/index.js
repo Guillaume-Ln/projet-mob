@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import './style.scss';
 import { useEffect } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import tournamentImg from '../../assets/images/téléchargement.jpeg';
 import {
@@ -10,6 +10,7 @@ import {
   actionRegisterToTheTournament,
   actionGetUserById,
   actionIsModerator,
+  actionIsParticipant,
 } from '../../actions';
 import Participant from './Participant';
 
@@ -23,10 +24,10 @@ function Tournament() {
   const participantsId = useSelector((state) => state.tournamentParticipantsid);
   const participants = useSelector((state) => state.tournamentParticipants);
   const isModerator = useSelector((state) => state.isModerator);
+  const isParticipant = useSelector((state) => state.isParticipant);
   const isConnected = useSelector((state) => state.isConnected);
 
   const { id } = useParams(); // on récupère l'ID du tournoi
-  // console.log('log de participants', participants);
 
   useEffect(() => {
     // on demande les infos d'un tournoi qu'on stock dans le store grace a l'ID
@@ -45,7 +46,12 @@ function Tournament() {
   }, [dataTournament]);
 
   useEffect(() => {
-    participantsId.forEach((p) => dispatch(actionGetUserById(p.user_id)));
+    participantsId.forEach((p) => dispatch(actionGetUserById(p.user_id))); // pour chaque id de participant recu, on va chercher leur profile
+
+    // cette condition vérifi si je suis inscrit au tournoi
+    if (participantsId.filter((participant) => participant.user_id === user.id).length === 1) {
+      dispatch(actionIsParticipant(true));
+    }
   }, [participantsId]);
 
   const handleModerationClick = () => {
@@ -82,7 +88,8 @@ function Tournament() {
             <section className="one-tournament-container-button-container">
               {/* // ! ce boutton 'moderation' ne doit être visible que si on est modérateur */}
               { (isConnected && isModerator) && <button onClick={handleModerationClick} type="button" className="button-moderate">Moderation</button> }
-              { isConnected && <button onClick={handleRegisterClick} type="button" className="button-inscription">S'inscrire</button> }
+              { (isConnected && !isParticipant) && <button onClick={handleRegisterClick} type="button" className="button-inscription">S'inscrire</button> }
+              { isParticipant && <button type="button" className="button-inscription">Se désinscrire</button> }
             </section>
           </section>
         </div>
