@@ -35,11 +35,13 @@ import {
   CLEAR_TOURNAMENT_PARTICIPANTS,
   IS_MODERATOR,
   IS_PARTICIPANT,
+  EDIT_TOURNAMENT,
   // ? action pour factoriser tous les change input - A VOIR
   // ? CHANGE_INPUT_CREATE_TOURNAMENT,
 } from '../actions';
 
 const initialState = {
+  editTournament: false,
   isParticipant: false,
   isModerator: false,
   tournamentParticipantsid: [],
@@ -426,6 +428,11 @@ function reducer(state = initialState, action = {}) {
       return {
         ...state,
         isParticipant: action.value,
+      };
+    case EDIT_TOURNAMENT:
+      return {
+        ...state,
+        editTournament: action.value,
       };
     default:
       return state;
