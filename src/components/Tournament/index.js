@@ -88,7 +88,7 @@ function Tournament() {
             <section className="one-tournament-container-button-container">
               {/* // ! ce boutton 'moderation' ne doit être visible que si on est modérateur */}
               { (isConnected && isModerator) && <button onClick={handleModerationClick} type="button" className="button-moderate">Moderation</button> }
-              { (isConnected && !isParticipant) && <button onClick={handleRegisterClick} type="button" className="button-inscription">S'inscrire</button> }
+              { (dataTournament.type === 'public' && isConnected && !isParticipant) && <button onClick={handleRegisterClick} type="button" className="button-inscription">S'inscrire</button> }
               { isParticipant && <button type="button" className="button-inscription">Se désinscrire</button> }
             </section>
           </section>
