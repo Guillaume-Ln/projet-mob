@@ -33,11 +33,13 @@ import {
   SAVE_DATA_PARTICIPANTS,
   SAVE_USER_PROFIL,
   CLEAR_TOURNAMENT_PARTICIPANTS,
+  IS_MODERATOR,
   // ? action pour factoriser tous les change input - A VOIR
   // ? CHANGE_INPUT_CREATE_TOURNAMENT,
 } from '../actions';
 
 const initialState = {
+  isModerator: false,
   tournamentParticipantsid: [],
   tournamentParticipants: [],
   dataTournament: {
@@ -413,12 +415,11 @@ function reducer(state = initialState, action = {}) {
         tournamentParticipantsid: [],
         tournamentParticipants: [],
       };
-      // ? A VOIR POUR LA FACTORISATION des CHANGE_INPUT
-    /*  case CHANGE_INPUT_CREATE_TOURNAMENT:
-    return {
-      ...state,
-      [action.key]: action.value,
-    }; */
+    case IS_MODERATOR:
+      return {
+        ...state,
+        isModerator: action.value,
+      };
     default:
       return state;
   }

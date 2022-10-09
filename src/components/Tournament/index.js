@@ -9,18 +9,20 @@ import {
   actionParticipants,
   actionRegisterToTheTournament,
   actionGetUserById,
+  actionIsModerator,
 } from '../../actions';
 import Participant from './Participant';
 
 function Tournament() {
   const dispatch = useDispatch();
-  const location = useLocation();
-
+  // * on récupère les infos de l'utilisateur
+  const user = useSelector((state) => state.user);
   // * on récupère les infos du tournoi
   const dataTournament = useSelector((state) => state.dataTournament);
   // * on récupère les participants au tournoi
   const participantsId = useSelector((state) => state.tournamentParticipantsid);
   const participants = useSelector((state) => state.tournamentParticipants);
+  const isModerator = useSelector((state) => state.isModerator);
   const isConnected = useSelector((state) => state.isConnected);
 
   const { id } = useParams(); // on récupère l'ID du tournoi
@@ -34,6 +36,13 @@ function Tournament() {
       dispatch(actionParticipants(id));
     }
   }, []);
+
+  useEffect(() => {
+    // on vérifie si l'utilisateur est modérateur du tournoi
+    if (dataTournament.user_id === user.id) {
+      dispatch(actionIsModerator(true));
+    }
+  }, [dataTournament]);
 
   useEffect(() => {
     participantsId.forEach((p) => dispatch(actionGetUserById(p.user_id)));
@@ -72,7 +81,7 @@ function Tournament() {
             </section>
             <section className="one-tournament-container-button-container">
               {/* // ! ce boutton 'moderation' ne doit être visible que si on est modérateur */}
-              { isConnected && <button onClick={handleModerationClick} type="button" className="button-moderate">Moderation</button> }
+              { (isConnected && isModerator) && <button onClick={handleModerationClick} type="button" className="button-moderate">Moderation</button> }
               { isConnected && <button onClick={handleRegisterClick} type="button" className="button-inscription">S'inscrire</button> }
             </section>
           </section>
