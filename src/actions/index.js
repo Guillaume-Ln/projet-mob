@@ -272,3 +272,15 @@ export const CLEAR_TOURNAMENT_PARTICIPANTS = 'CLEAR_TOURNAMENT_PARTICIPANTS';
 export const actionClearTournamentParticipants = () => ({
   type: CLEAR_TOURNAMENT_PARTICIPANTS,
 });
+export const IS_MODERATOR = 'IS_MODERATOR';
+
+export const actionIsModerator = (bool) => ({
+  type: IS_MODERATOR,
+  value: bool,
+});
+export const IS_PARTICIPANT = 'IS_PARTICIPANT';
+
+export const actionIsParticipant = (bool) => ({
+  type: IS_PARTICIPANT,
+  value: bool,
+});

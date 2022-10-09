@@ -176,7 +176,7 @@ const ajax = (store) => (next) => (action) => {
     case RELOG_ME: {
       instance.get('api/me')
         .then((response) => {
-          // console.log('api/me succes', response);
+          console.log('api/me succes');
           // console.log(`your accesToken is :   ${yourJWTToken}`);
           store.dispatch(actionSaveUser(response.data.user));
           // console.log(`accesToken lost in ${new Date(response.data.exp).getMinutes()} minutes.`);

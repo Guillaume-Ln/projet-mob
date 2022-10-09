@@ -1,16 +1,21 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { actionClearTournamentParticipants } from '../../actions';
+import { actionClearTournamentParticipants, actionIsModerator, actionIsParticipant } from '../../actions';
 import './style.scss';
 import TournamentCard from './TournamentCard';
 
 function Tournaments() {
   const dispatch = useDispatch();
   const location = useLocation();
+
+  // eslint-disable-next-line max-len
+  // ! en attendant de faire mieu, quand l'utilisateur revient sur la liste des tournois, les infos des participants sont effacer pour éviter de les cumulés et le status modérateur est enlever pour qu'un user ne puisse pas voir le bouton de modération
   useEffect(() => {
     if (location.pathname === '/tournaments') {
       dispatch(actionClearTournamentParticipants());
+      dispatch(actionIsParticipant(false));
+      dispatch(actionIsModerator(false));
     }
   }, []);
 
