@@ -15,8 +15,6 @@ export const IS_LOADING = 'IS_LOADING';
 export const AJAX_SAVE_CREATE_TOURNAMENT = 'AJAX_SAVE_CREATE_TOURNAMENT';
 export const CHANGE_INPUT_NAME_CREATE_TOURNAMENT = 'CHANGE_INPUT_NAME_CREATE_TOURNAMENT';
 export const CHANGE_INPUT_GAME_CREATE_TOURNAMENT = 'CHANGE_INPUT_GAME_CREATE_TOURNAMENT';
-// eslint-disable-next-line max-len
-/* export const CHANGE_INPUT_MODERATOR_CREATE_TOURNAMENT = 'CHANGE_INPUT_MODERATOR_CREATE_TOURNAMENT'; */
 export const CHANGE_INPUT_MAX_PLAYER_COUNT_CREATE_TOURNAMENT = 'CHANGE_INPUT_MAX_PLAYER_COUNT_CREATE_TOURNAMENT';
 export const CHANGE_INPUT_DATE_CREATE_TOURNAMENT = 'CHANGE_INPUT_DATE_CREATE_TOURNAMENT';
 export const CHANGE_SELECT_FORMAT_CREATE_TOURNAMENT = 'CHANGE_SELECT_FORMAT_CREATE_TOURNAMENT';
@@ -106,11 +104,6 @@ export const actionChangeInputGameCreateTournament = (newValue) => ({
   type: CHANGE_INPUT_GAME_CREATE_TOURNAMENT,
   value: newValue,
 });
-
-/* export const actionChangeInputModeratorCreateTournament = (newValue) => ({
-  type: CHANGE_INPUT_MODERATOR_CREATE_TOURNAMENT,
-  value: newValue,
-}); */
 
 export const actionChangeInputMaxPlayerCountCreateTournament = (newValue) => ({
   type: CHANGE_INPUT_MAX_PLAYER_COUNT_CREATE_TOURNAMENT,
@@ -204,25 +197,39 @@ export const actionIsCreated = () => ({
 });
 
 export const AJAX_TOURNAMENTS = 'AJAX_TOURNAMENTS';
-
 export const actionAjaxTournaments = () => ({
   type: AJAX_TOURNAMENTS,
 });
-export const SAVE_TOURNAMENTS = 'SAVE_TOURNAMENTS';
 
+export const SAVE_TOURNAMENTS = 'SAVE_TOURNAMENTS';
 export const actionSaveTournaments = (array) => ({
   type: SAVE_TOURNAMENTS,
   value: array,
 });
-export const AJAX_TOURNAMENT_BY_ID = 'AJAX_TOURNAMENT_BY_ID';
 
+export const AJAX_TOURNAMENT_BY_ID = 'AJAX_TOURNAMENT_BY_ID';
 export const actionTournamentById = (id) => ({
   type: AJAX_TOURNAMENT_BY_ID,
   id: id,
 });
-export const SAVE_DATA_TOURNAMENT = 'SAVE_DATA_TOURNAMENT';
 
+export const SAVE_DATA_TOURNAMENT = 'SAVE_DATA_TOURNAMENT';
 export const actionSaveDataTournament = (obj) => ({
   type: SAVE_DATA_TOURNAMENT,
   value: obj,
 });
+export const AJAX_MY_TOURNAMENTS = 'AJAX_MY_TOURNAMENTS';
+export const actionAjaxMyTournaments = () => ({
+  type: AJAX_MY_TOURNAMENTS,
+});
+
+export const SAVE_MY_TOURNAMENTS = 'SAVE_MY_TOURNAMENTS';
+export const actionSaveMyTournaments = (array) => ({
+  type: SAVE_MY_TOURNAMENTS,
+  value: array,
+});
+/* export const AJAX_TOURNAMENT_BY_USER_ID = 'AJAX_TOURNAMENT_BY_USER_ID';
+export const actionTournamentByuserId = (userId) => ({
+  type: AJAX_TOURNAMENT_BY_USER_ID,
+  user_id: userId,
+}); */

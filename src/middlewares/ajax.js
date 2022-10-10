@@ -11,6 +11,8 @@ import {
   actionSaveTournaments,
   AJAX_TOURNAMENT_BY_ID,
   actionSaveDataTournament,
+  AJAX_MY_TOURNAMENTS,
+  actionSaveMyTournaments,
 } from '../actions';
 
 const instance = axios.create({
@@ -122,7 +124,7 @@ const ajax = (store) => (next) => (action) => {
         });
       break;
     }
-    case AJAX_TOURNAMENT_BY_ID:
+    case AJAX_TOURNAMENT_BY_ID: {
       instance.get(`api/tournaments/${action.id}`)
         .then((response) => {
           store.dispatch(actionSaveDataTournament(response.data));
@@ -131,7 +133,17 @@ const ajax = (store) => (next) => (action) => {
           console.log(error);
         });
       break;
-
+    }
+    case AJAX_MY_TOURNAMENTS: {
+      instance.get('api/tournaments')
+        .then((response) => {
+          store.dispatch(actionSaveMyTournaments(response.data));
+        })
+        .catch((error) => {
+          console.log('ajax my tournaments: ', error.code);
+        });
+      break;
+    }
     default:
       break;
   }
