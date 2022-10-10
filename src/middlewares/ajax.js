@@ -142,7 +142,7 @@ const ajax = (store) => (next) => (action) => {
           // always executed
         });
       break;
-    }
+
     case AJAX_TOURNAMENT_BY_ID: {
       instance.get(`api/tournaments/${action.id}`)
         .then((response) => {
@@ -161,7 +161,7 @@ const ajax = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error);
-          });
+        });
       break;
     }
     case AJAX_PARTICIPANTS: {

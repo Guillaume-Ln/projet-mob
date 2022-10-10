@@ -423,9 +423,6 @@ function reducer(state = initialState, action = {}) {
         ...state,
         dataProfile: action.value,
       };
-      // ? A VOIR POUR LA FACTORISATION des CHANGE_INPUT
-      /*  case CHANGE_INPUT_CREATE_TOURNAMENT:
-      
     case SAVE_DATA_PARTICIPANTS:
       // console.log(action.value);
       return {
