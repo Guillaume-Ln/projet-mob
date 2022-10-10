@@ -1,7 +1,9 @@
+/* eslint-disable no-alert */
+/* eslint-disable no-restricted-globals */
 /* eslint-disable max-len */
 import './style.scss';
 import { useEffect } from 'react';
-import { useParams, Navigate, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import tournamentImg from '../../assets/images/téléchargement.jpeg';
 import {
@@ -153,7 +155,7 @@ function Tournament() {
     dispatch(actionEditTournament(false));
   };
   const handleDeleteTournament = () => {
-    if (confirm("Voulez vous vraiment supprimer ce tournoi?")) {
+    if (confirm('Voulez vous vraiment supprimer ce tournoi?')) {
       dispatch(actionDeleteTournament(id));
       dispatch(actionClearInputCreateTournament());
       dispatch(actionEditTournament(false));
@@ -293,7 +295,7 @@ function Tournament() {
       {isConnected && (
       <section className="participants">
         {participants.map((participant, index) => (
-          <Participant key={index} index={index} participant={participant} idTournament={id} />
+          <Participant key={participant.nickname} index={index} participant={participant} idTournament={id} />
         ))}
       </section>
       )}

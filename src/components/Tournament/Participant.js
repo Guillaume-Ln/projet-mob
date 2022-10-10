@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import deleteIcon from 'src/assets/icon/deletIcon.png';
@@ -11,6 +12,7 @@ function Participant({ index, participant, idTournament }) {
 
   const handleParticipantClic = () => {
     if (editTournament) {
+      // eslint-disable-next-line no-restricted-globals
       if (confirm('Voulez vous vraiment retirer ce participant du tournoi ?')) {
         dispatch(actionRemoveUserFromTournament(idTournament, participant.id));
       }
