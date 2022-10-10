@@ -324,3 +324,8 @@ export const actionDeleteTournament = (id) => ({
   type: AJAX_DELETE_TOURNAMENT,
   idTournament: id,
 });
+export const CONTACT_MODALE = 'CONTACT_MODALE';
+
+export const actionContactModale = () => ({
+  type: CONTACT_MODALE,
+});
