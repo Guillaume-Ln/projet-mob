@@ -12,6 +12,10 @@ import Home from '../Home';
 import CreateTournament from '../CreateTournament';
 import Tournaments from '../Tournaments';
 import Tournament from '../Tournament';
+import Profile from '../Profile';
+
+// == Import actions
+import { actionAjaxTournaments } from '../../actions';
 import {
   actionAjaxTournaments,
   actionDisconnect,
@@ -50,6 +54,7 @@ function App() {
         <Route path="/newtournament" element={<CreateTournament />} />
         <Route path="/" element={<Home />} />
         <Route path="/tournaments/:id" element={<Tournament />} />
+        <Route path="/profiles/:id" element={<Profile />} />
       </Routes>
       <Footer />
     </div>

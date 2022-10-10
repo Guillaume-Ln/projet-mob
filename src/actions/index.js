@@ -144,6 +144,7 @@ export const actionChangeInputDescriptionCreateTournament = (newValue) => ({
   key:key,
   value: newValue
 }) */
+
 // export des actions de la page inscription
 
 export const CHANGE_INPUT_NAME_VALUE = 'CHANGE_INPUT_NAME_VALUE';
@@ -204,28 +205,42 @@ export const actionIsCreated = () => ({
 });
 
 export const AJAX_TOURNAMENTS = 'AJAX_TOURNAMENTS';
-
 export const actionAjaxTournaments = () => ({
   type: AJAX_TOURNAMENTS,
 });
-export const SAVE_TOURNAMENTS = 'SAVE_TOURNAMENTS';
 
+export const SAVE_TOURNAMENTS = 'SAVE_TOURNAMENTS';
 export const actionSaveTournaments = (array) => ({
   type: SAVE_TOURNAMENTS,
   value: array,
 });
-export const AJAX_TOURNAMENT_BY_ID = 'AJAX_TOURNAMENT_BY_ID';
 
+export const AJAX_TOURNAMENT_BY_ID = 'AJAX_TOURNAMENT_BY_ID';
 export const actionTournamentById = (id) => ({
   type: AJAX_TOURNAMENT_BY_ID,
   id: id,
 });
-export const SAVE_DATA_TOURNAMENT = 'SAVE_DATA_TOURNAMENT';
 
+export const SAVE_DATA_TOURNAMENT = 'SAVE_DATA_TOURNAMENT';
 export const actionSaveDataTournament = (obj) => ({
   type: SAVE_DATA_TOURNAMENT,
   value: obj,
 });
+
+// export des actions de la page profile
+
+export const GET_PROFILE_BY_ID = 'GET_PROFILE_BY_ID';
+export const actionGetProfileById = (id) => ({
+  type: GET_PROFILE_BY_ID,
+  id: id,
+});
+
+export const SAVE_DATA_PROFILE = 'SAVE_DATA_PROFILE';
+export const actionSaveDataProfile = (obj) => ({
+  type: SAVE_DATA_PROFILE,
+  value: obj,
+});
+
 export const AJAX_PARTICIPANTS = 'AJAX_PARTICIPANTS';
 
 export const actionParticipants = (id) => ({

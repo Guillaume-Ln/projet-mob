@@ -44,6 +44,8 @@ function Tournament() {
 
   const { id } = useParams(); // on récupère l'ID du tournoi
 
+  // console.log('dataTournament: ', dataTournament);
+
   useEffect(() => {
     // on demande les infos d'un tournoi qu'on stock dans le store grace a l'ID
     dispatch(actionTournamentById(id));
