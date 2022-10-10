@@ -246,6 +246,7 @@ function reducer(state = initialState, action = {}) {
       };
     case DISCONNECT:
       localStorage.removeItem('authorization');
+      localStorage.removeItem('authorizationRefreshToken');
       return {
         ...state,
         isLoadind: false,

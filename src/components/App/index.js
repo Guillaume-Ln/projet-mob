@@ -12,7 +12,12 @@ import Home from '../Home';
 import CreateTournament from '../CreateTournament';
 import Tournaments from '../Tournaments';
 import Tournament from '../Tournament';
-import { actionAjaxTournaments, actionRelogMe } from '../../actions';
+import {
+  actionAjaxTournaments,
+  actionDisconnect,
+  actionRefreshToken,
+  actionRelogMe,
+} from '../../actions';
 
 // == Composant
 function App() {
@@ -25,8 +30,13 @@ function App() {
     dispatch(actionAjaxTournaments());
 
     if (localStorage.getItem('authorization')) {
-      // console.log('call api/me');
       dispatch(actionRelogMe());
+    }
+    else {
+      dispatch(actionDisconnect());
+      if (localStorage.getItem('authorizationRefreshToken')) {
+        dispatch(actionRefreshToken());
+      }
     }
   }, [location.pathname]);
   return (

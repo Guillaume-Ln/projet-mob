@@ -1,7 +1,6 @@
 /* eslint-disable dot-notation */
 /* eslint-disable no-console */
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
 import {
   actionErrorMessage,
   actionSaveUser,
@@ -23,19 +22,18 @@ import {
   AJAX_USER_BY_ID,
   actionSaveUserProfil,
   PATCH_TOURNAMENT,
-  actionClearInputCreateTournament,
-  actionEditTournament,
   AJAX_REMOVE_USER_FROM_TOURNAMENT,
   AJAX_DELETE_TOURNAMENT,
 } from '../actions';
 
 const yourJWTToken = localStorage.getItem('authorization');
 const refreshToken = localStorage.getItem('authorizationRefreshToken');
+const config = yourJWTToken || refreshToken;
 
 const instance = axios.create({
   baseURL: 'https://mob-multiplayer-online-bracket.herokuapp.com',
   headers: {
-    Authorization: `Bearer ${yourJWTToken}`, // avec cette configuration d'axios, je n'ai pas besoins de préciser a chaque fois ou trouver le token
+    Authorization: `Bearer ${config}`, // avec cette configuration d'axios, je n'ai pas besoins de préciser a chaque fois ou trouver le token
   },
 });
 
@@ -201,8 +199,8 @@ const ajax = (store) => (next) => (action) => {
       })
         .then((response) => {
           console.log('token refreshed');
-          console.log('new accesToken saved to localStorage');
           localStorage.setItem('authorization', response.data.accessToken);
+          console.log('new accesToken saved to localStorage');
           store.dispatch(actionRelogMe());
         })
         .catch((error) => {
@@ -248,7 +246,7 @@ const ajax = (store) => (next) => (action) => {
     }
     case AJAX_REMOVE_USER_FROM_TOURNAMENT: {
       instance.delete(`/api/tournaments/${action.idTournament}/profiles/${action.idUser}/`)
-        .then((response) => {
+        .then(() => {
           console.log('user correctly removed from tournament');
         })
         .catch((error) => {
@@ -261,7 +259,7 @@ const ajax = (store) => (next) => (action) => {
     }
     case AJAX_DELETE_TOURNAMENT: {
       instance.delete(`/api/tournaments/${action.idTournament}`)
-        .then((response) => {
+        .then(() => {
           console.log('tournament correctly deleted');
         })
         .catch((error) => {
