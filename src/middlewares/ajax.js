@@ -11,6 +11,8 @@ import {
   actionSaveTournaments,
   AJAX_TOURNAMENT_BY_ID,
   actionSaveDataTournament,
+  GET_PROFILE_BY_ID,
+  actionSaveDataProfile,
 } from '../actions';
 
 const instance = axios.create({
@@ -71,7 +73,6 @@ const ajax = (store) => (next) => (action) => {
         })
         .catch((error) => {
           // handle error
-          console.log('coucou');
           if (error.response.status === 500) {
             store.dispatch(actionErrorMessage(error.response.data.message));
           }
@@ -122,7 +123,7 @@ const ajax = (store) => (next) => (action) => {
         });
       break;
     }
-    case AJAX_TOURNAMENT_BY_ID:
+    case AJAX_TOURNAMENT_BY_ID: {
       instance.get(`api/tournaments/${action.id}`)
         .then((response) => {
           store.dispatch(actionSaveDataTournament(response.data));
@@ -131,7 +132,18 @@ const ajax = (store) => (next) => (action) => {
           console.log(error);
         });
       break;
-
+    }
+    case GET_PROFILE_BY_ID: {
+      instance.get(`api/profiles/${action.id}`)
+        .then((response) => {
+          console.log(response);
+          store.dispatch(actionSaveDataProfile(response.data));
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      break;
+    }
     default:
       break;
   }

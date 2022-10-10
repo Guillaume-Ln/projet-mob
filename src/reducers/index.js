@@ -7,6 +7,7 @@ import {
   CHANGE_INPUT_SEARCH_VALUE,
   SIGNIN_IS_VISIBLE,
   SIGNUP_IS_VISIBLE,
+  SAVE_DATA_PROFILE,
   CHANGE_INPUT_NAME_VALUE,
   CHANGE_INPUT_FIRSTNAME_VALUE,
   CHANGE_INPUT_NICKNAME_VALUE,
@@ -90,6 +91,20 @@ const initialState = {
     mail: '',
     createpassword: '',
     confirmpassword: '',
+  },
+  dataProfile: {
+    id: '',
+    firstname: '',
+    lastname: '',
+    nickname: '',
+    mail: '',
+    trophies: '',
+    honor_point: '',
+    team: '',
+    role: '',
+    avatar: '',
+    created_at: '',
+    updated_at: '',
   },
 };
 
@@ -390,6 +405,11 @@ function reducer(state = initialState, action = {}) {
       return {
         ...state,
         dataTournament: action.value,
+      };
+    case SAVE_DATA_PROFILE:
+      return {
+        ...state,
+        dataProfile: action.value,
       };
       // ? A VOIR POUR LA FACTORISATION des CHANGE_INPUT
       /*  case CHANGE_INPUT_CREATE_TOURNAMENT:

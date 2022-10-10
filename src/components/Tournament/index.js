@@ -10,7 +10,8 @@ function Tournament() {
   const dataTournament = useSelector((state) => state.dataTournament);
   const { id } = useParams(); // on récupère l'ID du tournoi
 
-  console.log('dataTournament: ', dataTournament);
+  // console.log('dataTournament: ', dataTournament);
+
   useEffect(() => {
     dispatch(actionTournamentById(id)); // on récupère les infos d'un tournoi grace a l'ID
   }, []);
