@@ -35,8 +35,9 @@
 overflow-y: scroll;
 }
 .one-tournament{
+  width: 15rem;
   max-width: 15rem;
-  height: 28rem;
+  height: 25rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -47,9 +48,15 @@ overflow-y: scroll;
   border-radius: 10px;
   padding: .3rem;
 }
+.one-tournament:hover{
+  transform: scale(1.02);
+  filter: drop-shadow(0px 0px 15px #f4f40029);
+  border: 1px solid #F3F400;
+  transition: all .2s;
+}
 .one-tournament-image{
-  width: 200px;
-  aspect-ratio: 16/9;
+  width: 100px;
+  // aspect-ratio: 16/9;
 }
 .one-tournament-info{
   display: flex;

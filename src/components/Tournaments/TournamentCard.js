@@ -32,7 +32,6 @@ function TournamentCard({
           <Link className="info-link" to={`/tournaments/${id}`}>lien vers le tournoi</Link>
         </div>
       </div>
-      {type !== 'privé' && <button type="button" className="inscription-button">S'inscrire</button> }
     </article>
   );
 }
