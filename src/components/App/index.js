@@ -15,7 +15,6 @@ import Tournament from '../Tournament';
 import Profile from '../Profile';
 
 // == Import actions
-import { actionAjaxTournaments } from '../../actions';
 import {
   actionAjaxTournaments,
   actionDisconnect,
