@@ -31,11 +31,22 @@ import {
   CLEAR_INPUT_CREATE_TOURNAMENT,
   SAVE_TOURNAMENTS,
   SAVE_DATA_TOURNAMENT,
+  SAVE_DATA_PARTICIPANTS,
+  SAVE_USER_PROFIL,
+  CLEAR_TOURNAMENT_PARTICIPANTS,
+  IS_MODERATOR,
+  IS_PARTICIPANT,
+  EDIT_TOURNAMENT,
   // ? action pour factoriser tous les change input - A VOIR
   // ? CHANGE_INPUT_CREATE_TOURNAMENT,
 } from '../actions';
 
 const initialState = {
+  editTournament: false,
+  isParticipant: false,
+  isModerator: false,
+  tournamentParticipantsid: [],
+  tournamentParticipants: [],
   dataTournament: {
     date: null,
     description: null,
@@ -250,6 +261,7 @@ function reducer(state = initialState, action = {}) {
       };
     case DISCONNECT:
       localStorage.removeItem('authorization');
+      localStorage.removeItem('authorizationRefreshToken');
       return {
         ...state,
         isLoadind: false,
@@ -413,10 +425,39 @@ function reducer(state = initialState, action = {}) {
       };
       // ? A VOIR POUR LA FACTORISATION des CHANGE_INPUT
       /*  case CHANGE_INPUT_CREATE_TOURNAMENT:
+      
+    case SAVE_DATA_PARTICIPANTS:
+      // console.log(action.value);
       return {
         ...state,
-        [action.key]: action.value,
-      }; */
+        tournamentParticipantsid: action.value,
+      };
+    case SAVE_USER_PROFIL:
+      return {
+        ...state,
+        tournamentParticipants: [...state.tournamentParticipants, action.value],
+      };
+    case CLEAR_TOURNAMENT_PARTICIPANTS:
+      return {
+        ...state,
+        tournamentParticipantsid: [],
+        tournamentParticipants: [],
+      };
+    case IS_MODERATOR:
+      return {
+        ...state,
+        isModerator: action.value,
+      };
+    case IS_PARTICIPANT:
+      return {
+        ...state,
+        isParticipant: action.value,
+      };
+    case EDIT_TOURNAMENT:
+      return {
+        ...state,
+        editTournament: action.value,
+      };
     default:
       return state;
   }

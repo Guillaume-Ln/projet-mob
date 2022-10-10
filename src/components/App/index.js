@@ -1,5 +1,5 @@
 // == Import
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 // == Import components
@@ -16,16 +16,33 @@ import Profile from '../Profile';
 
 // == Import actions
 import { actionAjaxTournaments } from '../../actions';
+import {
+  actionAjaxTournaments,
+  actionDisconnect,
+  actionRefreshToken,
+  actionRelogMe,
+} from '../../actions';
 
 // == Composant
 function App() {
   const dispatch = useDispatch();
+  const location = useLocation();
   const signinIsVisible = useSelector((state) => state.signinIsVisible);
   const signupIsVisible = useSelector((state) => state.signupIsVisible);
 
   useEffect(() => {
     dispatch(actionAjaxTournaments());
-  });
+
+    if (localStorage.getItem('authorization')) {
+      dispatch(actionRelogMe());
+    }
+    else {
+      dispatch(actionDisconnect());
+      if (localStorage.getItem('authorizationRefreshToken')) {
+        dispatch(actionRefreshToken());
+      }
+    }
+  }, [location.pathname]);
   return (
     <div className="app">
       <Header />
