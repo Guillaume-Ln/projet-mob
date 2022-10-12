@@ -2,6 +2,7 @@
 export const CHANGE_INPUT_LOGIN_CONNEXION_VALUE = 'CHANGE_INPUT_LOGIN_CONNEXION_VALUE';
 export const CHANGE_INPUT_PASSWORD_CONNEXION_VALUE = 'CHANGE_INPUT_PASSWORD_CONNEXION_VALUE';
 export const CHANGE_INPUT_SEARCH_VALUE = 'CHANGE_INPUT_SEARCH_VALUE';
+export const AJAX_PROFILES = 'AJAX_PROFILES';
 export const AJAX_LOGIN = 'AJAX_LOGIN';
 export const IS_LOGGED = 'IS_LOGGED';
 export const CLEAR_INPUT_LOGIN = 'CLEAR_INPUT_LOGIN';
@@ -51,6 +52,17 @@ export const actionClearInputLogin = () => ({
 export const actionChangeInputSearchValue = (newValue) => ({
   type: CHANGE_INPUT_SEARCH_VALUE,
   value: newValue,
+});
+
+export const actionGetAllProfiles = () => ({
+  type: AJAX_PROFILES,
+});
+
+export const SAVE_ALL_PROFILES = 'SAVE_ALL_PROFILES';
+
+export const actionSaveAllProfiles = (data) => ({
+  type: SAVE_ALL_PROFILES,
+  value: data,
 });
 
 export const actionSigninIsVisible = (bool) => ({

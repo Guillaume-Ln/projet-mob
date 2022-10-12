@@ -1,7 +1,6 @@
 /* eslint-disable dot-notation */
 /* eslint-disable no-console */
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
 import {
   actionErrorMessage,
   actionSaveUser,
@@ -27,6 +26,8 @@ import {
   actionEditTournament,
   AJAX_REMOVE_USER_FROM_TOURNAMENT,
   AJAX_DELETE_TOURNAMENT,
+  AJAX_PROFILES,
+  actionSaveAllProfiles,
 } from '../actions';
 
 const yourJWTToken = localStorage.getItem('authorization');
@@ -272,6 +273,20 @@ const ajax = (store) => (next) => (action) => {
         });
       break;
     }
+    case AJAX_PROFILES:
+      instance.get('/api/profiles')
+        .then((response) => {
+          // handle success
+          store.dispatch(actionSaveAllProfiles(response.data));
+        })
+        .catch((error) => {
+          // handle error
+          console.log('Ajax profiles ', error.code);
+        })
+        .then(() => {
+          // always executed
+        });
+      break;
     default:
       break;
   }

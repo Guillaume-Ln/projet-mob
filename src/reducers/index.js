@@ -36,6 +36,7 @@ import {
   IS_MODERATOR,
   IS_PARTICIPANT,
   EDIT_TOURNAMENT,
+  SAVE_ALL_PROFILES,
   // ? action pour factoriser tous les change input - A VOIR
   // ? CHANGE_INPUT_CREATE_TOURNAMENT,
 } from '../actions';
@@ -102,6 +103,7 @@ const initialState = {
     createpassword: '',
     confirmpassword: '',
   },
+  dataSearch: [],
 };
 
 function reducer(state = initialState, action = {}) {
@@ -433,6 +435,11 @@ function reducer(state = initialState, action = {}) {
       return {
         ...state,
         editTournament: action.value,
+      };
+    case SAVE_ALL_PROFILES:
+      return {
+        ...state,
+        dataSearch: action.value,
       };
     default:
       return state;
