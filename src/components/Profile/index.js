@@ -1,23 +1,38 @@
+/* eslint-disable no-alert */
+/* eslint-disable no-restricted-globals */
 import './style.scss';
+import profileImage from 'src/assets/images/pptest.png';
 
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { actionGetProfileById } from '../../actions';
+import PwdModale from '../PwdModale';
+import {
+  actionGetProfileById,
+  actionPwdModale,
+} from '../../actions';
 
 function Profile() {
   const dispatch = useDispatch();
   const dataProfile = useSelector((state) => state.dataProfile);
+  const modalePwd = useSelector((state) => state.modalePwd);
   const { id } = useParams();
 
   useEffect(() => {
     dispatch(actionGetProfileById(id));
-  });
+  }, []);
+
+  const handleDeleteProfile = () => {
+    if (confirm('Voulez vous vraiment supprimer votre profil ?')) {
+      dispatch(actionPwdModale(true));
+    }
+  };
 
   return (
     <main className="main-profile">
+      {modalePwd && <PwdModale />}
       <section className="profile-header">
-        <img className="profile-header-pp" src="../../src/assets/images/pptest.png" alt="profile_picture" />
+        <img className="profile-header-pp" src={profileImage} alt="profile_picture" />
         <p className="profile-header-id">ID: <span className="profile-header-id-data">{dataProfile.id}</span></p>
       </section>
       <section className="profile-infos-and-stats">
@@ -33,9 +48,9 @@ function Profile() {
           <p className="profile-infos">Team</p>
           <p className="profile-infos-data">{dataProfile.team}</p>
           <div className="profile-infos-button">
-            <button type="button" className="profile-modification-button pointer"> Modifier mon profile </button>
+            <button type="button" className="profile-modification-button pointer"> Modifier mon profil </button>
             <span className="profile-edit-password pointer">Modifier mon mot de passe</span>
-            <span className="profile-delete pointer">Supprimer mon compte</span>
+            <span className="profile-delete pointer" onClick={handleDeleteProfile}>Supprimer mon compte</span>
           </div>
         </section>
         <section className="profil-infos-and-stats-stats">

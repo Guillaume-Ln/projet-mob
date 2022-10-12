@@ -37,12 +37,15 @@ import {
   IS_MODERATOR,
   IS_PARTICIPANT,
   EDIT_TOURNAMENT,
+  PWD_MODALE,
+  CHANGE_INPUT_DELETE_PWD_VALUE,
   CONTACT_MODALE,
   // ? action pour factoriser tous les change input - A VOIR
   // ? CHANGE_INPUT_CREATE_TOURNAMENT,
 } from '../actions';
 
 const initialState = {
+  modalePwd: false,
   modaleContact: false,
   modaleAbout: false,
   editTournament: false,
@@ -97,7 +100,6 @@ const initialState = {
     type: '',
     description: '',
   },
-
   inputSignup: {
     name: '',
     firstname: '',
@@ -119,6 +121,9 @@ const initialState = {
     avatar: '',
     created_at: '',
     updated_at: '',
+  },
+  inputDeleteAccount: {
+    deletepwd: '',
   },
 };
 
@@ -316,7 +321,11 @@ function reducer(state = initialState, action = {}) {
         ...state,
         isLoading: action.value,
       };
-
+    case SAVE_DATA_PROFILE:
+      return {
+        ...state,
+        dataProfile: action.value,
+      };
       // SAVE_CREATE TOURNAMENT
     case AJAX_SAVE_CREATE_TOURNAMENT:
       return {
@@ -421,11 +430,6 @@ function reducer(state = initialState, action = {}) {
         ...state,
         dataTournament: action.value,
       };
-    case SAVE_DATA_PROFILE:
-      return {
-        ...state,
-        dataProfile: action.value,
-      };
     case SAVE_DATA_PARTICIPANTS:
       // console.log(action.value);
       return {
@@ -458,6 +462,17 @@ function reducer(state = initialState, action = {}) {
         ...state,
         editTournament: action.value,
       };
+    case PWD_MODALE:
+      return {
+        ...state,
+        modalePwd: !state.modalePwd,
+      };
+    case CHANGE_INPUT_DELETE_PWD_VALUE:
+      return {
+        ...state,
+        inputDeleteAccount: {
+          deletepwd: action.value,
+        },
     case CONTACT_MODALE:
       return {
         ...state,

@@ -299,33 +299,49 @@ export const actionIsParticipant = (bool) => ({
   type: IS_PARTICIPANT,
   value: bool,
 });
-export const EDIT_TOURNAMENT = 'EDIT_TOURNAMENT';
 
+export const EDIT_TOURNAMENT = 'EDIT_TOURNAMENT';
 export const actionEditTournament = (bool) => ({
   type: EDIT_TOURNAMENT,
   value: bool,
 });
-export const PATCH_TOURNAMENT = 'PATCH_TOURNAMENT';
 
+export const PATCH_TOURNAMENT = 'PATCH_TOURNAMENT';
 export const actionPatchTournament = (id) => ({
   type: PATCH_TOURNAMENT,
   tournamentId: id,
 });
-export const AJAX_REMOVE_USER_FROM_TOURNAMENT = 'AJAX_REMOVE_USER_FROM_TOURNAMENT';
 
+export const AJAX_REMOVE_USER_FROM_TOURNAMENT = 'AJAX_REMOVE_USER_FROM_TOURNAMENT';
 export const actionRemoveUserFromTournament = (idTournament, idUser) => ({
   type: AJAX_REMOVE_USER_FROM_TOURNAMENT,
   idTournament,
   idUser,
 });
-export const AJAX_DELETE_TOURNAMENT = 'AJAX_DELETE_TOURNAMENT';
 
+export const AJAX_DELETE_TOURNAMENT = 'AJAX_DELETE_TOURNAMENT';
 export const actionDeleteTournament = (id) => ({
   type: AJAX_DELETE_TOURNAMENT,
   idTournament: id,
 });
-export const CONTACT_MODALE = 'CONTACT_MODALE';
 
+export const AJAX_DELETE_PROFILE = 'AJAX_DELETE_PROFILE';
+export const actionDeleteProfile = (id) => ({
+  type: AJAX_DELETE_PROFILE,
+  idProfile: id,
+});
+
+export const PWD_MODALE = 'PWD_MODALE';
+export const actionPwdModale = () => ({
+  type: PWD_MODALE,
+});
+
+export const CHANGE_INPUT_DELETE_PWD_VALUE = 'CHANGE_INPUT_DELETE_PWD_VALUE';
+export const actionChangeDeleteAccountPwdValue = (newValue) => ({
+  type: CHANGE_INPUT_DELETE_PWD_VALUE,
+  value: newValue,
+
+export const CONTACT_MODALE = 'CONTACT_MODALE';
 export const actionContactModale = () => ({
   type: CONTACT_MODALE,
 });
