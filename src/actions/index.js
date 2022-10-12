@@ -229,8 +229,3 @@ export const actionSaveMyTournaments = (array) => ({
   type: SAVE_MY_TOURNAMENTS,
   value: array,
 });
-/* export const AJAX_TOURNAMENT_BY_USER_ID = 'AJAX_TOURNAMENT_BY_USER_ID';
-export const actionTournamentByuserId = (userId) => ({
-  type: AJAX_TOURNAMENT_BY_USER_ID,
-  user_id: userId,
-}); */
