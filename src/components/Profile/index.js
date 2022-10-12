@@ -23,6 +23,15 @@ function Profile() {
 
   useEffect(() => {
     dispatch(actionGetProfileById(id));
+    if (window.localStorage) {
+      if (!localStorage.getItem('firstLoad')) {
+        localStorage.firstLoad = true;
+        window.location.reload();
+      }
+      else {
+        localStorage.removeItem('firstLoad');
+      }
+    }
   }, []);
 
   const handleDeleteProfile = () => {

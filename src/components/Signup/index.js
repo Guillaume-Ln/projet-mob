@@ -74,12 +74,10 @@ function Signup() {
       // eslint-disable-next-line no-plusplus
       check++;
     }
-
     if (inputFirstNameValue !== '') {
       // eslint-disable-next-line no-plusplus
       check++;
     }
-
     if (inputNickNameValue !== '') {
       // eslint-disable-next-line no-plusplus
       check++;
@@ -88,12 +86,10 @@ function Signup() {
       // eslint-disable-next-line no-plusplus
       check++;
     }
-
     if (inputCreatePasswordValue !== '') {
       // eslint-disable-next-line no-plusplus
       check++;
     }
-
     if (inputConfirmPasswordValue !== '') {
       // eslint-disable-next-line no-plusplus
       check++;
@@ -153,10 +149,10 @@ function Signup() {
                     <input value={inputMailValue} onChange={handleChangeMail} required="" id="inputMail" type="email" name="email" placeholder="Email" autoComplete="off" className="input-signup" />
                   </label>
                   <label htmlFor="inputCreatePassword" className="signup-user-label">
-                    <input value={inputCreatePasswordValue} onChange={handleChangeCreatePassword} required="" id="inputCreatePassword" type="password" name="password" placeholder="Mot de passe" autoComplete="off" className="input-signup" />
+                    <input value={inputCreatePasswordValue} onChange={handleChangeCreatePassword} required="" minLength="8" id="inputCreatePassword" type="password" name="password" placeholder="Mot de passe" autoComplete="off" className="input-signup" />
                   </label>
                   <label htmlFor="inputConfirmPassword" className="signup-user-label">
-                    <input value={inputConfirmPasswordValue} onChange={handleChangeConfirmPassword} required="" id="inputConfirmPassword" type="password" name="password" placeholder="Confirmer le mot de passe" autoComplete="off" className="input-signup" />
+                    <input value={inputConfirmPasswordValue} onChange={handleChangeConfirmPassword} required="" minLength="8" id="inputConfirmPassword" type="password" name="password" placeholder="Confirmer le mot de passe" autoComplete="off" className="input-signup" />
                   </label>
                 </section>
               </section>
