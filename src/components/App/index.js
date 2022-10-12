@@ -14,7 +14,7 @@ import Tournaments from '../Tournaments';
 import Tournament from '../Tournament';
 import MyTournaments from '../MyTournaments';
 // == Import actions
-import { actionAjaxTournaments, actionAjaxMyTournaments } from '../../actions';
+import { actionAjaxTournaments } from '../../actions';
 
 // == Composant
 function App() {
@@ -24,7 +24,6 @@ function App() {
 
   useEffect(() => {
     dispatch(actionAjaxTournaments());
-    dispatch(actionAjaxMyTournaments());
   });
   return (
     <div className="app">

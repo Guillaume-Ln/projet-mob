@@ -135,9 +135,10 @@ const ajax = (store) => (next) => (action) => {
       break;
     }
     case AJAX_MY_TOURNAMENTS: {
-      instance.get('api/tournaments')
+      instance.get(`api/tournaments/profiles/${action.id}/`)
         .then((response) => {
           store.dispatch(actionSaveMyTournaments(response.data));
+          console.log('response', response.data);
         })
         .catch((error) => {
           console.log('ajax my tournaments: ', error.code);

@@ -219,8 +219,9 @@ export const actionSaveDataTournament = (obj) => ({
   value: obj,
 });
 export const AJAX_MY_TOURNAMENTS = 'AJAX_MY_TOURNAMENTS';
-export const actionAjaxMyTournaments = () => ({
+export const actionAjaxMyTournaments = (id) => ({
   type: AJAX_MY_TOURNAMENTS,
+  id: id,
 });
 
 export const SAVE_MY_TOURNAMENTS = 'SAVE_MY_TOURNAMENTS';
