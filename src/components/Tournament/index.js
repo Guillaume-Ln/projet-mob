@@ -5,6 +5,7 @@ import './style.scss';
 import { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import getTournamentLine from '../../utils/lineMaker';
 import tournamentImg from '../../assets/images/téléchargement.jpeg';
 import {
   actionTournamentById,
@@ -64,12 +65,13 @@ function Tournament() {
 
   useEffect(() => {
     participantsId.forEach((p) => dispatch(actionGetUserById(p.user_id))); // pour chaque id de participant recu, on va chercher leur profile
-
     // cette condition vérifi si je suis inscrit au tournoi
     if (participantsId.filter((participant) => participant.user_id === user.id).length === 1) {
       dispatch(actionIsParticipant(true));
     }
   }, [participantsId]);
+
+  // console.log(getTournamentLine(participants, dataTournament.id, localStorage.getItem('authorization')));
 
   const handleModerationClick = () => {
     // on dit au state qu'on veut modifier avec un editTournament true

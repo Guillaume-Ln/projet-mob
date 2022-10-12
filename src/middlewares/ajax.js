@@ -19,8 +19,6 @@ import {
   AJAX_REGISTER_TO_THE_TOURNAMENT,
   RELOG_ME,
   actionRefreshToken,
-  REFRESH_TOKEN,
-  actionRelogMe,
   AJAX_USER_BY_ID,
   actionSaveUserProfil,
   PATCH_TOURNAMENT,
@@ -205,23 +203,6 @@ const ajax = (store) => (next) => (action) => {
         });
       break;
     }
-    case REFRESH_TOKEN: {
-      instance.post('/api/refreshToken', {
-        headers: {
-          Authorization: `Bearer ${refreshToken}`,
-        },
-      })
-        .then((response) => {
-          console.log('token refreshed');
-          localStorage.setItem('authorization', response.data.accessToken);
-          console.log('new accesToken saved to localStorage');
-          store.dispatch(actionRelogMe());
-        })
-        .catch((error) => {
-          console.log('refresh token error', error);
-        });
-      break;
-    }
     case AJAX_USER_BY_ID: {
       instance.get(`/api/profiles/${action.id}`)
         .then((response) => {
@@ -230,6 +211,7 @@ const ajax = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log('refresh token error', error);
+          store.dispatch(actionRefreshToken);
         });
       break;
     }
