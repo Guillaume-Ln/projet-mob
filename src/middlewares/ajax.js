@@ -27,6 +27,7 @@ import {
   AJAX_REMOVE_USER_FROM_TOURNAMENT,
   AJAX_DELETE_TOURNAMENT,
   AJAX_DELETE_PROFILE,
+  AJAX_PATCH_PROFILE_PWD,
 } from '../actions';
 
 const yourJWTToken = localStorage.getItem('authorization');
@@ -244,6 +245,24 @@ const ajax = (store) => (next) => (action) => {
       })
         .then(() => {
           console.log('profile correctly deleted');
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .then(() => {
+          // always executed
+        });
+      break;
+    }
+    case AJAX_PATCH_PROFILE_PWD: {
+      const state = store.getState();
+
+      instance.patch(`/api/profiles/${action.idProfile}/pwd`, {
+        password: state.inputPatchAccount.actualpwd,
+        newPassword: state.inputPatchAccount.newpwd,
+      })
+        .then(() => {
+          console.log('password correctly changed');
         })
         .catch((error) => {
           console.log(error);

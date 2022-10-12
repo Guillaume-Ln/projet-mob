@@ -340,8 +340,32 @@ export const CHANGE_INPUT_DELETE_PWD_VALUE = 'CHANGE_INPUT_DELETE_PWD_VALUE';
 export const actionChangeDeleteAccountPwdValue = (newValue) => ({
   type: CHANGE_INPUT_DELETE_PWD_VALUE,
   value: newValue,
-
-export const CONTACT_MODALE = 'CONTACT_MODALE';
-export const actionContactModale = () => ({
-  type: CONTACT_MODALE,
 });
+
+export const AJAX_PATCH_PROFILE_PWD = 'AJAX_PATCH_PROFILE_PWD';
+export const actionPatchProfilePwd = (id) => ({
+  type: AJAX_PATCH_PROFILE_PWD,
+  idProfile: id,
+});
+
+export const NEW_PWD_MODALE = 'NEW_PWD_MODALE';
+export const actionNewPwdModale = () => ({
+  type: NEW_PWD_MODALE,
+});
+
+export const CHANGE_INPUT_ACTUAL_PWD_VALUE = 'CHANGE_INPUT_ACTUAL_PWD_VALUE';
+export const actionChangeAccountActualPwdValue = (newValue) => ({
+  type: CHANGE_INPUT_ACTUAL_PWD_VALUE,
+  value: newValue,
+});
+
+export const CHANGE_INPUT_NEW_PWD_VALUE = 'CHANGE_INPUT_NEW_PWD_VALUE';
+export const actionChangeAccountNewPwdValue = (newValue) => ({
+  type: CHANGE_INPUT_NEW_PWD_VALUE,
+  value: newValue,
+});
+
+// export const CONTACT_MODALE = 'CONTACT_MODALE';
+// export const actionContactModale = () => ({
+//   type: CONTACT_MODALE,
+// });
