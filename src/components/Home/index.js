@@ -1,15 +1,20 @@
 /* import PropTypes from 'prop-types'; */
 
-import { Link } from 'react-router-dom';
 import './style.scss';
 
 // image
 
-import sloganImg from '../../assets/images/pexels-yan-krukov-9072216 (1).jpg';
-import tournamentImg from '../../assets/images/téléchargement.jpeg';
-import sloganLogo from '../../assets/images/logo_mob.png';
+import { useSelector } from 'react-redux';
+import sloganImg from 'src/assets/images/pexels-yan-krukov-9072216 (1).jpg';
+import sloganLogo from 'src/assets/images/logo_mob.png';
+import { useEffect } from 'react';
+import TournamentCard from '../Tournaments/TournamentCard';
 
 function Home() {
+  const tournaments = useSelector((state) => state.tournaments);
+  useEffect(() => {
+  }, []);
+
   return (
 
     <main className="main">
@@ -31,100 +36,10 @@ function Home() {
         <div className="main-tournament-inscription">
           <h3 className="main-tournament-inscription-title">TOURNAMENT</h3>
           <div className="main-tournament-inscription-container">
-            {/* <!-- un tournoi --> */}
-            <article className="main-tournament-inscription-one-tournament">
-              <div className="image-container">
-                <img className="image-container-img" src={tournamentImg} alt="banniere tournoi" />
-              </div>
-              <div className="main-tournament-inscription-one-tournament-info">
-                <div className="info">
-                  <h3 className="info-title color-pink-neon">Ocklock tournament</h3>
-                  <p className="info-moderator">Modérateur: <span className="info-data">Michel</span></p>
-                  <p className="info-count">Participants  : <span className="info-data">64</span></p>
-                  <p className="info-date">Date : <span className="info-data">15/06/2042 16h00</span></p>
-                  <p className="info-description">Info du tournoi : <span className="info-data text-overflow">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam tempore quasi facere, doloremque possimus dignissimos aspernatur at eius cumque blanditiis qui, consequatur ratione. Exercitationem, odit?</span></p>
-                  <Link className="info-link" to="/tournaments/:id">lien vers tournoi</Link>
-                </div>
-              </div>
-              <button type="button" className="inscription-button">S'inscrire</button>
-            </article>
-            {/* <!-- un tournoi --> */}
-            {/* <!-- un tournoi --> */}
-            <article className="main-tournament-inscription-one-tournament">
-              <div className="image-container">
-                <img className="image-container-img" src={tournamentImg} alt="banniere tournoi" />
-              </div>
-              <div className="main-tournament-inscription-one-tournament-info">
-                <div className="info">
-                  <h3 className="info-title color-pink-neon">Ocklock tournament</h3>
-                  <p className="info-moderator">Modérateur: <span className="info-data">Michel</span></p>
-                  <p className="info-count">Participants  : <span className="info-data">64</span></p>
-                  <p className="info-date">Date : <span className="info-data">15/06/2042 16h00</span></p>
-                  <p className="info-description">Info du tournoi : <span className="info-data text-overflow">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam tempore quasi facere, doloremque possimus dignissimos aspernatur at eius cumque blanditiis qui, consequatur ratione. Exercitationem, odit?</span></p>
-                  <Link className="info-link" to="/tournaments/:id">lien vers tournoi</Link>
-                </div>
-              </div>
-              <button type="button" className="inscription-button">S'inscrire</button>
-            </article>
-            {/* <!-- un tournoi --> */}
-            {/* <!-- un tournoi --> */}
-            <article className="main-tournament-inscription-one-tournament">
-              <div className="image-container">
-                <img className="image-container-img" src={tournamentImg} alt="banniere tournoi" />
-              </div>
-              <div className="main-tournament-inscription-one-tournament-info">
-                <div className="info">
-                  <h3 className="info-title color-pink-neon">Ocklock tournament</h3>
-                  <p className="info-moderator">Modérateur: <span className="info-data">Michel</span></p>
-                  <p className="info-count">Participants  : <span className="info-data">64</span></p>
-                  <p className="info-date">Date : <span className="info-data">15/06/2042 16h00</span></p>
-                  <p className="info-description">Info du tournoi : <span className="info-data text-overflow">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam tempore quasi facere, doloremque possimus dignissimos aspernatur at eius cumque blanditiis qui, consequatur ratione. Exercitationem, odit?</span></p>
-                  <Link className="info-link" to="/tournaments/:id">lien vers tournoi</Link>
-                </div>
-              </div>
-              <button type="button" className="inscription-button">S'inscrire</button>
-            </article>
-            {/* <!-- un tournoi --> */}
-            {/* <!-- un tournoi --> */}
-            <article className="main-tournament-inscription-one-tournament">
-              <div className="image-container">
-                <img className="image-container-img" src={tournamentImg} alt="banniere tournoi" />
-              </div>
-              <div className="main-tournament-inscription-one-tournament-info">
-                <div className="info">
-                  <h3 className="info-title color-pink-neon">Ocklock tournament</h3>
-                  <p className="info-moderator">Modérateur: <span className="info-data">Michel</span></p>
-                  <p className="info-count">Participants  : <span className="info-data">64</span></p>
-                  <p className="info-date">Date : <span className="info-data">15/06/2042 16h00</span></p>
-                  <p className="info-description">Info du tournoi : <span className="info-data text-overflow">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam tempore quasi facere, doloremque possimus dignissimos aspernatur at eius cumque blanditiis qui, consequatur ratione. Exercitationem, odit?</span></p>
-                  <Link className="info-link" to="/tournaments/:id">lien vers tournoi</Link>
-                </div>
-              </div>
-              <button type="button" className="inscription-button">S'inscrire</button>
-            </article>
-            {/* <!-- un tournoi --> */}
-            {/* <!-- un tournoi --> */}
-            <article className="main-tournament-inscription-one-tournament">
-              <div className="image-container">
-                <img className="image-container-img" src={tournamentImg} alt="banniere tournoi" />
-              </div>
-              <div className="main-tournament-inscription-one-tournament-info">
-                <div className="info">
-                  <h3 className="info-title color-pink-neon">Ocklock tournament</h3>
-                  <p className="info-moderator">Modérateur: <span className="info-data">Michel</span></p>
-                  <p className="info-count">Participants  : <span className="info-data">64</span></p>
-                  <p className="info-date">Date : <span className="info-data">15/06/2042 16h00</span></p>
-                  <p className="info-description">Info du tournoi : <span className="info-data text-overflow">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam tempore quasi facere, doloremque possimus dignissimos aspernatur at eius cumque blanditiis qui, consequatur ratione. Exercitationem, odit?</span></p>
-                  <Link className="info-link" to="/tournaments/:id">lien vers tournoi</Link>
-                </div>
-              </div>
-              <button type="button" className="inscription-button">S'inscrire</button>
-            </article>
-            {/* <!-- un tournoi --> */}
+            {tournaments.map((tournament) => (
+              <TournamentCard key={tournament.id} {...tournament} />))}
           </div>
-
         </div>
-
         <div className="main-tournament-leaderboard">
           <h3 className="main-tournament-leaderboard-title">LEADERBOARD</h3>
           <article className="main-tournament-leaderboard-categories">

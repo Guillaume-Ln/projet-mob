@@ -29,10 +29,9 @@ function TournamentCard({
           <p className="info-date">Date : <span className="info-data">{date}</span></p>
           <p className="info-description">Info du tournoi : <span className="info-data text-overflow">{description}</span></p>
           <p className="info-type">Type  : <span className="info-data">{type}</span></p>
-          <Link className="info-link" to={`/tournaments/${id}`}>lien vers tournoi</Link>
+          <Link className="info-link" to={`/tournaments/${id}`}>lien vers le tournoi</Link>
         </div>
       </div>
-      {type !== 'privé' && <button type="button" className="inscription-button">S'inscrire</button> }
     </article>
   );
 }

@@ -137,6 +137,7 @@ export const actionChangeInputDescriptionCreateTournament = (newValue) => ({
   key:key,
   value: newValue
 }) */
+
 // export des actions de la page inscription
 
 export const CHANGE_INPUT_NAME_VALUE = 'CHANGE_INPUT_NAME_VALUE';
@@ -229,3 +230,146 @@ export const actionSaveMyTournaments = (array) => ({
   type: SAVE_MY_TOURNAMENTS,
   value: array,
 });
+
+// export des actions de la page profile
+
+export const GET_PROFILE_BY_ID = 'GET_PROFILE_BY_ID';
+export const actionGetProfileById = (id) => ({
+  type: GET_PROFILE_BY_ID,
+  id: id,
+});
+
+export const SAVE_DATA_PROFILE = 'SAVE_DATA_PROFILE';
+export const actionSaveDataProfile = (obj) => ({
+  type: SAVE_DATA_PROFILE,
+  value: obj,
+});
+
+export const AJAX_PARTICIPANTS = 'AJAX_PARTICIPANTS';
+
+export const actionParticipants = (id) => ({
+  type: AJAX_PARTICIPANTS,
+  id: id,
+});
+export const SAVE_DATA_PARTICIPANTS = 'SAVE_DATA_PARTICIPANTS';
+
+export const actionSaveDataParticipants = (array) => ({
+  type: SAVE_DATA_PARTICIPANTS,
+  value: array,
+});
+export const AJAX_REGISTER_TO_THE_TOURNAMENT = 'AJAX_REGISTER_TO_THE_TOURNAMENT';
+
+export const actionRegisterToTheTournament = (id) => ({
+  type: AJAX_REGISTER_TO_THE_TOURNAMENT,
+  id: id,
+});
+
+export const RELOG_ME = 'RELOG_ME';
+
+export const actionRelogMe = () => ({
+  type: RELOG_ME,
+});
+export const REFRESH_TOKEN = 'REFRESH_TOKEN';
+
+export const actionRefreshToken = () => ({
+  type: REFRESH_TOKEN,
+});
+export const AJAX_USER_BY_ID = 'AJAX_USER_BY_ID';
+
+export const actionGetUserById = (id) => ({
+  type: AJAX_USER_BY_ID,
+  id: id,
+});
+export const SAVE_USER_PROFIL = 'SAVE_USER_PROFIL';
+
+export const actionSaveUserProfil = (obj) => ({
+  type: SAVE_USER_PROFIL,
+  value: obj,
+});
+export const CLEAR_TOURNAMENT_PARTICIPANTS = 'CLEAR_TOURNAMENT_PARTICIPANTS';
+
+export const actionClearTournamentParticipants = () => ({
+  type: CLEAR_TOURNAMENT_PARTICIPANTS,
+});
+export const IS_MODERATOR = 'IS_MODERATOR';
+
+export const actionIsModerator = (bool) => ({
+  type: IS_MODERATOR,
+  value: bool,
+});
+export const IS_PARTICIPANT = 'IS_PARTICIPANT';
+
+export const actionIsParticipant = (bool) => ({
+  type: IS_PARTICIPANT,
+  value: bool,
+});
+
+export const EDIT_TOURNAMENT = 'EDIT_TOURNAMENT';
+export const actionEditTournament = (bool) => ({
+  type: EDIT_TOURNAMENT,
+  value: bool,
+});
+
+export const PATCH_TOURNAMENT = 'PATCH_TOURNAMENT';
+export const actionPatchTournament = (id) => ({
+  type: PATCH_TOURNAMENT,
+  tournamentId: id,
+});
+
+export const AJAX_REMOVE_USER_FROM_TOURNAMENT = 'AJAX_REMOVE_USER_FROM_TOURNAMENT';
+export const actionRemoveUserFromTournament = (idTournament, idUser) => ({
+  type: AJAX_REMOVE_USER_FROM_TOURNAMENT,
+  idTournament,
+  idUser,
+});
+
+export const AJAX_DELETE_TOURNAMENT = 'AJAX_DELETE_TOURNAMENT';
+export const actionDeleteTournament = (id) => ({
+  type: AJAX_DELETE_TOURNAMENT,
+  idTournament: id,
+});
+
+export const AJAX_DELETE_PROFILE = 'AJAX_DELETE_PROFILE';
+export const actionDeleteProfile = (id) => ({
+  type: AJAX_DELETE_PROFILE,
+  idProfile: id,
+});
+
+export const PWD_MODALE = 'PWD_MODALE';
+export const actionPwdModale = () => ({
+  type: PWD_MODALE,
+});
+
+export const CHANGE_INPUT_DELETE_PWD_VALUE = 'CHANGE_INPUT_DELETE_PWD_VALUE';
+export const actionChangeDeleteAccountPwdValue = (newValue) => ({
+  type: CHANGE_INPUT_DELETE_PWD_VALUE,
+  value: newValue,
+});
+
+export const AJAX_PATCH_PROFILE_PWD = 'AJAX_PATCH_PROFILE_PWD';
+export const actionPatchProfilePwd = (id) => ({
+  type: AJAX_PATCH_PROFILE_PWD,
+  idProfile: id,
+});
+
+export const NEW_PWD_MODALE = 'NEW_PWD_MODALE';
+export const actionNewPwdModale = () => ({
+  type: NEW_PWD_MODALE,
+});
+
+export const CHANGE_INPUT_ACTUAL_PWD_VALUE = 'CHANGE_INPUT_ACTUAL_PWD_VALUE';
+export const actionChangeAccountActualPwdValue = (newValue) => ({
+  type: CHANGE_INPUT_ACTUAL_PWD_VALUE,
+  value: newValue,
+});
+
+export const CHANGE_INPUT_NEW_PWD_VALUE = 'CHANGE_INPUT_NEW_PWD_VALUE';
+export const actionChangeAccountNewPwdValue = (newValue) => ({
+  type: CHANGE_INPUT_NEW_PWD_VALUE,
+  value: newValue,
+});
+
+// export const CONTACT_MODALE = 'CONTACT_MODALE';
+// export const actionContactModale = () => ({
+//   type: CONTACT_MODALE,
+// });

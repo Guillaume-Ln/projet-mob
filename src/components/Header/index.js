@@ -1,4 +1,4 @@
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, useNavigate } from 'react-router-dom';
 import './style.scss';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,6 +18,7 @@ function Header() {
   const isConnected = useSelector((state) => state.isConnected);
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleChangeSearch = (event) => {
     dispatch(actionChangeInputSearchValue(event.target.value));
@@ -30,6 +31,10 @@ function Header() {
   };
   const handleDisconnectClick = () => {
     dispatch(actionDisconnect());
+    navigate('/');
+  };
+  const handleProfileClick = () => {
+    navigate(`profiles/${user.id}`);
   };
   return (
     <header className="header">
@@ -48,7 +53,7 @@ function Header() {
         {!isConnected && <button type="button" className="header-account pointer" onClick={handleSignupButton}>S'inscrire</button>}
         {isConnected && (
           <div className="profil-connected">
-            <span className="material-symbols-outlined logo-account pointer">
+            <span onClick={handleProfileClick} className="material-symbols-outlined logo-account pointer">
               account_circle
             </span>
             <p>Bonjour {user.nickname}.</p>
