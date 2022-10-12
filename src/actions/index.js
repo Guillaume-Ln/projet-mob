@@ -329,3 +329,27 @@ export const CONTACT_MODALE = 'CONTACT_MODALE';
 export const actionContactModale = () => ({
   type: CONTACT_MODALE,
 });
+export const AJAX_TOURNAMENT_STARTED = 'AJAX_TOURNAMENT_STARTED';
+
+export const actionTournamentStarted = (bool) => ({
+  type: AJAX_TOURNAMENT_STARTED,
+  value: bool,
+});
+export const AJAX_ENCOUNTER_TOURNAMENT_LIST = 'AJAX_ENCOUNTER_TOURNAMENT_LIST';
+
+export const actionGetEncountersList = (tournamentId) => ({
+  type: AJAX_ENCOUNTER_TOURNAMENT_LIST,
+  tournamentId,
+});
+export const SAVE_ENCOUNTERS_LIST = 'SAVE_ENCOUNTERS_LIST';
+
+export const actionSaveEncountersList = (array) => ({
+  type: SAVE_ENCOUNTERS_LIST,
+  value: array,
+});
+export const ENCOUNTERS_LIST_MODALE = 'ENCOUNTERS_LIST_MODALE';
+
+export const actionEncountersListModaleIsOpen = (bool) => ({
+  type: ENCOUNTERS_LIST_MODALE,
+  value: bool,
+});

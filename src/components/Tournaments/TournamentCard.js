@@ -48,5 +48,8 @@ TournamentCard.propTypes = {
   type: PropTypes.string.isRequired,
   user_id: PropTypes.number.isRequired,
 };
+// TournamentCard.defaultProps = {
+//   image: 'https://i.imgur.com/XWdPSTS.png',
+// };
 
 export default TournamentCard;

@@ -2,6 +2,7 @@
 /* eslint-disable no-restricted-globals */
 /* eslint-disable max-len */
 import './style.scss';
+import deletIcon from 'src/assets/icon/deletIcon.png';
 import { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -26,10 +27,15 @@ import {
   actionPatchTournament,
   actionRemoveUserFromTournament,
   actionDeleteTournament,
+  actionTournamentStarted,
+  actionGetEncountersList,
+  actionEncountersListModaleIsOpen,
 } from '../../actions';
 import Participant from './Participant';
+import EncountersModale from './EncountersModale';
 
 function Tournament() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   // * on récupère les infos de l'utilisateur
   const user = useSelector((state) => state.user);
@@ -42,17 +48,21 @@ function Tournament() {
   const isParticipant = useSelector((state) => state.isParticipant);
   const isConnected = useSelector((state) => state.isConnected);
   const editTournament = useSelector((state) => state.editTournament);
+  const tournamentStarted = useSelector((state) => state.tournamentStarted);
+  const encountersList = useSelector((state) => state.encountersList);
+  const encountersListModaleIsOpen = useSelector((state) => state.encountersListModaleIsOpen);
 
   const { id } = useParams(); // on récupère l'ID du tournoi
-
-  // console.log('dataTournament: ', dataTournament);
+  const tournamentId = parseInt(id, 10);
 
   useEffect(() => {
     // on demande les infos d'un tournoi qu'on stock dans le store grace a l'ID
-    dispatch(actionTournamentById(id));
+    dispatch(actionTournamentById(tournamentId));
+    // on recupère la liste des rencontre lié au tournoi
+    dispatch(actionGetEncountersList(tournamentId));
     // on récupère les participants au tournoi si l'on est connecté que l'on stock dans le store
     if (isConnected) {
-      dispatch(actionParticipants(id));
+      dispatch(actionParticipants(tournamentId));
     }
   }, []);
 
@@ -79,14 +89,41 @@ function Tournament() {
   };
   const handleRegisterClick = () => {
     // au clic on ajax l'user ID sur la route post api/tournaments/:id/profiles
-    dispatch(actionRegisterToTheTournament(id));
+    dispatch(actionRegisterToTheTournament(tournamentId));
   };
   const handleUnRegisterClick = () => {
-    dispatch(actionRemoveUserFromTournament(id, user.id));
+    dispatch(actionRemoveUserFromTournament(tournamentId, user.id));
+  };
+  const handleCreateEncounters = () => {
+    if (dataTournament && participants) {
+      getTournamentLine(participants, dataTournament.id, localStorage.getItem('authorization')); // la fonction pour créer une ligne de tournoi par rapport au participants inscrit a ce tournoi
+      dispatch(actionTournamentStarted(true));
+    }
+  };
+  const handleEncounters = () => {
+    /*
+   // * au clique on ouvre une modale
+   // * dans cette modale on a la liste des encounters
+    * au click sur un encounters une autre modale
+    * dans cette modale, juste des radio boutton, valider, cancel
+    * on choisi un vainquer
+    * cancel ferme la modale
+    * valide patch cette encounter sur la route api/encounters/{encounterId} et close modale comme cancel
+    */
+    dispatch(actionEncountersListModaleIsOpen(true));
+  };
+  const handleForwardTournament = () => {
+    /*
+    * au clique: on vérifie si toute les rencontre de ce tournois qui on été créer on un vainqueur
+    * on récupere la liste des vainqueur restants
+    * création du Xième tour de rencontre (création de rencontre par rapport a la liste existance de participants restant)
+    */
+  };
+  const handleCloseEncountersList = () => {
+    dispatch(actionEncountersListModaleIsOpen(false));
   };
 
   // *******************/ partie formulaire
-  const navigate = useNavigate();
   const inputNameCreateTournament = useSelector((state) => state.inputCreateTournament.label);
   const inputGameCreateTournament = useSelector((state) => state.inputCreateTournament.game);
   const inputParticipantsNumbersCreateTournament = useSelector(
@@ -148,7 +185,7 @@ function Tournament() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(actionPatchTournament(id));
+    dispatch(actionPatchTournament(tournamentId));
     dispatch(actionClearInputCreateTournament());
     dispatch(actionEditTournament(false));
   };
@@ -157,10 +194,11 @@ function Tournament() {
     event.preventDefault();
     dispatch(actionClearInputCreateTournament());
     dispatch(actionEditTournament(false));
+    dispatch(actionEncountersListModaleIsOpen(false));
   };
   const handleDeleteTournament = () => {
     if (confirm('Voulez vous vraiment supprimer ce tournoi?')) {
-      dispatch(actionDeleteTournament(id));
+      dispatch(actionDeleteTournament(tournamentId));
       dispatch(actionClearInputCreateTournament());
       dispatch(actionEditTournament(false));
       navigate('/tournaments');
@@ -221,6 +259,7 @@ function Tournament() {
             <button onClick={handleSubmit} type="submit" className="creation-button">Valider</button>
             <button onClick={handleCancel} type="button" className="creation-button">Annuler</button>
             <button onClick={handleDeleteTournament} type="button" className="creation-button">Supprimer le tournoi</button>
+            { !tournamentStarted && <button onClick={handleCreateEncounters} type="button" className="creation-button">Créer les rencontres</button> }
           </div>
 
         </form>
@@ -247,59 +286,77 @@ function Tournament() {
             <section className="one-tournament-container-button-container">
               {/* // ! ce boutton 'moderation' ne doit être visible que si on est modérateur */}
               { (isConnected && isModerator) && <button onClick={handleModerationClick} type="button" className="button-moderate">Moderation</button> }
-              { ((dataTournament.type === 'public' || dataTournament.type === 'publique') && isConnected && !isParticipant) && <button onClick={handleRegisterClick} type="button" className="button-inscription">S'inscrire</button> }
+              { ((dataTournament.type === 'public' || dataTournament.type === 'publique') && !tournamentStarted && isConnected && !isParticipant) && <button onClick={handleRegisterClick} type="button" className="button-inscription">S'inscrire</button> }
               { isParticipant && <button onClick={handleUnRegisterClick} type="button" className="button-inscription">Se désinscrire</button> }
             </section>
           </section>
         </div>
         <div className="bracket">
-          <div className="row r1">
-            <div className="encounter e1">
-              <div className="player p1">1</div>
-              <div className="player p2">2</div>
+          {!editTournament && (
+          <>
+            <div className="row r1">
+              <div className="encounter e1">
+                <div className="player p1">1</div>
+                <div className="player p2">2</div>
+              </div>
+              <div className="encounter e2">
+                <div className="player p3">3</div>
+                <div className="player p4">4</div>
+              </div>
+              <div className="encounter e3">
+                <div className="player p5">5</div>
+                <div className="player p6">6</div>
+              </div>
+              <div className="encounter e4">
+                <div className="player p7">7</div>
+                <div className="player p8">8</div>
+              </div>
             </div>
-            <div className="encounter e2">
-              <div className="player p3">3</div>
-              <div className="player p4">4</div>
+            <div className="row-spacer">
+              <p className="text-bracket">]</p>
+              <p className="text-bracket">]</p>
             </div>
-            <div className="encounter e3">
-              <div className="player p5">5</div>
-              <div className="player p6">6</div>
+            <div className="row r2">
+              <div className="encounter e5">
+                <div className="player p1">2</div>
+                <div className="player p2">3</div>
+              </div>
+              <div className="encounter e6">
+                <div className="player p1">7</div>
+                <div className="player p2">8</div>
+              </div>
             </div>
-            <div className="encounter e4">
-              <div className="player p7">7</div>
-              <div className="player p8">8</div>
+            <div className="row-spacer">
+              <p className="text-bracket">]</p>
             </div>
-          </div>
-          <div className="row-spacer">
-            <p className="text-bracket">]</p>
-            <p className="text-bracket">]</p>
-          </div>
-          <div className="row r2">
-            <div className="encounter e5">
-              <div className="player p1">2</div>
-              <div className="player p2">3</div>
+            <div className="row r3">
+              <div className="encounter e7">
+                <div className="player p1">2</div>
+                <div className="player p2">7</div>
+              </div>
             </div>
-            <div className="encounter e6">
-              <div className="player p1">7</div>
-              <div className="player p2">8</div>
-            </div>
-          </div>
-          <div className="row-spacer">
-            <p className="text-bracket">]</p>
-          </div>
-          <div className="row r3">
-            <div className="encounter e7">
-              <div className="player p1">2</div>
-              <div className="player p2">7</div>
-            </div>
-          </div>
+          </>
+          )}
+          {encountersListModaleIsOpen && (
+            <section className="encounters-modale">
+              <p>Identifier le vainqueur</p>
+              <img onClick={handleCloseEncountersList} className="encounters-modale-deletIcon" src={deletIcon} alt="close" />
+              {encountersList.map((encounter) => <EncountersModale key={encounter.id} encounter={encounter} />)}
+            </section>
+          )}
+          {editTournament && (
+            <>
+              <button onClick={handleEncounters} type="button">Déclarer un/des vainqueur</button>
+              <button onClick={handleForwardTournament} type="button">Suite du tournoi</button>
+            </>
+          )}
         </div>
+
       </div>
       {isConnected && (
       <section className="participants">
         {participants.map((participant, index) => (
-          <Participant key={participant.nickname} index={index} participant={participant} idTournament={id} />
+          <Participant key={participant.nickname} index={index} participant={participant} idTournament={tournamentId} />
         ))}
       </section>
       )}

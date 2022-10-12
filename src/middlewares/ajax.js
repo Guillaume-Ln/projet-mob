@@ -24,6 +24,8 @@ import {
   PATCH_TOURNAMENT,
   AJAX_REMOVE_USER_FROM_TOURNAMENT,
   AJAX_DELETE_TOURNAMENT,
+  AJAX_ENCOUNTER_TOURNAMENT_LIST,
+  actionSaveEncountersList,
 } from '../actions';
 
 const yourJWTToken = localStorage.getItem('authorization');
@@ -64,9 +66,6 @@ const ajax = (store) => (next) => (action) => {
             store.dispatch(actionErrorMessage(error.response.data.error));
           }
           console.log(error);
-        })
-        .then(() => {
-          // always executed
         });
       break;
     }
@@ -95,9 +94,6 @@ const ajax = (store) => (next) => (action) => {
           if (error.response.status === 500) {
             store.dispatch(actionErrorMessage(error.response.data.message));
           }
-        })
-        .then(() => {
-          // always executed
         });
       break;
     }
@@ -120,9 +116,6 @@ const ajax = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error);
-        })
-        .then(() => {
-          // always executed
         });
       break;
     }
@@ -135,9 +128,6 @@ const ajax = (store) => (next) => (action) => {
         .catch((error) => {
           // handle error
           console.log('ajax tournaments: ', error.code);
-        })
-        .then(() => {
-          // always executed
         });
       break;
 
@@ -165,7 +155,6 @@ const ajax = (store) => (next) => (action) => {
     case AJAX_PARTICIPANTS: {
       instance.get(`api/tournaments/${action.id}/profiles/`)
         .then((response) => {
-          // console.log('ajax participants succes', response.data);
           store.dispatch(actionSaveDataParticipants(response.data));
         })
         .catch((error) => {
@@ -224,6 +213,7 @@ const ajax = (store) => (next) => (action) => {
         date: state.inputCreateTournament.date,
         game: state.inputCreateTournament.game,
         format: state.inputCreateTournament.format,
+        image: 'https://i.imgur.com/XWdPSTS.png', // ! attention, tant que la gestion de l'input image na pas été faite
         max_player_count: state.inputCreateTournament.max_player_count,
         description: state.inputCreateTournament.description,
         user_id: state.user.id,
@@ -234,9 +224,6 @@ const ajax = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error);
-        })
-        .then(() => {
-          // always executed
         });
       break;
     }
@@ -247,23 +234,30 @@ const ajax = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error);
-        })
-        .then(() => {
-          // always executed
         });
       break;
     }
     case AJAX_DELETE_TOURNAMENT: {
-      instance.delete(`/api/tournaments/${action.idTournament}`)
+      const state = store.getState();
+
+      instance.delete(`/api/tournaments/${action.idTournament}`, {
+        user_id: state.user.id,
+      })
         .then(() => {
           console.log('tournament correctly deleted');
         })
         .catch((error) => {
           console.log(error);
-        })
-        .then(() => {
-          // always executed
         });
+      break;
+    }
+    case AJAX_ENCOUNTER_TOURNAMENT_LIST: {
+      instance.get(`/api/encounters/tournaments/${action.tournamentId}`, {
+      })
+        .then((response) => {
+          store.dispatch(actionSaveEncountersList(response.data));
+        })
+        .catch(() => console.log('error AJAX_ENCOUNTERS_LIST'));
       break;
     }
     default:

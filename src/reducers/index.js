@@ -22,7 +22,6 @@ import {
   AJAX_SAVE_CREATE_TOURNAMENT,
   CHANGE_INPUT_NAME_CREATE_TOURNAMENT,
   CHANGE_INPUT_GAME_CREATE_TOURNAMENT,
-  /*   CHANGE_INPUT_MODERATOR_CREATE_TOURNAMENT, */
   CHANGE_INPUT_MAX_PLAYER_COUNT_CREATE_TOURNAMENT,
   CHANGE_INPUT_DATE_CREATE_TOURNAMENT,
   CHANGE_SELECT_FORMAT_CREATE_TOURNAMENT,
@@ -38,11 +37,16 @@ import {
   IS_PARTICIPANT,
   EDIT_TOURNAMENT,
   CONTACT_MODALE,
-  // ? action pour factoriser tous les change input - A VOIR
-  // ? CHANGE_INPUT_CREATE_TOURNAMENT,
+  AJAX_TOURNAMENT_STARTED,
+  SAVE_ENCOUNTERS_LIST,
+  ENCOUNTERS_LIST_MODALE,
 } from '../actions';
 
 const initialState = {
+  encounterModaleIsOpen: false,
+  encountersListModaleIsOpen: false,
+  encountersList: [],
+  tournamentStarted: false,
   modaleContact: false,
   modaleAbout: false,
   editTournament: false,
@@ -342,15 +346,6 @@ function reducer(state = initialState, action = {}) {
         },
       };
 
-      /*     case CHANGE_INPUT_MODERATOR_CREATE_TOURNAMENT:
-      return {
-        ...state,
-        inputCreateTournament: {
-          ...state.inputCreateTournament,
-          user_id: action.value,
-        },
-      }; */
-
     case CHANGE_INPUT_MAX_PLAYER_COUNT_CREATE_TOURNAMENT:
       return {
         ...state,
@@ -462,6 +457,21 @@ function reducer(state = initialState, action = {}) {
       return {
         ...state,
         modaleContact: !state.modaleContact,
+      };
+    case AJAX_TOURNAMENT_STARTED:
+      return {
+        ...state,
+        tournamentStarted: action.value,
+      };
+    case SAVE_ENCOUNTERS_LIST:
+      return {
+        ...state,
+        encountersList: action.value,
+      };
+    case ENCOUNTERS_LIST_MODALE:
+      return {
+        ...state,
+        encountersListModaleIsOpen: action.value,
       };
     default:
       return state;
