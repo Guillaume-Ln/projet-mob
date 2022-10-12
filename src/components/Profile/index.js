@@ -7,15 +7,18 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import PwdModale from '../PwdModale';
+import NewPwdModale from '../NewPwdModale';
 import {
   actionGetProfileById,
   actionPwdModale,
+  actionNewPwdModale,
 } from '../../actions';
 
 function Profile() {
   const dispatch = useDispatch();
   const dataProfile = useSelector((state) => state.dataProfile);
   const modalePwd = useSelector((state) => state.modalePwd);
+  const modaleNewPwd = useSelector((state) => state.modaleNewPwd);
   const { id } = useParams();
 
   useEffect(() => {
@@ -28,9 +31,16 @@ function Profile() {
     }
   };
 
+  const handlePatchProfilePwd = () => {
+    if (confirm('Voulez vous modifier votre mot de passe ?')) {
+      dispatch(actionNewPwdModale(true));
+    }
+  };
+
   return (
     <main className="main-profile">
       {modalePwd && <PwdModale />}
+      {modaleNewPwd && <NewPwdModale />}
       <section className="profile-header">
         <img className="profile-header-pp" src={profileImage} alt="profile_picture" />
         <p className="profile-header-id">ID: <span className="profile-header-id-data">{dataProfile.id}</span></p>
@@ -49,7 +59,7 @@ function Profile() {
           <p className="profile-infos-data">{dataProfile.team}</p>
           <div className="profile-infos-button">
             <button type="button" className="profile-modification-button pointer"> Modifier mon profil </button>
-            <span className="profile-edit-password pointer">Modifier mon mot de passe</span>
+            <span className="profile-edit-password pointer" onClick={handlePatchProfilePwd}>Modifier mon mot de passe</span>
             <span className="profile-delete pointer" onClick={handleDeleteProfile}>Supprimer mon compte</span>
           </div>
         </section>
