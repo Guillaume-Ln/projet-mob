@@ -12,6 +12,8 @@ import {
   actionSaveTournaments,
   AJAX_TOURNAMENT_BY_ID,
   actionSaveDataTournament,
+  AJAX_MY_TOURNAMENTS,
+  actionSaveMyTournaments,
   GET_PROFILE_BY_ID,
   actionSaveDataProfile,
   AJAX_PARTICIPANTS,
@@ -152,6 +154,17 @@ const ajax = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error);
+        });
+      break;
+    }
+    case AJAX_MY_TOURNAMENTS: {
+      instance.get(`api/tournaments/profiles/${action.id}/`)
+        .then((response) => {
+          store.dispatch(actionSaveMyTournaments(response.data));
+          console.log('response', response.data);
+        })
+        .catch((error) => {
+          console.log('ajax my tournaments: ', error.code);
         });
       break;
     }

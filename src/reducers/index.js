@@ -22,7 +22,6 @@ import {
   AJAX_SAVE_CREATE_TOURNAMENT,
   CHANGE_INPUT_NAME_CREATE_TOURNAMENT,
   CHANGE_INPUT_GAME_CREATE_TOURNAMENT,
-  /*   CHANGE_INPUT_MODERATOR_CREATE_TOURNAMENT, */
   CHANGE_INPUT_MAX_PLAYER_COUNT_CREATE_TOURNAMENT,
   CHANGE_INPUT_DATE_CREATE_TOURNAMENT,
   CHANGE_SELECT_FORMAT_CREATE_TOURNAMENT,
@@ -31,6 +30,7 @@ import {
   CLEAR_INPUT_CREATE_TOURNAMENT,
   SAVE_TOURNAMENTS,
   SAVE_DATA_TOURNAMENT,
+  SAVE_MY_TOURNAMENTS,
   SAVE_DATA_PARTICIPANTS,
   SAVE_USER_PROFIL,
   CLEAR_TOURNAMENT_PARTICIPANTS,
@@ -69,6 +69,7 @@ const initialState = {
     user_id: null,
   },
   tournaments: [],
+  myTournaments: [],
   isLoading: false,
   isErrored: false,
   errorMessage: '',
@@ -357,16 +358,6 @@ function reducer(state = initialState, action = {}) {
           game: action.value,
         },
       };
-
-      /*     case CHANGE_INPUT_MODERATOR_CREATE_TOURNAMENT:
-      return {
-        ...state,
-        inputCreateTournament: {
-          ...state.inputCreateTournament,
-          user_id: action.value,
-        },
-      }; */
-
     case CHANGE_INPUT_MAX_PLAYER_COUNT_CREATE_TOURNAMENT:
       return {
         ...state,
@@ -437,6 +428,13 @@ function reducer(state = initialState, action = {}) {
         ...state,
         dataTournament: action.value,
       };
+    case SAVE_MY_TOURNAMENTS:
+      return {
+        ...state,
+        myTournaments: action.value,
+      };
+      // ? A VOIR POUR LA FACTORISATION des CHANGE_INPUT
+      // case CHANGE_INPUT_CREATE_TOURNAMENT:
     case SAVE_DATA_PARTICIPANTS:
       // console.log(action.value);
       return {
