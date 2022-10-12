@@ -340,4 +340,8 @@ export const CHANGE_INPUT_DELETE_PWD_VALUE = 'CHANGE_INPUT_DELETE_PWD_VALUE';
 export const actionChangeDeleteAccountPwdValue = (newValue) => ({
   type: CHANGE_INPUT_DELETE_PWD_VALUE,
   value: newValue,
+
+export const CONTACT_MODALE = 'CONTACT_MODALE';
+export const actionContactModale = () => ({
+  type: CONTACT_MODALE,
 });
