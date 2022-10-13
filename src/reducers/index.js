@@ -46,8 +46,8 @@ import {
 } from '../actions';
 
 const initialState = {
-  player1: {},
-  player2: {},
+  player1: '',
+  player2: '',
   encountersListTournamentByIdWithUsers: [],
   encounterModaleIsOpen: false,
   encountersListModaleIsOpen: false,

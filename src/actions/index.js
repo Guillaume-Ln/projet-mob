@@ -377,3 +377,11 @@ export const actionSavePlayer2 = (data) => ({
   type: SAVE_PLAYER2,
   value: data,
 });
+export const AJAX_PATCH_ENCOUNTER = 'AJAX_PATCH_ENCOUNTER';
+
+export const actionPlayerWinLose = (encounterId, winner, loser) => ({
+  type: AJAX_PATCH_ENCOUNTER,
+  encounterId,
+  winner,
+  loser,
+});

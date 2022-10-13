@@ -1,6 +1,7 @@
 /* eslint-disable dot-notation */
 /* eslint-disable no-console */
 import axios from 'axios';
+import dayjs from 'dayjs';
 import {
   actionErrorMessage,
   actionSaveUser,
@@ -28,6 +29,7 @@ import {
   actionSaveEncountersList,
   AJAX_ENCOUNTERS_LIST_BY_TOURNAMENT_ID,
   actactionSaveEncountersListByTournamentIdWithUsersion,
+  AJAX_PATCH_ENCOUNTER,
 } from '../actions';
 
 const yourJWTToken = localStorage.getItem('authorization');
@@ -274,6 +276,20 @@ const ajax = (store) => (next) => (action) => {
           store.dispatch(actactionSaveEncountersListByTournamentIdWithUsersion(response.data));
         })
         .catch(() => console.log('error AJAX_ENCOUNTERS_LIST_BY_TOURNAMENT_ID'));
+      break;
+    }
+    case AJAX_PATCH_ENCOUNTER: {
+      instance.patch(`/api/encounters/${action.encounterId}`, {
+        winner: action.winner,
+        loser: action.loser,
+        date: dayjs().format('YYYY-MM-DDTHH:mm:ss.SSSZ'),
+        winner_score: 0, // non implementer pouyr le moment
+        loser_score: 0, // non implementer pouyr le moment
+      })
+        .then((response) => {
+          console.log('encounter successfuly patched', response.data);
+        })
+        .catch(() => console.log('error AJAX_PATCH_ENCOUNTER'));
       break;
     }
     default:
