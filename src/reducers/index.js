@@ -560,6 +560,7 @@ function reducer(state = initialState, action = {}) {
           lastname: action.value,
           avatar: state.inputUpdateAccount.avatar,
         },
+      };
     case CONTACT_MODALE:
       return {
         ...state,
