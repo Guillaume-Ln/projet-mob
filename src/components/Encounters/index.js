@@ -1,15 +1,22 @@
 /* eslint-disable no-alert */
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { actionPlayerWinLose, actionSavePlayer1, actionSavePlayer2 } from '../../actions';
+import { useNavigate, useParams } from 'react-router-dom';
+import backIcon from 'src/assets/icon/back.png';
+import {
+  actionClearTournamentParticipants,
+  actionPlayerWinLose,
+  actionSavePlayer1,
+  actionSavePlayer2,
+} from '../../actions';
 import './style.scss';
 
 function Encounters() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const player1 = useSelector((state) => state.player1);
   const player2 = useSelector((state) => state.player2);
-  const { encounterId } = useParams();
+  const { tournamentId, encounterId } = useParams();
   const encounterIdToNumber = parseInt(encounterId, 10);
   const participants = useSelector((state) => state.tournamentParticipants);
   const encountersListTournamentByIdWithUsers = useSelector((state) => state.encountersListTournamentByIdWithUsers);
@@ -42,6 +49,10 @@ function Encounters() {
       dispatch(actionPlayerWinLose(encounterId, player2.nickname, player1.nickname));
     }
   };
+  const handleBackClick = () => {
+    dispatch(actionClearTournamentParticipants());
+    navigate(`/tournaments/${tournamentId}`);
+  };
   return (
     <section className="main-encounter">
       <h3 className="main-encounter-title">Rencontre numéro : {encounterId}</h3>
@@ -51,6 +62,7 @@ function Encounters() {
         {player1 && <p onClick={handlePlayer1Win} className="main-encounter-player pointer">Joueur 1 : <span>{player1.nickname}</span></p>}
         {player2 && <p onClick={handlePlayer2Win} className="main-encounter-player pointer">Joueur 2 : <span>{player2.nickname}</span></p>}
       </div>
+      <img onClick={handleBackClick} className="main-encounter-backIcon" src={backIcon} alt="retour" />
     </section>
   );
 }
