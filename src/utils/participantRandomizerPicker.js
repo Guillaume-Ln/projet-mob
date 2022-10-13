@@ -29,4 +29,4 @@ const participantRandomizerPicker = (participants) => {
 };
 participantRandomizerPicker(dataTest); // pour le test je prend les infos en dure
 
-module.exports = participantRandomizerPicker;
+export default participantRandomizerPicker;

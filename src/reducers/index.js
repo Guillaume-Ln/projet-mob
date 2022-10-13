@@ -50,11 +50,29 @@ import {
   CONTACT_MODALE,
   ABOUT_MODALE,
   TERMS_OF_USE_MODALE,
-  // ? action pour factoriser tous les change input - A VOIR
-  // ? CHANGE_INPUT_CREATE_TOURNAMENT,
+  AJAX_TOURNAMENT_STARTED,
+  SAVE_ENCOUNTERS_LIST,
+  ENCOUNTERS_LIST_MODALE,
+  SAVE_ENCOUNTERS_TOURNAMENT_LIST_BY_ID_WITH_USERS,
+  SAVE_PLAYER1,
+  SAVE_PLAYER2,
+  ALL_ENCOUNTERS_DONE,
+  CHECK,
+  CHECK_RAZ,
+  END_OF_TOURNAMENT,
 } from '../actions';
 
 const initialState = {
+  endOfTournament: false,
+  allEncountersDone: false,
+  check: 0,
+  player1: '',
+  player2: '',
+  encountersListTournamentByIdWithUsers: [],
+  encounterModaleIsOpen: false,
+  encountersListModaleIsOpen: false,
+  encountersList: [],
+  tournamentStarted: false,
   modalePwd: false,
   modaleNewPwd: false,
   modaleUpdate: false,
@@ -566,6 +584,56 @@ function reducer(state = initialState, action = {}) {
         ...state,
         modaleContact: !state.modaleContact,
       };
+    case AJAX_TOURNAMENT_STARTED:
+      return {
+        ...state,
+        tournamentStarted: action.value,
+      };
+    case SAVE_ENCOUNTERS_LIST:
+      return {
+        ...state,
+        encountersList: action.value,
+      };
+    case ENCOUNTERS_LIST_MODALE:
+      return {
+        ...state,
+        encountersListModaleIsOpen: action.value,
+      };
+    case SAVE_ENCOUNTERS_TOURNAMENT_LIST_BY_ID_WITH_USERS:
+      return {
+        ...state,
+        encountersListTournamentByIdWithUsers: action.value,
+      };
+    case SAVE_PLAYER1:
+      return {
+        ...state,
+        player1: action.value,
+      };
+    case SAVE_PLAYER2:
+      return {
+        ...state,
+        player2: action.value,
+      };
+    case CHECK:
+      return {
+        ...state,
+        check: state.check + action.value,
+      };
+    case ALL_ENCOUNTERS_DONE:
+      return {
+        ...state,
+        allEncountersDone: action.value,
+      };
+    case CHECK_RAZ:
+      return {
+        ...state,
+        check: 0,
+      };
+    case END_OF_TOURNAMENT:
+      return {
+        ...state,
+        endOfTournament: action.value,
+        };
     case ABOUT_MODALE:
       return {
         ...state,

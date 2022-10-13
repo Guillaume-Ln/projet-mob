@@ -1,6 +1,7 @@
 /* eslint-disable dot-notation */
 /* eslint-disable no-console */
 import axios from 'axios';
+import dayjs from 'dayjs';
 // import { useSelector } from 'react-redux';
 import {
   actionErrorMessage,
@@ -22,16 +23,20 @@ import {
   AJAX_REGISTER_TO_THE_TOURNAMENT,
   RELOG_ME,
   actionRefreshToken,
-  REFRESH_TOKEN,
-  actionRelogMe,
   AJAX_USER_BY_ID,
   actionSaveUserProfil,
   PATCH_TOURNAMENT,
   AJAX_REMOVE_USER_FROM_TOURNAMENT,
   AJAX_DELETE_TOURNAMENT,
+  AJAX_ENCOUNTER_TOURNAMENT_LIST,
+  actionSaveEncountersList,
+  AJAX_ENCOUNTERS_LIST_BY_TOURNAMENT_ID,
+  actactionSaveEncountersListByTournamentIdWithUsersion,
+  AJAX_PATCH_ENCOUNTER,
   AJAX_DELETE_PROFILE,
   AJAX_PATCH_PROFILE_PWD,
   AJAX_PATCH_PROFILE_INFO,
+
 } from '../actions';
 
 const yourJWTToken = localStorage.getItem('authorization');
@@ -72,9 +77,6 @@ const ajax = (store) => (next) => (action) => {
             store.dispatch(actionErrorMessage(error.response.data.error));
           }
           console.log(error);
-        })
-        .then(() => {
-          // always executed
         });
       break;
     }
@@ -103,9 +105,6 @@ const ajax = (store) => (next) => (action) => {
           if (error.response.status === 500) {
             store.dispatch(actionErrorMessage(error.response.data.message));
           }
-        })
-        .then(() => {
-          // always executed
         });
       break;
     }
@@ -128,9 +127,6 @@ const ajax = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error);
-        })
-        .then(() => {
-          // always executed
         });
       break;
     }
@@ -143,9 +139,6 @@ const ajax = (store) => (next) => (action) => {
         .catch((error) => {
           // handle error
           console.log('ajax tournaments: ', error.code);
-        })
-        .then(() => {
-          // always executed
         });
       break;
 
@@ -184,7 +177,6 @@ const ajax = (store) => (next) => (action) => {
     case AJAX_PARTICIPANTS: {
       instance.get(`api/tournaments/${action.id}/profiles/`)
         .then((response) => {
-          // console.log('ajax participants succes', response.data);
           store.dispatch(actionSaveDataParticipants(response.data));
         })
         .catch((error) => {
@@ -213,29 +205,13 @@ const ajax = (store) => (next) => (action) => {
         .then((response) => {
           console.log('api/me succes');
           // console.log(`your accesToken is :   ${yourJWTToken}`);
-          store.dispatch(actionSaveUser(response.data.user));
+          // console.log(response.data);
+          store.dispatch(actionSaveUser(response.data.user.user)); // ? je viens encore de passer de r.data.user a r.data.user.user :o just, why?!
           // console.log(`accesToken lost in ${new Date(response.data.exp).getMinutes()} minutes.`);
         })
         .catch((error) => {
           console.log('api/me error', error);
           store.dispatch(actionRefreshToken());
-        });
-      break;
-    }
-    case REFRESH_TOKEN: {
-      instance.post('/api/refreshToken', {
-        headers: {
-          Authorization: `Bearer ${refreshToken}`,
-        },
-      })
-        .then((response) => {
-          console.log('token refreshed');
-          localStorage.setItem('authorization', response.data.accessToken);
-          console.log('new accesToken saved to localStorage');
-          store.dispatch(actionRelogMe());
-        })
-        .catch((error) => {
-          console.log('refresh token error', error);
         });
       break;
     }
@@ -247,6 +223,7 @@ const ajax = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log('refresh token error', error);
+          store.dispatch(actionRefreshToken);
         });
       break;
     }
@@ -316,6 +293,7 @@ const ajax = (store) => (next) => (action) => {
         date: state.inputCreateTournament.date,
         game: state.inputCreateTournament.game,
         format: state.inputCreateTournament.format,
+        image: 'https://i.imgur.com/XWdPSTS.png', // ! attention, tant que la gestion de l'input image na pas été faite
         max_player_count: state.inputCreateTournament.max_player_count,
         description: state.inputCreateTournament.description,
         user_id: state.user.id,
@@ -326,9 +304,6 @@ const ajax = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error);
-        })
-        .then(() => {
-          // always executed
         });
       break;
     }
@@ -339,23 +314,57 @@ const ajax = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error);
-        })
-        .then(() => {
-          // always executed
         });
       break;
     }
     case AJAX_DELETE_TOURNAMENT: {
-      instance.delete(`/api/tournaments/${action.idTournament}`)
+      const state = store.getState();
+
+      instance.delete(`/api/tournaments/${action.idTournament}`, {
+        data: {
+          user_id: state.user.id,
+        },
+      })
         .then(() => {
           console.log('tournament correctly deleted');
         })
         .catch((error) => {
           console.log(error);
-        })
-        .then(() => {
-          // always executed
         });
+      break;
+    }
+    case AJAX_ENCOUNTER_TOURNAMENT_LIST: {
+      instance.get(`/api/encounters/tournaments/${action.tournamentId}`, {
+      })
+        .then((response) => {
+          // console.log(response.data);
+          store.dispatch(actionSaveEncountersList(response.data));
+        })
+        .catch(() => console.log('error AJAX_ENCOUNTERS_LIST'));
+      break;
+    }
+    case AJAX_ENCOUNTERS_LIST_BY_TOURNAMENT_ID: {
+      instance.get(`/api/tournaments/${action.value}/encounters/profiles/`, {
+      })
+        .then((response) => {
+          // console.log(response.data);
+          store.dispatch(actactionSaveEncountersListByTournamentIdWithUsersion(response.data));
+        })
+        .catch(() => console.log('error AJAX_ENCOUNTERS_LIST_BY_TOURNAMENT_ID'));
+      break;
+    }
+    case AJAX_PATCH_ENCOUNTER: {
+      instance.patch(`/api/encounters/${action.encounterId}`, {
+        winner: action.winner,
+        loser: action.loser,
+        date: dayjs().format('YYYY-MM-DDTHH:mm:ss.SSSZ'),
+        winner_score: 0, // non implementer pouyr le moment
+        loser_score: 0, // non implementer pouyr le moment
+      })
+        .then((response) => {
+          console.log('encounter successfuly patched', response.data);
+        })
+        .catch(() => console.log('error AJAX_PATCH_ENCOUNTER'));
       break;
     }
     default:
