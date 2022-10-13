@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import {
+  actionAllEncountersDone,
+  actionCheck,
   actionClearTournamentParticipants,
   actionEncountersListModaleIsOpen,
   actionIsModerator,
@@ -24,6 +26,8 @@ function Tournaments() {
       dispatch(actionTournamentStarted(false));
       dispatch(actionIsModerator(false));
       dispatch(actionEncountersListModaleIsOpen(false));
+      dispatch(actionCheck(0));
+      dispatch(actionAllEncountersDone(false));
     }
   }, []);
 

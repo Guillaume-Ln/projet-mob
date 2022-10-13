@@ -43,9 +43,13 @@ import {
   SAVE_ENCOUNTERS_TOURNAMENT_LIST_BY_ID_WITH_USERS,
   SAVE_PLAYER1,
   SAVE_PLAYER2,
+  ALL_ENCOUNTERS_DONE,
+  CHECK,
 } from '../actions';
 
 const initialState = {
+  allEncountersDone: false,
+  check: 0,
   player1: '',
   player2: '',
   encountersListTournamentByIdWithUsers: [],
@@ -493,6 +497,16 @@ function reducer(state = initialState, action = {}) {
       return {
         ...state,
         player2: action.value,
+      };
+    case CHECK:
+      return {
+        ...state,
+        check: action.value,
+      };
+    case ALL_ENCOUNTERS_DONE:
+      return {
+        ...state,
+        allEncountersDone: action.value,
       };
     default:
       return state;

@@ -31,6 +31,8 @@ import {
   actionGetEncountersList,
   actionEncountersListModaleIsOpen,
   actionGetEncountersListByTournamentId,
+  actionAllEncountersDone,
+  actionCheck,
 } from '../../actions';
 import Participant from './Participant';
 import EncountersModale from './EncountersModale';
@@ -53,6 +55,8 @@ function Tournament() {
   const encountersList = useSelector((state) => state.encountersList);
   const encountersListModaleIsOpen = useSelector((state) => state.encountersListModaleIsOpen);
   const encountersListTournamentByIdWithUsers = useSelector((state) => state.encountersListTournamentByIdWithUsers);
+  const check = useSelector((state) => state.check);
+  const allEncountersDone = useSelector((state) => state.allEncountersDone);
   const { id } = useParams(); // on récupère l'ID du tournoi
   const tournamentId = parseInt(id, 10);
 
@@ -74,18 +78,14 @@ function Tournament() {
     dispatch(actionGetEncountersListByTournamentId(tournamentId));
 
     // on doit check si toutes les rencontres on un gagnant //! !!!!!!!!!!!!!!!!! pas sur de ca.........
-    setTimeout(() => {
-      let check = 0;
-      encountersList.forEach((encounter) => {
-        if (encounter.winner !== null) {
-          check += 1;
-        }
-      });
-      if (check === encountersList.length) {
-        console.log(encountersList.length, check);
-        // * on dit que le tournois est pret a passer au nouveau tour.
-      }
-    }, 1000);
+    dispatch(actionCheck(encountersList.length));
+  }, []);
+
+  useEffect(() => {
+    if (check === encountersList.length) {
+      dispatch(actionAllEncountersDone(true));
+      // * on dit que le tournois est pret a passer au nouveau tour.
+    }
   }, []);
 
   useEffect(() => {
@@ -138,6 +138,12 @@ function Tournament() {
     * on récupere la liste des vainqueur restants
     * création du Xième tour de rencontre (création de rencontre par rapport a la liste existance de participants restant)
     */
+    if (!allEncountersDone) {
+      console.log('les recontre ne sont pas encore toutes validées');
+    }
+    if (allEncountersDone) {
+      console.log('les rencontre sont closed, le tournois continu');
+    }
   };
   const handleCloseEncountersList = () => {
     dispatch(actionEncountersListModaleIsOpen(false));
@@ -367,7 +373,7 @@ function Tournament() {
           {editTournament && (
             <>
               <button onClick={handleEncounters} type="button">Déclarer un/des vainqueur</button>
-              <button onClick={handleForwardTournament} type="button">Suite du tournoi</button>
+              { allEncountersDone && <button onClick={handleForwardTournament} type="button">Suite du tournoi</button>}
             </>
           )}
         </div>

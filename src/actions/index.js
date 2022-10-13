@@ -385,3 +385,15 @@ export const actionPlayerWinLose = (encounterId, winner, loser) => ({
   winner,
   loser,
 });
+export const CHECK = 'CHECK';
+
+export const actionCheck = (numb) => ({
+  type: CHECK,
+  value: numb,
+});
+export const ALL_ENCOUNTERS_DONE = 'ALL_ENCOUNTERS_DONE';
+
+export const actionAllEncountersDone = (bool) => ({
+  type: ALL_ENCOUNTERS_DONE,
+  value: bool,
+});
