@@ -48,8 +48,6 @@ import {
   CHANGE_INPUT_UPDATE_FIRSTNAME_VALUE,
   CHANGE_INPUT_UPDATE_LASTNAME_VALUE,
   CONTACT_MODALE,
-  ABOUT_MODALE,
-  TERMS_OF_USE_MODALE,
   AJAX_TOURNAMENT_STARTED,
   SAVE_ENCOUNTERS_LIST,
   ENCOUNTERS_LIST_MODALE,
@@ -73,6 +71,8 @@ const initialState = {
   encountersListModaleIsOpen: false,
   encountersList: [],
   tournamentStarted: false,
+  ABOUT_MODALE,
+  TERMS_OF_USE_MODALE,
   modalePwd: false,
   modaleNewPwd: false,
   modaleUpdate: false,
@@ -392,6 +392,7 @@ function reducer(state = initialState, action = {}) {
           game: action.value,
         },
       };
+
     case CHANGE_INPUT_MAX_PLAYER_COUNT_CREATE_TOURNAMENT:
       return {
         ...state,
@@ -633,7 +634,7 @@ function reducer(state = initialState, action = {}) {
       return {
         ...state,
         endOfTournament: action.value,
-        };
+      };
     case ABOUT_MODALE:
       return {
         ...state,

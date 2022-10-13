@@ -176,7 +176,7 @@ function Tournament() {
       else {
         console.log('le tournoi est terminé'); // !!!! ne fonctionne pas.
         // s'il n'y a plus de participants dans winnerProfile, c'est que le tournoi est terminé
-        dispatch(actionEndOfTournament(true));
+        dispatch(actionEndOfTournament(true)); // le tournoi est fini
       }
     }
   };
@@ -260,10 +260,12 @@ function Tournament() {
   const handleDeleteTournament = () => {
     if (confirm('Voulez vous vraiment supprimer ce tournoi?')) {
       dispatch(actionDeleteTournament(tournamentId));
-
-      dispatch(actionClearInputCreateTournament());
-      dispatch(actionEditTournament(false));
-      navigate('/tournaments');
+      if (confirm('Voulez vous vraiment supprimer ce tournoi ?')) {
+        dispatch(actionDeleteTournament(id));
+        dispatch(actionClearInputCreateTournament());
+        dispatch(actionEditTournament(false));
+        navigate('/tournaments');
+      }
     }
   };
   // *******************/ partie formulaire fin
@@ -272,60 +274,60 @@ function Tournament() {
     <main className="main-tournament">
       {/* partie formulaire a revoir quand un composant aura été fait */}
       {editTournament && (
-      <article className="creation-info">
-        <form onSubmit={handleSubmit} className="creation-input-container">
-          <div className="creation-input-group">
-            <label htmlFor="inputTournamentName" className="create-label">Nom du tournoi
-              <input value={inputNameCreateTournament} onChange={handleChangeName} required="" id="inputTournamentName" type="text" name="text" autoComplete="on" className="creation-input" />
-            </label>
-          </div>
-          <div className="creation-input-group">
-            <label htmlFor="inputGameName" className="create-label">Nom du jeu
-              <input value={inputGameCreateTournament} onChange={handleChangeGame} required="" id="inputGameName" type="text" name="text" autoComplete="off" className="creation-input" />
-            </label>
-          </div>
-          <div className="creation-input-group">
-            <label htmlFor="inputParticipantsNumbers" className="create-label">Nombre de Participants / Equipes
-              <input value={inputParticipantsNumbersCreateTournament} onChange={handleChangeParticipantsNumbers} required="" id="inputParticipantsNumbers" type="number" min="2" name="number" autoComplete="off" className="creation-input" />
-            </label>
-          </div>
-          <div className="creation-input-group">
-            <label htmlFor="inputDate" className="create-label">Date & Heure
-              <input value={inputDateCreateTournament} onChange={handleChangeDate} required="" id="inputDate" type="datetime-local" name="date" autoComplete="off" className="creation-input" />
-            </label>
-          </div>
-          {/* ajout de format et type */}
-          <div className="creation-input-group">
-            <label htmlFor="inputFormat" className="create-label">Format
-              <select value={selectFormatCreateTournament} onChange={handleChangeFormat} required="" id="inputFormat" type="text" name="text" autoComplete="off" className="creation-input">
-                <option value="">--Choisissez une option--</option>
-                <option value="single-elimination">single elimination</option>
-              </select>
-            </label>
-          </div>
-          <div className="creation-input-group">
-            <label htmlFor="inputType" className="create-label">Type
-              <select value={selectTypeCreateTournament} onChange={handleChangeType} required="" id="inputType" type="text" name="text" autoComplete="off" className="creation-input">
-                <option value="">--Choisissez une option--</option>
-                <option value="privé">Privé</option>
-                <option value="publique">Publique</option>
-              </select>
-            </label>
-          </div>
-          <div className="creation-input-group">
-            <label htmlFor="inputDescription" className="create-label">Description
-              <textarea value={inputDescriptionCreateTournament} onChange={handleChangeDescription} required="" id="inputDescription" type="text" name="text" autoComplete="off" className="creation-input" rows="5" />
-            </label>
-          </div>
-          <div className="button-group">
-            <button onClick={handleSubmit} type="submit" className="creation-button">Valider</button>
-            <button onClick={handleCancel} type="button" className="creation-button">Annuler</button>
-            <button onClick={handleDeleteTournament} type="button" className="creation-button">Supprimer le tournoi</button>
-            { !tournamentStarted && <button onClick={handleCreateEncounters} type="button" className="creation-button">Créer les rencontres</button> }
-          </div>
+        <article className="creation-info">
+          <form onSubmit={handleSubmit} className="creation-input-container">
+            <div className="creation-input-group">
+              <label htmlFor="inputTournamentName" className="create-label">Nom du tournoi
+                <input value={inputNameCreateTournament} onChange={handleChangeName} required="" id="inputTournamentName" type="text" name="text" autoComplete="on" className="creation-input" />
+              </label>
+            </div>
+            <div className="creation-input-group">
+              <label htmlFor="inputGameName" className="create-label">Nom du jeu
+                <input value={inputGameCreateTournament} onChange={handleChangeGame} required="" id="inputGameName" type="text" name="text" autoComplete="off" className="creation-input" />
+              </label>
+            </div>
+            <div className="creation-input-group">
+              <label htmlFor="inputParticipantsNumbers" className="create-label">Nombre de Participants / Equipes
+                <input value={inputParticipantsNumbersCreateTournament} onChange={handleChangeParticipantsNumbers} required="" id="inputParticipantsNumbers" type="number" min="2" name="number" autoComplete="off" className="creation-input" />
+              </label>
+            </div>
+            <div className="creation-input-group">
+              <label htmlFor="inputDate" className="create-label">Date & Heure
+                <input value={inputDateCreateTournament} onChange={handleChangeDate} required="" id="inputDate" type="datetime-local" name="date" autoComplete="off" className="creation-input" />
+              </label>
+            </div>
+            {/* ajout de format et type */}
+            <div className="creation-input-group">
+              <label htmlFor="inputFormat" className="create-label">Format
+                <select value={selectFormatCreateTournament} onChange={handleChangeFormat} required="" id="inputFormat" type="text" name="text" autoComplete="off" className="creation-input">
+                  <option value="">--Choisissez une option--</option>
+                  <option value="single-elimination">single elimination</option>
+                </select>
+              </label>
+            </div>
+            <div className="creation-input-group">
+              <label htmlFor="inputType" className="create-label">Type
+                <select value={selectTypeCreateTournament} onChange={handleChangeType} required="" id="inputType" type="text" name="text" autoComplete="off" className="creation-input">
+                  <option value="">--Choisissez une option--</option>
+                  <option value="privé">Privé</option>
+                  <option value="publique">Publique</option>
+                </select>
+              </label>
+            </div>
+            <div className="creation-input-group">
+              <label htmlFor="inputDescription" className="create-label">Description
+                <textarea value={inputDescriptionCreateTournament} onChange={handleChangeDescription} required="" id="inputDescription" type="text" name="text" autoComplete="off" className="creation-input" rows="5" />
+              </label>
+            </div>
+            <div className="button-group">
+              <button onClick={handleSubmit} type="submit" className="creation-button">Valider</button>
+              <button onClick={handleCancel} type="button" className="creation-button">Annuler</button>
+              <button onClick={handleDeleteTournament} type="button" className="creation-button">Supprimer le tournoi</button>
+              { !tournamentStarted && <button onClick={handleCreateEncounters} type="button" className="creation-button">Créer les rencontres</button> }
+            </div>
 
-        </form>
-      </article>
+          </form>
+        </article>
       )}
       {/* fin partie formulaire a revoir quand un composant aura été fait */}
       <div className="top">
@@ -355,49 +357,49 @@ function Tournament() {
         </div>
         <div className="bracket">
           {!editTournament && (
-          <>
-            <div className="row r1">
-              <div className="encounter e1">
-                <div className="player p1">1</div>
-                <div className="player p2">2</div>
+            <>
+              <div className="row r1">
+                <div className="encounter e1">
+                  <div className="player p1">1</div>
+                  <div className="player p2">2</div>
+                </div>
+                <div className="encounter e2">
+                  <div className="player p3">3</div>
+                  <div className="player p4">4</div>
+                </div>
+                <div className="encounter e3">
+                  <div className="player p5">5</div>
+                  <div className="player p6">6</div>
+                </div>
+                <div className="encounter e4">
+                  <div className="player p7">7</div>
+                  <div className="player p8">8</div>
+                </div>
               </div>
-              <div className="encounter e2">
-                <div className="player p3">3</div>
-                <div className="player p4">4</div>
+              <div className="row-spacer">
+                <p className="text-bracket">]</p>
+                <p className="text-bracket">]</p>
               </div>
-              <div className="encounter e3">
-                <div className="player p5">5</div>
-                <div className="player p6">6</div>
+              <div className="row r2">
+                <div className="encounter e5">
+                  <div className="player p1">2</div>
+                  <div className="player p2">3</div>
+                </div>
+                <div className="encounter e6">
+                  <div className="player p1">7</div>
+                  <div className="player p2">8</div>
+                </div>
               </div>
-              <div className="encounter e4">
-                <div className="player p7">7</div>
-                <div className="player p8">8</div>
+              <div className="row-spacer">
+                <p className="text-bracket">]</p>
               </div>
-            </div>
-            <div className="row-spacer">
-              <p className="text-bracket">]</p>
-              <p className="text-bracket">]</p>
-            </div>
-            <div className="row r2">
-              <div className="encounter e5">
-                <div className="player p1">2</div>
-                <div className="player p2">3</div>
+              <div className="row r3">
+                <div className="encounter e7">
+                  <div className="player p1">2</div>
+                  <div className="player p2">7</div>
+                </div>
               </div>
-              <div className="encounter e6">
-                <div className="player p1">7</div>
-                <div className="player p2">8</div>
-              </div>
-            </div>
-            <div className="row-spacer">
-              <p className="text-bracket">]</p>
-            </div>
-            <div className="row r3">
-              <div className="encounter e7">
-                <div className="player p1">2</div>
-                <div className="player p2">7</div>
-              </div>
-            </div>
-          </>
+            </>
           )}
           {encountersListModaleIsOpen && (
             <section className="encounters-modale">
@@ -416,14 +418,13 @@ function Tournament() {
 
       </div>
       {(!endOfTournament && isConnected) && (
-      <section className="participants">
-        {participants.map((participant, index) => (
-          <Participant key={participant.nickname} index={index} participant={participant} idTournament={tournamentId} />
-        ))}
-      </section>
+        <section className="participants">
+          {participants.map((participant, index) => (
+            <Participant key={participant.nickname} index={index} participant={participant} idTournament={tournamentId} />
+          ))}
+        </section>
       )}
     </main>
   );
 }
-
 export default Tournament;

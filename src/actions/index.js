@@ -408,7 +408,6 @@ export const CONTACT_MODALE = 'CONTACT_MODALE';
 export const actionContactModale = () => ({
   type: CONTACT_MODALE,
 });
-
 export const AJAX_TOURNAMENT_STARTED = 'AJAX_TOURNAMENT_STARTED';
 
 export const actionTournamentStarted = (bool) => ({
