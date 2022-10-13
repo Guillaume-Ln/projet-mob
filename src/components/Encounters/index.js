@@ -30,7 +30,7 @@ function Encounters() {
       const thisEncounterUser1 = participants.filter((participant) => participant.id === joueur1Id); // on récupere le profile grace a son id
       const joueur1Profile = thisEncounterUser1[0]; // je stock la valeur de retour dans une variable pour ne plus être dans un tableau, plus confortable.
       dispatch(actionSavePlayer1(joueur1Profile)); // on sauve le joueur1 dans le state
-      if (thisEncounter.length > 0) { // s'il y a un deuxieme joueur sur cette rencontre
+      if (thisEncounter.length > 1) { // s'il y a un deuxieme joueur sur cette rencontre
         const joueur2 = thisEncounter[1]; // on récupere le joueur 2
         const joueur2Id = joueur2.user_id; // on prend son id
         const thisEncounterUser2 = participants.filter((participant) => participant.id === joueur2Id); // on récupere le profile grace a son id

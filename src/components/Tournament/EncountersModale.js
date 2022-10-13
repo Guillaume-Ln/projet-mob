@@ -16,8 +16,8 @@ function EncountersModale({ encounter }) {
   return (
     <article className="one-encounter">
       <div onClick={handleEncounterClick} className="encounter-form">
-        <div className="encounter-form-label-container pointer">
-          <p>Modérer la rencontre: {encounter.id}</p>
+        <div className={encounter.winner !== null ? 'encounter-form-label-container pointer' : 'encounter-form-label-container encounter-closed pointer'}>
+          <p className="encounter-form-desc">Rencontre n° : {encounter.id}</p>
         </div>
       </div>
     </article>

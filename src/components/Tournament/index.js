@@ -57,7 +57,7 @@ function Tournament() {
   const tournamentId = parseInt(id, 10);
 
   useEffect(() => {
-    if (encountersList.length >= 0) {
+    if (encountersList.length > 0) {
       dispatch(actionTournamentStarted(true));
     }
   });
@@ -72,6 +72,20 @@ function Tournament() {
       dispatch(actionParticipants(tournamentId));
     }
     dispatch(actionGetEncountersListByTournamentId(tournamentId));
+
+    // on doit check si toutes les rencontres on un gagnant //! !!!!!!!!!!!!!!!!! pas sur de ca.........
+    setTimeout(() => {
+      let check = 0;
+      encountersList.forEach((encounter) => {
+        if (encounter.winner !== null) {
+          check += 1;
+        }
+      });
+      if (check === encountersList.length) {
+        console.log(encountersList.length, check);
+        // * on dit que le tournois est pret a passer au nouveau tour.
+      }
+    }, 1000);
   }, []);
 
   useEffect(() => {
