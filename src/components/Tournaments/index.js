@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import {
   actionAllEncountersDone,
-  actionCheck,
+  actionCheckRaz,
   actionClearTournamentParticipants,
   actionEncountersListModaleIsOpen,
   actionIsModerator,
@@ -26,7 +26,7 @@ function Tournaments() {
       dispatch(actionTournamentStarted(false));
       dispatch(actionIsModerator(false));
       dispatch(actionEncountersListModaleIsOpen(false));
-      dispatch(actionCheck(0));
+      dispatch(actionCheckRaz());
       dispatch(actionAllEncountersDone(false));
     }
   }, []);

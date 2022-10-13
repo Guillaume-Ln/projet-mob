@@ -397,3 +397,8 @@ export const actionAllEncountersDone = (bool) => ({
   type: ALL_ENCOUNTERS_DONE,
   value: bool,
 });
+export const CHECK_RAZ = 'CHECK_RAZ';
+
+export const actionCheckRaz = () => ({
+  type: CHECK_RAZ,
+});

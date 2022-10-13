@@ -45,6 +45,7 @@ import {
   SAVE_PLAYER2,
   ALL_ENCOUNTERS_DONE,
   CHECK,
+  CHECK_RAZ,
 } from '../actions';
 
 const initialState = {
@@ -501,12 +502,17 @@ function reducer(state = initialState, action = {}) {
     case CHECK:
       return {
         ...state,
-        check: action.value,
+        check: state.check + action.value,
       };
     case ALL_ENCOUNTERS_DONE:
       return {
         ...state,
         allEncountersDone: action.value,
+      };
+    case CHECK_RAZ:
+      return {
+        ...state,
+        check: 0,
       };
     default:
       return state;

@@ -33,6 +33,7 @@ import {
   actionGetEncountersListByTournamentId,
   actionAllEncountersDone,
   actionCheck,
+  actionCheckRaz,
 } from '../../actions';
 import Participant from './Participant';
 import EncountersModale from './EncountersModale';
@@ -64,6 +65,18 @@ function Tournament() {
     if (encountersList.length > 0) {
       dispatch(actionTournamentStarted(true));
     }
+    if (check === encountersList.length) {
+      dispatch(actionAllEncountersDone(true));
+      // * on dit que le tournois est pret a passer au nouveau tour.
+    }
+    if (check < encountersList.length) {
+      dispatch(actionAllEncountersDone(false));
+      // * on dit que le tournois est pret a passer au nouveau tour.
+    }
+    if (check > encountersList.length) {
+      dispatch(actionAllEncountersDone(false));
+      // * on dit que le tournois est pret a passer au nouveau tour.
+    }
   });
 
   useEffect(() => {
@@ -76,18 +89,17 @@ function Tournament() {
       dispatch(actionParticipants(tournamentId));
     }
     dispatch(actionGetEncountersListByTournamentId(tournamentId));
-
-    // on doit check si toutes les rencontres on un gagnant //! !!!!!!!!!!!!!!!!! pas sur de ca.........
-    dispatch(actionCheck(encountersList.length));
   }, []);
-
   useEffect(() => {
-    if (check === encountersList.length) {
-      dispatch(actionAllEncountersDone(true));
-      // * on dit que le tournois est pret a passer au nouveau tour.
-    }
-  }, []);
-
+    // on doit check si toutes les rencontres on un gagnant //! !!!!!!!!!!!!!!!!! pas sur de ca.........
+    dispatch(actionCheckRaz());
+    encountersList.forEach((encounter) => {
+      if (encounter.winner !== null) {
+        dispatch(actionCheck(1));
+        console.log('check+1)');
+      }
+    });
+  }, [encountersList]);
   useEffect(() => {
     // on vérifie si l'utilisateur est modérateur du tournoi
     if (dataTournament.user_id === user.id) {
