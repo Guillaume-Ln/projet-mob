@@ -22,7 +22,6 @@ import {
   AJAX_SAVE_CREATE_TOURNAMENT,
   CHANGE_INPUT_NAME_CREATE_TOURNAMENT,
   CHANGE_INPUT_GAME_CREATE_TOURNAMENT,
-  /*   CHANGE_INPUT_MODERATOR_CREATE_TOURNAMENT, */
   CHANGE_INPUT_MAX_PLAYER_COUNT_CREATE_TOURNAMENT,
   CHANGE_INPUT_DATE_CREATE_TOURNAMENT,
   CHANGE_SELECT_FORMAT_CREATE_TOURNAMENT,
@@ -31,6 +30,7 @@ import {
   CLEAR_INPUT_CREATE_TOURNAMENT,
   SAVE_TOURNAMENTS,
   SAVE_DATA_TOURNAMENT,
+  SAVE_MY_TOURNAMENTS,
   SAVE_DATA_PARTICIPANTS,
   SAVE_USER_PROFIL,
   CLEAR_TOURNAMENT_PARTICIPANTS,
@@ -47,6 +47,9 @@ import {
   CHANGE_INPUT_UPDATE_NICKNAME_VALUE,
   CHANGE_INPUT_UPDATE_FIRSTNAME_VALUE,
   CHANGE_INPUT_UPDATE_LASTNAME_VALUE,
+  CONTACT_MODALE,
+  ABOUT_MODALE,
+  TERMS_OF_USE_MODALE,
   // ? action pour factoriser tous les change input - A VOIR
   // ? CHANGE_INPUT_CREATE_TOURNAMENT,
 } from '../actions';
@@ -57,6 +60,7 @@ const initialState = {
   modaleUpdate: false,
   modaleContact: false,
   modaleAbout: false,
+  modaleTermsOfUse: false,
   editTournament: false,
   isParticipant: false,
   isModerator: false,
@@ -75,6 +79,7 @@ const initialState = {
     user_id: null,
   },
   tournaments: [],
+  myTournaments: [],
   isLoading: false,
   isErrored: false,
   errorMessage: '',
@@ -369,16 +374,6 @@ function reducer(state = initialState, action = {}) {
           game: action.value,
         },
       };
-
-      /*     case CHANGE_INPUT_MODERATOR_CREATE_TOURNAMENT:
-      return {
-        ...state,
-        inputCreateTournament: {
-          ...state.inputCreateTournament,
-          user_id: action.value,
-        },
-      }; */
-
     case CHANGE_INPUT_MAX_PLAYER_COUNT_CREATE_TOURNAMENT:
       return {
         ...state,
@@ -449,6 +444,13 @@ function reducer(state = initialState, action = {}) {
         ...state,
         dataTournament: action.value,
       };
+    case SAVE_MY_TOURNAMENTS:
+      return {
+        ...state,
+        myTournaments: action.value,
+      };
+      // ? A VOIR POUR LA FACTORISATION des CHANGE_INPUT
+      // case CHANGE_INPUT_CREATE_TOURNAMENT:
     case SAVE_DATA_PARTICIPANTS:
       // console.log(action.value);
       return {
@@ -558,6 +560,20 @@ function reducer(state = initialState, action = {}) {
           lastname: action.value,
           avatar: state.inputUpdateAccount.avatar,
         },
+    case CONTACT_MODALE:
+      return {
+        ...state,
+        modaleContact: !state.modaleContact,
+      };
+    case ABOUT_MODALE:
+      return {
+        ...state,
+        modaleAbout: !state.modaleAbout,
+      };
+    case TERMS_OF_USE_MODALE:
+      return {
+        ...state,
+        modaleTermsOfUse: !state.modaleTermsOfUse,
       };
     default:
       return state;

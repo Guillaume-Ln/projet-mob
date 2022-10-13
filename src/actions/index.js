@@ -15,8 +15,6 @@ export const IS_LOADING = 'IS_LOADING';
 export const AJAX_SAVE_CREATE_TOURNAMENT = 'AJAX_SAVE_CREATE_TOURNAMENT';
 export const CHANGE_INPUT_NAME_CREATE_TOURNAMENT = 'CHANGE_INPUT_NAME_CREATE_TOURNAMENT';
 export const CHANGE_INPUT_GAME_CREATE_TOURNAMENT = 'CHANGE_INPUT_GAME_CREATE_TOURNAMENT';
-// eslint-disable-next-line max-len
-/* export const CHANGE_INPUT_MODERATOR_CREATE_TOURNAMENT = 'CHANGE_INPUT_MODERATOR_CREATE_TOURNAMENT'; */
 export const CHANGE_INPUT_MAX_PLAYER_COUNT_CREATE_TOURNAMENT = 'CHANGE_INPUT_MAX_PLAYER_COUNT_CREATE_TOURNAMENT';
 export const CHANGE_INPUT_DATE_CREATE_TOURNAMENT = 'CHANGE_INPUT_DATE_CREATE_TOURNAMENT';
 export const CHANGE_SELECT_FORMAT_CREATE_TOURNAMENT = 'CHANGE_SELECT_FORMAT_CREATE_TOURNAMENT';
@@ -106,11 +104,6 @@ export const actionChangeInputGameCreateTournament = (newValue) => ({
   type: CHANGE_INPUT_GAME_CREATE_TOURNAMENT,
   value: newValue,
 });
-
-/* export const actionChangeInputModeratorCreateTournament = (newValue) => ({
-  type: CHANGE_INPUT_MODERATOR_CREATE_TOURNAMENT,
-  value: newValue,
-}); */
 
 export const actionChangeInputMaxPlayerCountCreateTournament = (newValue) => ({
   type: CHANGE_INPUT_MAX_PLAYER_COUNT_CREATE_TOURNAMENT,
@@ -225,6 +218,17 @@ export const SAVE_DATA_TOURNAMENT = 'SAVE_DATA_TOURNAMENT';
 export const actionSaveDataTournament = (obj) => ({
   type: SAVE_DATA_TOURNAMENT,
   value: obj,
+});
+export const AJAX_MY_TOURNAMENTS = 'AJAX_MY_TOURNAMENTS';
+export const actionAjaxMyTournaments = (id) => ({
+  type: AJAX_MY_TOURNAMENTS,
+  id: id,
+});
+
+export const SAVE_MY_TOURNAMENTS = 'SAVE_MY_TOURNAMENTS';
+export const actionSaveMyTournaments = (array) => ({
+  type: SAVE_MY_TOURNAMENTS,
+  value: array,
 });
 
 // export des actions de la page profile
@@ -399,7 +403,18 @@ export const actionChangeUpdateAccountLastnameValue = (newValue) => ({
   type: CHANGE_INPUT_UPDATE_LASTNAME_VALUE,
   value: newValue,
 });
-// export const CONTACT_MODALE = 'CONTACT_MODALE';
-// export const actionContactModale = () => ({
-//   type: CONTACT_MODALE,
-// });
+
+export const CONTACT_MODALE = 'CONTACT_MODALE';
+export const actionContactModale = () => ({
+  type: CONTACT_MODALE,
+});
+
+export const ABOUT_MODALE = 'ABOUT_MODALE';
+export const actionAboutModale = () => ({
+  type: ABOUT_MODALE,
+});
+
+export const TERMS_OF_USE_MODALE = 'TERMS_OF_USE_MODALE';
+export const actionTermsOfUseModale = () => ({
+  type: TERMS_OF_USE_MODALE,
+});
