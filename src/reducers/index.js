@@ -42,6 +42,9 @@ import {
   CHANGE_INPUT_DELETE_PWD_VALUE,
   CHANGE_INPUT_ACTUAL_PWD_VALUE,
   CHANGE_INPUT_NEW_PWD_VALUE,
+  CONTACT_MODALE,
+  ABOUT_MODALE,
+  TERMS_OF_USE_MODALE,
   // ? action pour factoriser tous les change input - A VOIR
   // ? CHANGE_INPUT_CREATE_TOURNAMENT,
 } from '../actions';
@@ -51,6 +54,7 @@ const initialState = {
   modaleNewPwd: false,
   modaleContact: false,
   modaleAbout: false,
+  modaleTermsOfUse: false,
   editTournament: false,
   isParticipant: false,
   isModerator: false,
@@ -499,6 +503,21 @@ function reducer(state = initialState, action = {}) {
           actualpwd: state.inputPatchAccount.actualpwd,
           newpwd: action.value,
         },
+      };
+    case CONTACT_MODALE:
+      return {
+        ...state,
+        modaleContact: !state.modaleContact,
+      };
+    case ABOUT_MODALE:
+      return {
+        ...state,
+        modaleAbout: !state.modaleAbout,
+      };
+    case TERMS_OF_USE_MODALE:
+      return {
+        ...state,
+        modaleTermsOfUse: !state.modaleTermsOfUse,
       };
     default:
       return state;

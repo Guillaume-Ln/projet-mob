@@ -369,7 +369,17 @@ export const actionChangeAccountNewPwdValue = (newValue) => ({
   value: newValue,
 });
 
-// export const CONTACT_MODALE = 'CONTACT_MODALE';
-// export const actionContactModale = () => ({
-//   type: CONTACT_MODALE,
-// });
+export const CONTACT_MODALE = 'CONTACT_MODALE';
+export const actionContactModale = () => ({
+  type: CONTACT_MODALE,
+});
+
+export const ABOUT_MODALE = 'ABOUT_MODALE';
+export const actionAboutModale = () => ({
+  type: ABOUT_MODALE,
+});
+
+export const TERMS_OF_USE_MODALE = 'TERMS_OF_USE_MODALE';
+export const actionTermsOfUseModale = () => ({
+  type: TERMS_OF_USE_MODALE,
+});
