@@ -26,6 +26,8 @@ import {
   AJAX_DELETE_TOURNAMENT,
   AJAX_ENCOUNTER_TOURNAMENT_LIST,
   actionSaveEncountersList,
+  AJAX_ENCOUNTERS_LIST_BY_TOURNAMENT_ID,
+  actactionSaveEncountersListByTournamentIdWithUsersion,
 } from '../actions';
 
 const yourJWTToken = localStorage.getItem('authorization');
@@ -255,9 +257,20 @@ const ajax = (store) => (next) => (action) => {
       instance.get(`/api/encounters/tournaments/${action.tournamentId}`, {
       })
         .then((response) => {
+          // console.log(response.data);
           store.dispatch(actionSaveEncountersList(response.data));
         })
         .catch(() => console.log('error AJAX_ENCOUNTERS_LIST'));
+      break;
+    }
+    case AJAX_ENCOUNTERS_LIST_BY_TOURNAMENT_ID: {
+      instance.get(`/api/tournaments/${action.value}/encounters/profiles/`, {
+      })
+        .then((response) => {
+          // console.log(response.data);
+          store.dispatch(actactionSaveEncountersListByTournamentIdWithUsersion(response.data));
+        })
+        .catch(() => console.log('error AJAX_ENCOUNTERS_LIST_BY_TOURNAMENT_ID'));
       break;
     }
     default:

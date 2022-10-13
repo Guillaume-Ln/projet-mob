@@ -40,6 +40,7 @@ import {
   AJAX_TOURNAMENT_STARTED,
   SAVE_ENCOUNTERS_LIST,
   ENCOUNTERS_LIST_MODALE,
+  SAVE_ENCOUNTERS_TOURNAMENT_LIST_BY_ID_WITH_USERS,
 } from '../actions';
 
 const initialState = {
@@ -472,6 +473,11 @@ function reducer(state = initialState, action = {}) {
       return {
         ...state,
         encountersListModaleIsOpen: action.value,
+      };
+    case SAVE_ENCOUNTERS_TOURNAMENT_LIST_BY_ID_WITH_USERS:
+      return {
+        ...state,
+        encountersListTournamentByIdWithUsers: action.value,
       };
     default:
       return state;

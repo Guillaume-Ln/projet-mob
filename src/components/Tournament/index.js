@@ -30,6 +30,7 @@ import {
   actionTournamentStarted,
   actionGetEncountersList,
   actionEncountersListModaleIsOpen,
+  actionGetEncountersListByTournamentId,
 } from '../../actions';
 import Participant from './Participant';
 import EncountersModale from './EncountersModale';
@@ -51,9 +52,16 @@ function Tournament() {
   const tournamentStarted = useSelector((state) => state.tournamentStarted);
   const encountersList = useSelector((state) => state.encountersList);
   const encountersListModaleIsOpen = useSelector((state) => state.encountersListModaleIsOpen);
-
+  const encountersListTournamentByIdWithUsers = useSelector((state) => state.encountersListTournamentByIdWithUsers);
   const { id } = useParams(); // on récupère l'ID du tournoi
   const tournamentId = parseInt(id, 10);
+
+  useEffect(() => {
+    if (encountersList.length >= 0) {
+      dispatch(actionTournamentStarted(true));
+      dispatch(actionGetEncountersListByTournamentId(tournamentId));
+    }
+  });
 
   useEffect(() => {
     // on demande les infos d'un tournoi qu'on stock dans le store grace a l'ID
@@ -81,8 +89,6 @@ function Tournament() {
     }
   }, [participantsId]);
 
-  // console.log(getTournamentLine(participants, dataTournament.id, localStorage.getItem('authorization')));
-
   const handleModerationClick = () => {
     // on dit au state qu'on veut modifier avec un editTournament true
     dispatch(actionEditTournament(true));
@@ -102,8 +108,8 @@ function Tournament() {
   };
   const handleEncounters = () => {
     /*
-   // * au clique on ouvre une modale
-   // * dans cette modale on a la liste des encounters
+    * au clique on ouvre une modale
+    * dans cette modale on a la liste des encounters
     * au click sur un encounters une autre modale
     * dans cette modale, juste des radio boutton, valider, cancel
     * on choisi un vainquer
@@ -339,9 +345,9 @@ function Tournament() {
           )}
           {encountersListModaleIsOpen && (
             <section className="encounters-modale">
-              <p>Identifier le vainqueur</p>
+              <p>Identifier le(s) vainqueur(s)</p>
               <img onClick={handleCloseEncountersList} className="encounters-modale-deletIcon" src={deletIcon} alt="close" />
-              {encountersList.map((encounter) => <EncountersModale key={encounter.id} encounter={encounter} />)}
+              {encountersList.map((encounter) => <EncountersModale key={encounter.id} encountersListTournamentByIdWithUsers={encountersListTournamentByIdWithUsers} encounter={encounter} />)}
             </section>
           )}
           {editTournament && (

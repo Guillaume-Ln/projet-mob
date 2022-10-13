@@ -1,11 +1,18 @@
-import PropTypes from 'prop-types';
+import PropTypes, { object } from 'prop-types';
 import { useEffect } from 'react';
 import check from 'src/assets/icon/check.png';
 import './style.scss';
 
-function EncountersModale({ encounter }) {
+function EncountersModale({ encounter, encountersListTournamentByIdWithUsers }) {
   useEffect(() => {
+    console.log(encountersListTournamentByIdWithUsers);
 
+    // ! attention, ca peut pété ca.
+    // ! en gros, tu en est au moment ou tu récupere les id des joueurs avec encountersListTournamentByIdWithUsers
+    // ! et tu chope les profile avec ca, profite en pour afficher autre chose que joueur 1 et joueur 2
+    // ! une fois cela fait, la prochaine étape est de faire les requete pour dire qui a gagner/perdus.
+    // ! cordialement...
+    // ! lolo
   }, []);
   const handleEncounterSubmit = (event) => {
     event.preventDefault();
@@ -32,6 +39,7 @@ function EncountersModale({ encounter }) {
 
 EncountersModale.propTypes = {
   encounter: PropTypes.object.isRequired,
+  encountersListTournamentByIdWithUsers: PropTypes.arrayOf(object).isRequired,
 };
 
 export default EncountersModale;

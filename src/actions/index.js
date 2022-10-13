@@ -353,3 +353,15 @@ export const actionEncountersListModaleIsOpen = (bool) => ({
   type: ENCOUNTERS_LIST_MODALE,
   value: bool,
 });
+export const AJAX_ENCOUNTERS_LIST_BY_TOURNAMENT_ID = 'AJAX_ENCOUNTERS_LIST_BY_TOURNAMENT_ID';
+
+export const actionGetEncountersListByTournamentId = (id) => ({
+  type: AJAX_ENCOUNTERS_LIST_BY_TOURNAMENT_ID,
+  value: id,
+});
+export const SAVE_ENCOUNTERS_TOURNAMENT_LIST_BY_ID_WITH_USERS = 'SAVE_ENCOUNTERS_TOURNAMENT_LIST_BY_ID_WITH_USER';
+
+export const actactionSaveEncountersListByTournamentIdWithUsersion = (array) => ({
+  type: SAVE_ENCOUNTERS_TOURNAMENT_LIST_BY_ID_WITH_USERS,
+  value: array,
+});
