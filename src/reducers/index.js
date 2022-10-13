@@ -46,9 +46,11 @@ import {
   ALL_ENCOUNTERS_DONE,
   CHECK,
   CHECK_RAZ,
+  END_OF_TOURNAMENT,
 } from '../actions';
 
 const initialState = {
+  endOfTournament: false,
   allEncountersDone: false,
   check: 0,
   player1: '',
@@ -513,6 +515,11 @@ function reducer(state = initialState, action = {}) {
       return {
         ...state,
         check: 0,
+      };
+    case END_OF_TOURNAMENT:
+      return {
+        ...state,
+        endOfTournament: action.value,
       };
     default:
       return state;

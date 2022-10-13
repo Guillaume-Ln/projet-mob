@@ -402,3 +402,9 @@ export const CHECK_RAZ = 'CHECK_RAZ';
 export const actionCheckRaz = () => ({
   type: CHECK_RAZ,
 });
+export const END_OF_TOURNAMENT = 'END_OF_TOURNAMENT';
+
+export const actionEndOfTournament = (bool) => ({
+  type: END_OF_TOURNAMENT,
+  value: bool,
+});

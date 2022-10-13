@@ -34,6 +34,7 @@ import {
   actionAllEncountersDone,
   actionCheck,
   actionCheckRaz,
+  actionEndOfTournament,
 } from '../../actions';
 import Participant from './Participant';
 import EncountersModale from './EncountersModale';
@@ -58,6 +59,7 @@ function Tournament() {
   const encountersListTournamentByIdWithUsers = useSelector((state) => state.encountersListTournamentByIdWithUsers);
   const check = useSelector((state) => state.check);
   const allEncountersDone = useSelector((state) => state.allEncountersDone);
+  const endOfTournament = useSelector((state) => state.endOfTournament);
   const { id } = useParams(); // on récupère l'ID du tournoi
   const tournamentId = parseInt(id, 10);
 
@@ -136,11 +138,8 @@ function Tournament() {
     /*
     * au clique on ouvre une modale
     * dans cette modale on a la liste des encounters
-    * au click sur un encounters une autre modale
-    * dans cette modale, juste des radio boutton, valider, cancel
-    * on choisi un vainquer
-    * cancel ferme la modale
-    * valide patch cette encounter sur la route api/encounters/{encounterId} et close modale comme cancel
+    * au click sur un encounters navigate vers la page de l'encounter
+    * dans cette page on click sur le gagnant, valider, cancel
     */
     dispatch(actionEncountersListModaleIsOpen(true));
   };
@@ -155,6 +154,30 @@ function Tournament() {
     }
     if (allEncountersDone) {
       console.log('les rencontre sont closed, le tournois continu');
+      console.log(participants, encountersList);
+      const losers = [];
+      const winnersProfile = [...participants];
+      // eslint-disable-next-line array-callback-return
+      encountersList.filter((encounter) => {
+        if (encounter.loser !== null) {
+          losers.push(encounter.loser);
+        }
+      });
+      const uniqueLosers = [...new Set(losers)];
+      uniqueLosers.forEach((loser) => {
+        winnersProfile.splice(winnersProfile.findIndex((winner) => winner.nickname === loser), 1);
+      });
+      console.log('winnersProfile', winnersProfile);
+      if (winnersProfile.length >= 1) {
+        console.log('le tournois fais un nouveau tour');
+        // j'extrait les perdant de la liste des participants de bases pour me retrouver avec une liste d'user que je peux lancer dans un Xième winnersProfile
+        getTournamentLine(winnersProfile, dataTournament.id, localStorage.getItem('authorization'));
+      }
+      else {
+        console.log('le tournoi est terminé'); // !!!! ne fonctionne pas.
+        // s'il n'y a plus de participants dans winnerProfile, c'est que le tournoi est terminé
+        dispatch(actionEndOfTournament(true));
+      }
     }
   };
   const handleCloseEncountersList = () => {
@@ -391,7 +414,7 @@ function Tournament() {
         </div>
 
       </div>
-      {isConnected && (
+      {(!endOfTournament && isConnected) && (
       <section className="participants">
         {participants.map((participant, index) => (
           <Participant key={participant.nickname} index={index} participant={participant} idTournament={tournamentId} />
