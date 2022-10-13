@@ -2,6 +2,7 @@
 /* eslint-disable no-console */
 import axios from 'axios';
 import dayjs from 'dayjs';
+// import { useSelector } from 'react-redux';
 import {
   actionErrorMessage,
   actionSaveUser,
@@ -13,6 +14,8 @@ import {
   actionSaveTournaments,
   AJAX_TOURNAMENT_BY_ID,
   actionSaveDataTournament,
+  AJAX_MY_TOURNAMENTS,
+  actionSaveMyTournaments,
   GET_PROFILE_BY_ID,
   actionSaveDataProfile,
   AJAX_PARTICIPANTS,
@@ -30,12 +33,16 @@ import {
   AJAX_ENCOUNTERS_LIST_BY_TOURNAMENT_ID,
   actactionSaveEncountersListByTournamentIdWithUsersion,
   AJAX_PATCH_ENCOUNTER,
+  AJAX_DELETE_PROFILE,
+  AJAX_PATCH_PROFILE_PWD,
+  AJAX_PATCH_PROFILE_INFO,
+
 } from '../actions';
 
 const yourJWTToken = localStorage.getItem('authorization');
 const refreshToken = localStorage.getItem('authorizationRefreshToken');
 const config = yourJWTToken || refreshToken;
-
+// const dataProfile = useSelector((state) => state.dataProfile);
 const instance = axios.create({
   baseURL: 'https://mob-multiplayer-online-bracket.herokuapp.com',
   headers: {
@@ -145,6 +152,17 @@ const ajax = (store) => (next) => (action) => {
         });
       break;
     }
+    case AJAX_MY_TOURNAMENTS: {
+      instance.get(`api/tournaments/profiles/${action.id}/`)
+        .then((response) => {
+          store.dispatch(actionSaveMyTournaments(response.data));
+          console.log('response', response.data);
+        })
+        .catch((error) => {
+          console.log('ajax my tournaments: ', error.code);
+        });
+      break;
+    }
     case GET_PROFILE_BY_ID: {
       instance.get(`api/profiles/${action.id}`)
         .then((response) => {
@@ -209,6 +227,63 @@ const ajax = (store) => (next) => (action) => {
         });
       break;
     }
+    case AJAX_DELETE_PROFILE: {
+      const state = store.getState();
+
+      instance.delete(`/api/profiles/${action.idProfile}`, {
+        data: {
+          password: state.inputDeleteAccount.deletepwd,
+        },
+      })
+        .then(() => {
+          console.log('profile correctly deleted');
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .then(() => {
+          // always executed
+        });
+      break;
+    }
+    case AJAX_PATCH_PROFILE_PWD: {
+      const state = store.getState();
+
+      instance.patch(`/api/profiles/${action.idProfile}/pwd`, {
+        password: state.inputPatchAccount.actualpwd,
+        newPassword: state.inputPatchAccount.newpwd,
+      })
+        .then(() => {
+          console.log('password correctly changed');
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .then(() => {
+          // always executed
+        });
+      break;
+    }
+    case AJAX_PATCH_PROFILE_INFO: {
+      const state = store.getState();
+
+      instance.patch(`/api/profiles/${action.idProfile}`, {
+        firstname: state.inputUpdateAccount.firstname,
+        lastname: state.inputUpdateAccount.lastname,
+        nickname: state.inputUpdateAccount.nickname,
+        avatar: state.inputUpdateAccount.avatar,
+      })
+        .then(() => {
+          console.log('profile correctly patched');
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .then(() => {
+          // always executed
+        });
+      break;
+    }
     case PATCH_TOURNAMENT: {
       const state = store.getState();
 
@@ -224,7 +299,7 @@ const ajax = (store) => (next) => (action) => {
         user_id: state.user.id,
       })
         .then((response) => {
-          console.log('tournanemt updated');
+          console.log('tournament updated');
           console.log(response);
         })
         .catch((error) => {

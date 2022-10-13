@@ -12,6 +12,7 @@ import Home from '../Home';
 import CreateTournament from '../CreateTournament';
 import Tournaments from '../Tournaments';
 import Tournament from '../Tournament';
+import MyTournaments from '../MyTournaments';
 import Profile from '../Profile';
 
 // == Import actions
@@ -52,6 +53,7 @@ function App() {
         <Route path="*" element={<Error404 />} />
         <Route path="/tournaments" element={<Tournaments />} />
         <Route path="/newtournament" element={<CreateTournament />} />
+        <Route path="/mytournaments" element={<MyTournaments />} />
         <Route path="/" element={<Home />} />
         <Route path="/tournaments/:id" element={<Tournament />} />
         <Route path="/profiles/:id" element={<Profile />} />

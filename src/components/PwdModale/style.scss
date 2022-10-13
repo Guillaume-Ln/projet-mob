@@ -1,0 +1,53 @@
+.modalePwd{
+  color: #08F57E;
+  border-radius: 10px;
+  position: absolute;
+  z-index: 10;
+  bottom: 50%;
+  left: 25%;
+  width: 50%;
+  background-color: #364561;
+  border: 1px solid #08F57E;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  
+  &-deletIcon{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 30px;
+  }
+  &-deletIcon:hover{
+    transform: scale(1.2);
+  }
+  &-title{
+    font-size: 2rem;
+    font-weight: 800;
+    margin: 1rem;
+  }
+  &-description{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.5rem;
+    width: 90%;
+  }
+  &-input{
+    margin: .5rem;
+  }
+  &-input-password{
+    border: solid 1.5px #08F57E;
+    border-radius: 1rem;
+    background: none;
+    padding: 1rem;
+    font-size: .8rem;
+    color: #f5f5f5;
+    transition: border 150ms cubic-bezier(0.4,0,0.2,1);
+  }
+  &-button{
+    margin: 1rem;
+  }
+}

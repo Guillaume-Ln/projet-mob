@@ -31,9 +31,10 @@ function Header() {
   };
   const handleDisconnectClick = () => {
     dispatch(actionDisconnect());
+    navigate('/');
   };
   const handleProfileClick = () => {
-    navigate(`profiles/:${user.id}`);
+    navigate(`profiles/${user.id}`);
   };
   return (
     <header className="header">

@@ -15,8 +15,6 @@ export const IS_LOADING = 'IS_LOADING';
 export const AJAX_SAVE_CREATE_TOURNAMENT = 'AJAX_SAVE_CREATE_TOURNAMENT';
 export const CHANGE_INPUT_NAME_CREATE_TOURNAMENT = 'CHANGE_INPUT_NAME_CREATE_TOURNAMENT';
 export const CHANGE_INPUT_GAME_CREATE_TOURNAMENT = 'CHANGE_INPUT_GAME_CREATE_TOURNAMENT';
-// eslint-disable-next-line max-len
-/* export const CHANGE_INPUT_MODERATOR_CREATE_TOURNAMENT = 'CHANGE_INPUT_MODERATOR_CREATE_TOURNAMENT'; */
 export const CHANGE_INPUT_MAX_PLAYER_COUNT_CREATE_TOURNAMENT = 'CHANGE_INPUT_MAX_PLAYER_COUNT_CREATE_TOURNAMENT';
 export const CHANGE_INPUT_DATE_CREATE_TOURNAMENT = 'CHANGE_INPUT_DATE_CREATE_TOURNAMENT';
 export const CHANGE_SELECT_FORMAT_CREATE_TOURNAMENT = 'CHANGE_SELECT_FORMAT_CREATE_TOURNAMENT';
@@ -106,11 +104,6 @@ export const actionChangeInputGameCreateTournament = (newValue) => ({
   type: CHANGE_INPUT_GAME_CREATE_TOURNAMENT,
   value: newValue,
 });
-
-/* export const actionChangeInputModeratorCreateTournament = (newValue) => ({
-  type: CHANGE_INPUT_MODERATOR_CREATE_TOURNAMENT,
-  value: newValue,
-}); */
 
 export const actionChangeInputMaxPlayerCountCreateTournament = (newValue) => ({
   type: CHANGE_INPUT_MAX_PLAYER_COUNT_CREATE_TOURNAMENT,
@@ -226,6 +219,17 @@ export const actionSaveDataTournament = (obj) => ({
   type: SAVE_DATA_TOURNAMENT,
   value: obj,
 });
+export const AJAX_MY_TOURNAMENTS = 'AJAX_MY_TOURNAMENTS';
+export const actionAjaxMyTournaments = (id) => ({
+  type: AJAX_MY_TOURNAMENTS,
+  id: id,
+});
+
+export const SAVE_MY_TOURNAMENTS = 'SAVE_MY_TOURNAMENTS';
+export const actionSaveMyTournaments = (array) => ({
+  type: SAVE_MY_TOURNAMENTS,
+  value: array,
+});
 
 // export des actions de la page profile
 
@@ -299,36 +303,112 @@ export const actionIsParticipant = (bool) => ({
   type: IS_PARTICIPANT,
   value: bool,
 });
-export const EDIT_TOURNAMENT = 'EDIT_TOURNAMENT';
 
+export const EDIT_TOURNAMENT = 'EDIT_TOURNAMENT';
 export const actionEditTournament = (bool) => ({
   type: EDIT_TOURNAMENT,
   value: bool,
 });
-export const PATCH_TOURNAMENT = 'PATCH_TOURNAMENT';
 
+export const PATCH_TOURNAMENT = 'PATCH_TOURNAMENT';
 export const actionPatchTournament = (id) => ({
   type: PATCH_TOURNAMENT,
   tournamentId: id,
 });
-export const AJAX_REMOVE_USER_FROM_TOURNAMENT = 'AJAX_REMOVE_USER_FROM_TOURNAMENT';
 
+export const AJAX_REMOVE_USER_FROM_TOURNAMENT = 'AJAX_REMOVE_USER_FROM_TOURNAMENT';
 export const actionRemoveUserFromTournament = (idTournament, idUser) => ({
   type: AJAX_REMOVE_USER_FROM_TOURNAMENT,
   idTournament,
   idUser,
 });
-export const AJAX_DELETE_TOURNAMENT = 'AJAX_DELETE_TOURNAMENT';
 
+export const AJAX_DELETE_TOURNAMENT = 'AJAX_DELETE_TOURNAMENT';
 export const actionDeleteTournament = (id) => ({
   type: AJAX_DELETE_TOURNAMENT,
   idTournament: id,
 });
-export const CONTACT_MODALE = 'CONTACT_MODALE';
 
+export const AJAX_DELETE_PROFILE = 'AJAX_DELETE_PROFILE';
+export const actionDeleteProfile = (id) => ({
+  type: AJAX_DELETE_PROFILE,
+  idProfile: id,
+});
+
+export const PWD_MODALE = 'PWD_MODALE';
+export const actionPwdModale = () => ({
+  type: PWD_MODALE,
+});
+
+export const CHANGE_INPUT_DELETE_PWD_VALUE = 'CHANGE_INPUT_DELETE_PWD_VALUE';
+export const actionChangeDeleteAccountPwdValue = (newValue) => ({
+  type: CHANGE_INPUT_DELETE_PWD_VALUE,
+  value: newValue,
+});
+
+export const AJAX_PATCH_PROFILE_PWD = 'AJAX_PATCH_PROFILE_PWD';
+export const actionPatchProfilePwd = (id) => ({
+  type: AJAX_PATCH_PROFILE_PWD,
+  idProfile: id,
+});
+
+export const AJAX_PATCH_PROFILE_INFO = 'AJAX_PATCH_PROFILE_INFO';
+export const actionUpdateProfileInfo = (id) => ({
+  type: AJAX_PATCH_PROFILE_INFO,
+  idProfile: id,
+});
+
+export const NEW_PWD_MODALE = 'NEW_PWD_MODALE';
+export const actionNewPwdModale = () => ({
+  type: NEW_PWD_MODALE,
+});
+
+export const CHANGE_INPUT_ACTUAL_PWD_VALUE = 'CHANGE_INPUT_ACTUAL_PWD_VALUE';
+export const actionChangeAccountActualPwdValue = (newValue) => ({
+  type: CHANGE_INPUT_ACTUAL_PWD_VALUE,
+  value: newValue,
+});
+
+export const CHANGE_INPUT_NEW_PWD_VALUE = 'CHANGE_INPUT_NEW_PWD_VALUE';
+export const actionChangeAccountNewPwdValue = (newValue) => ({
+  type: CHANGE_INPUT_NEW_PWD_VALUE,
+  value: newValue,
+});
+
+export const MODALE_UPDATE = 'MODALE_UPDATE';
+export const actionModaleUpdate = () => ({
+  type: MODALE_UPDATE,
+});
+
+export const CHANGE_INPUT_UPDATE_AVATAR_VALUE = 'CHANGE_INPUT_UPDATE_AVATAR_VALUE';
+export const actionChangeUpdateAccountAvatarValue = (newValue) => ({
+  type: CHANGE_INPUT_UPDATE_AVATAR_VALUE,
+  value: newValue,
+});
+
+export const CHANGE_INPUT_UPDATE_NICKNAME_VALUE = 'CHANGE_INPUT_UPDATE_NICKNAME_VALUE';
+export const actionChangeUpdateAccountNicknameValue = (newValue) => ({
+  type: CHANGE_INPUT_UPDATE_NICKNAME_VALUE,
+  value: newValue,
+});
+
+export const CHANGE_INPUT_UPDATE_FIRSTNAME_VALUE = 'CHANGE_INPUT_UPDATE_FIRSTNAME_VALUE';
+export const actionChangeUpdateAccountFirstnameValue = (newValue) => ({
+  type: CHANGE_INPUT_UPDATE_FIRSTNAME_VALUE,
+  value: newValue,
+});
+
+export const CHANGE_INPUT_UPDATE_LASTNAME_VALUE = 'CHANGE_INPUT_UPDATE_LASTNAME_VALUE';
+export const actionChangeUpdateAccountLastnameValue = (newValue) => ({
+  type: CHANGE_INPUT_UPDATE_LASTNAME_VALUE,
+  value: newValue,
+});
+
+export const CONTACT_MODALE = 'CONTACT_MODALE';
 export const actionContactModale = () => ({
   type: CONTACT_MODALE,
 });
+
 export const AJAX_TOURNAMENT_STARTED = 'AJAX_TOURNAMENT_STARTED';
 
 export const actionTournamentStarted = (bool) => ({
@@ -407,4 +487,14 @@ export const END_OF_TOURNAMENT = 'END_OF_TOURNAMENT';
 export const actionEndOfTournament = (bool) => ({
   type: END_OF_TOURNAMENT,
   value: bool,
+});
+
+export const ABOUT_MODALE = 'ABOUT_MODALE';
+export const actionAboutModale = () => ({
+  type: ABOUT_MODALE,
+});
+
+export const TERMS_OF_USE_MODALE = 'TERMS_OF_USE_MODALE';
+export const actionTermsOfUseModale = () => ({
+  type: TERMS_OF_USE_MODALE,
 });

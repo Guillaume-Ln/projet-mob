@@ -260,6 +260,7 @@ function Tournament() {
   const handleDeleteTournament = () => {
     if (confirm('Voulez vous vraiment supprimer ce tournoi?')) {
       dispatch(actionDeleteTournament(tournamentId));
+
       dispatch(actionClearInputCreateTournament());
       dispatch(actionEditTournament(false));
       navigate('/tournaments');
