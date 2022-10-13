@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
 import './style.scss';
 import deletIcone from 'src/assets/icon/deletIcon.png';
+import PhotoTeam from 'src/assets/images/team.png';
 import { useDispatch } from 'react-redux';
 import { actionAboutModale } from '../../actions';
 
@@ -12,6 +13,7 @@ function About() {
   return (
     <article className="modaleAbout">
       <img onClick={handleCloseAbout} className="modaleAbout-deletIcon" src={deletIcone} alt="close" />
+      <img className="modaleAbout-pp" src={PhotoTeam} alt="close" />
       <h3 className="modaleAbout-title">A Propos</h3>
       <div className="modaleAbout-description">
         <p className="modaleAbout-description">
