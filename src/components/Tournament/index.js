@@ -170,7 +170,7 @@ function Tournament() {
     <main className="main-tournament">
       {/* partie formulaire a revoir quand un composant aura été fait */}
       {editTournament && (
-      <article className="creation-info">
+      <article className="patch-info-tournament">
         <form onSubmit={handleSubmit} className="creation-input-container">
           <div className="creation-input-group">
             <label htmlFor="inputTournamentName" className="create-label">Nom du tournoi
@@ -297,7 +297,7 @@ function Tournament() {
       {isConnected && (
       <section className="participants">
         {participants.map((participant, index) => (
-          <Participant key={participant.nickname} index={index} participant={participant} idTournament={id} />
+          <Participant onClick={() => navigate(`profiles/${participant.id}`)} key={participant.nickname} index={index} participant={participant} idTournament={id} />
         ))}
       </section>
       )}
