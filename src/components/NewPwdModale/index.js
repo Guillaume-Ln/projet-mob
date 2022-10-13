@@ -79,11 +79,11 @@ function ModaleNewPwd() {
       <h3 className="modaleNewPwd-title">Changement de mot de passe</h3>
       {errorMessage !== '' && <p className="error-message">{errorMessage}</p>}
       <p className="modaleNewPwd-description">Entrez votre mot de passe actuel:</p>
-      <label className="modaleNewPwd-input" htmlFor="inputConfirmPassword">
+      <label className="modaleNewPwd-input" htmlFor="inputActualPwd">
         <input value={inputAccountActualPwdValue} onChange={handleChangeAccountActualPwd} required="" minLength="8" id="inputActualPwd" type="password" name="password" placeholder="Mot de passe" autoComplete="off" className="modaleNewPwd-input-password" />
       </label>
       <p className="modaleNewPwd-description">Entrez un nouveau mot de passe:</p>
-      <label className="modaleNewPwd-input" htmlFor="inputConfirmPassword">
+      <label className="modaleNewPwd-input" htmlFor="inputNewPwd">
         <input value={inputAccountNewPwdValue} onChange={handleChangeAccountNewPwd} required="" minLength="8" id="inputNewPwd" type="password" name="password" placeholder="Mot de passe" autoComplete="off" className="modaleNewPwd-input-password" />
       </label>
       <button className="modaleNewPwd-button" onClick={handleSubmitClick} type="button">Valider</button>

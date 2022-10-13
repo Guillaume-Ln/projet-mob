@@ -348,6 +348,12 @@ export const actionPatchProfilePwd = (id) => ({
   idProfile: id,
 });
 
+export const AJAX_PATCH_PROFILE_INFO = 'AJAX_PATCH_PROFILE_INFO';
+export const actionUpdateProfileInfo = (id) => ({
+  type: AJAX_PATCH_PROFILE_INFO,
+  idProfile: id,
+});
+
 export const NEW_PWD_MODALE = 'NEW_PWD_MODALE';
 export const actionNewPwdModale = () => ({
   type: NEW_PWD_MODALE,
@@ -365,6 +371,34 @@ export const actionChangeAccountNewPwdValue = (newValue) => ({
   value: newValue,
 });
 
+export const MODALE_UPDATE = 'MODALE_UPDATE';
+export const actionModaleUpdate = () => ({
+  type: MODALE_UPDATE,
+});
+
+export const CHANGE_INPUT_UPDATE_AVATAR_VALUE = 'CHANGE_INPUT_UPDATE_AVATAR_VALUE';
+export const actionChangeUpdateAccountAvatarValue = (newValue) => ({
+  type: CHANGE_INPUT_UPDATE_AVATAR_VALUE,
+  value: newValue,
+});
+
+export const CHANGE_INPUT_UPDATE_NICKNAME_VALUE = 'CHANGE_INPUT_UPDATE_NICKNAME_VALUE';
+export const actionChangeUpdateAccountNicknameValue = (newValue) => ({
+  type: CHANGE_INPUT_UPDATE_NICKNAME_VALUE,
+  value: newValue,
+});
+
+export const CHANGE_INPUT_UPDATE_FIRSTNAME_VALUE = 'CHANGE_INPUT_UPDATE_FIRSTNAME_VALUE';
+export const actionChangeUpdateAccountFirstnameValue = (newValue) => ({
+  type: CHANGE_INPUT_UPDATE_FIRSTNAME_VALUE,
+  value: newValue,
+});
+
+export const CHANGE_INPUT_UPDATE_LASTNAME_VALUE = 'CHANGE_INPUT_UPDATE_LASTNAME_VALUE';
+export const actionChangeUpdateAccountLastnameValue = (newValue) => ({
+  type: CHANGE_INPUT_UPDATE_LASTNAME_VALUE,
+  value: newValue,
+});
 // export const CONTACT_MODALE = 'CONTACT_MODALE';
 // export const actionContactModale = () => ({
 //   type: CONTACT_MODALE,

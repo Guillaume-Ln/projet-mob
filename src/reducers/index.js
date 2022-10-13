@@ -39,9 +39,14 @@ import {
   EDIT_TOURNAMENT,
   PWD_MODALE,
   NEW_PWD_MODALE,
+  MODALE_UPDATE,
   CHANGE_INPUT_DELETE_PWD_VALUE,
   CHANGE_INPUT_ACTUAL_PWD_VALUE,
   CHANGE_INPUT_NEW_PWD_VALUE,
+  CHANGE_INPUT_UPDATE_AVATAR_VALUE,
+  CHANGE_INPUT_UPDATE_NICKNAME_VALUE,
+  CHANGE_INPUT_UPDATE_FIRSTNAME_VALUE,
+  CHANGE_INPUT_UPDATE_LASTNAME_VALUE,
   // ? action pour factoriser tous les change input - A VOIR
   // ? CHANGE_INPUT_CREATE_TOURNAMENT,
 } from '../actions';
@@ -49,6 +54,7 @@ import {
 const initialState = {
   modalePwd: false,
   modaleNewPwd: false,
+  modaleUpdate: false,
   modaleContact: false,
   modaleAbout: false,
   editTournament: false,
@@ -131,6 +137,12 @@ const initialState = {
   inputPatchAccount: {
     actualpwd: '',
     newpwd: '',
+  },
+  inputUpdateAccount: {
+    nickname: '',
+    firstname: '',
+    lastname: '',
+    avatar: '',
   },
 };
 
@@ -479,6 +491,11 @@ function reducer(state = initialState, action = {}) {
         ...state,
         modaleNewPwd: !state.modaleNewPwd,
       };
+    case MODALE_UPDATE:
+      return {
+        ...state,
+        modaleUpdate: !state.modaleUpdate,
+      };
     case CHANGE_INPUT_DELETE_PWD_VALUE:
       return {
         ...state,
@@ -500,6 +517,46 @@ function reducer(state = initialState, action = {}) {
         inputPatchAccount: {
           actualpwd: state.inputPatchAccount.actualpwd,
           newpwd: action.value,
+        },
+      };
+    case CHANGE_INPUT_UPDATE_AVATAR_VALUE:
+      return {
+        ...state,
+        inputUpdateAccount: {
+          nickname: state.inputUpdateAccount.nickname,
+          firstname: state.inputUpdateAccount.firstname,
+          lastname: state.inputUpdateAccount.lastname,
+          avatar: action.value,
+        },
+      };
+    case CHANGE_INPUT_UPDATE_NICKNAME_VALUE:
+      return {
+        ...state,
+        inputUpdateAccount: {
+          nickname: action.value,
+          firstname: state.inputUpdateAccount.firstname,
+          lastname: state.inputUpdateAccount.lastname,
+          avatar: state.inputUpdateAccount.avatar,
+        },
+      };
+    case CHANGE_INPUT_UPDATE_FIRSTNAME_VALUE:
+      return {
+        ...state,
+        inputUpdateAccount: {
+          nickname: state.inputUpdateAccount.nickname,
+          firstname: action.value,
+          lastname: state.inputUpdateAccount.lastname,
+          avatar: state.inputUpdateAccount.avatar,
+        },
+      };
+    case CHANGE_INPUT_UPDATE_LASTNAME_VALUE:
+      return {
+        ...state,
+        inputUpdateAccount: {
+          nickname: state.inputUpdateAccount.nickname,
+          firstname: state.inputUpdateAccount.firstname,
+          lastname: action.value,
+          avatar: state.inputUpdateAccount.avatar,
         },
       };
     default:

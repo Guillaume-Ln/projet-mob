@@ -1,6 +1,7 @@
 /* eslint-disable dot-notation */
 /* eslint-disable no-console */
 import axios from 'axios';
+// import { useSelector } from 'react-redux';
 import {
   actionErrorMessage,
   actionSaveUser,
@@ -28,12 +29,13 @@ import {
   AJAX_DELETE_TOURNAMENT,
   AJAX_DELETE_PROFILE,
   AJAX_PATCH_PROFILE_PWD,
+  AJAX_PATCH_PROFILE_INFO,
 } from '../actions';
 
 const yourJWTToken = localStorage.getItem('authorization');
 const refreshToken = localStorage.getItem('authorizationRefreshToken');
 const config = yourJWTToken || refreshToken;
-
+// const dataProfile = useSelector((state) => state.dataProfile);
 const instance = axios.create({
   baseURL: 'https://mob-multiplayer-online-bracket.herokuapp.com',
   headers: {
@@ -263,6 +265,26 @@ const ajax = (store) => (next) => (action) => {
       })
         .then(() => {
           console.log('password correctly changed');
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .then(() => {
+          // always executed
+        });
+      break;
+    }
+    case AJAX_PATCH_PROFILE_INFO: {
+      const state = store.getState();
+
+      instance.patch(`/api/profiles/${action.idProfile}`, {
+        firstname: state.inputUpdateAccount.firstname,
+        lastname: state.inputUpdateAccount.lastname,
+        nickname: state.inputUpdateAccount.nickname,
+        avatar: state.inputUpdateAccount.avatar,
+      })
+        .then(() => {
+          console.log('profile correctly patched');
         })
         .catch((error) => {
           console.log(error);
