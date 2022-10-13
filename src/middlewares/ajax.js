@@ -185,7 +185,8 @@ const ajax = (store) => (next) => (action) => {
         .then((response) => {
           console.log('api/me succes');
           // console.log(`your accesToken is :   ${yourJWTToken}`);
-          store.dispatch(actionSaveUser(response.data.user));
+          // console.log(response.data);
+          store.dispatch(actionSaveUser(response.data.user.user)); // ? je viens encore de passer de r.data.user a r.data.user.user :o just, why?!
           // console.log(`accesToken lost in ${new Date(response.data.exp).getMinutes()} minutes.`);
         })
         .catch((error) => {
@@ -243,7 +244,9 @@ const ajax = (store) => (next) => (action) => {
       const state = store.getState();
 
       instance.delete(`/api/tournaments/${action.idTournament}`, {
-        user_id: state.user.id,
+        data: {
+          user_id: state.user.id,
+        },
       })
         .then(() => {
           console.log('tournament correctly deleted');

@@ -365,3 +365,15 @@ export const actactionSaveEncountersListByTournamentIdWithUsersion = (array) => 
   type: SAVE_ENCOUNTERS_TOURNAMENT_LIST_BY_ID_WITH_USERS,
   value: array,
 });
+export const SAVE_PLAYER1 = 'SAVE_PLAYER1';
+
+export const actionSavePlayer1 = (data) => ({
+  type: SAVE_PLAYER1,
+  value: data,
+});
+export const SAVE_PLAYER2 = 'SAVE_PLAYER2';
+
+export const actionSavePlayer2 = (data) => ({
+  type: SAVE_PLAYER2,
+  value: data,
+});

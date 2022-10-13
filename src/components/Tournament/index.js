@@ -59,7 +59,6 @@ function Tournament() {
   useEffect(() => {
     if (encountersList.length >= 0) {
       dispatch(actionTournamentStarted(true));
-      dispatch(actionGetEncountersListByTournamentId(tournamentId));
     }
   });
 
@@ -72,6 +71,7 @@ function Tournament() {
     if (isConnected) {
       dispatch(actionParticipants(tournamentId));
     }
+    dispatch(actionGetEncountersListByTournamentId(tournamentId));
   }, []);
 
   useEffect(() => {
@@ -345,9 +345,9 @@ function Tournament() {
           )}
           {encountersListModaleIsOpen && (
             <section className="encounters-modale">
-              <p>Identifier le(s) vainqueur(s)</p>
+              <p>Sur quelle rencontre voullez vous agir?</p>
               <img onClick={handleCloseEncountersList} className="encounters-modale-deletIcon" src={deletIcon} alt="close" />
-              {encountersList.map((encounter) => <EncountersModale key={encounter.id} encountersListTournamentByIdWithUsers={encountersListTournamentByIdWithUsers} encounter={encounter} />)}
+              {encountersList.map((encounter) => <EncountersModale key={encounter.id} participants={participants} encountersListTournamentByIdWithUsers={encountersListTournamentByIdWithUsers} encounter={encounter} />)}
             </section>
           )}
           {editTournament && (

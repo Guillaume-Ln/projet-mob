@@ -41,9 +41,14 @@ import {
   SAVE_ENCOUNTERS_LIST,
   ENCOUNTERS_LIST_MODALE,
   SAVE_ENCOUNTERS_TOURNAMENT_LIST_BY_ID_WITH_USERS,
+  SAVE_PLAYER1,
+  SAVE_PLAYER2,
 } from '../actions';
 
 const initialState = {
+  player1: {},
+  player2: {},
+  encountersListTournamentByIdWithUsers: [],
   encounterModaleIsOpen: false,
   encountersListModaleIsOpen: false,
   encountersList: [],
@@ -478,6 +483,16 @@ function reducer(state = initialState, action = {}) {
       return {
         ...state,
         encountersListTournamentByIdWithUsers: action.value,
+      };
+    case SAVE_PLAYER1:
+      return {
+        ...state,
+        player1: action.value,
+      };
+    case SAVE_PLAYER2:
+      return {
+        ...state,
+        player2: action.value,
       };
     default:
       return state;
