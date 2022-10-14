@@ -10,6 +10,23 @@
   gap: 1rem;
   width: 95%;
 }
+
+.patch-info-tournament{
+  position: absolute;
+  z-index: 10;
+  top: -10%;
+  left: 0%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 49%;
+  min-height: 100%;
+  max-height: 85%;
+  border-radius: 10px;
+  border: 1px solid #08F57E;
+  background-color: #364561;
+}
+
 .top{
   display: flex;
   justify-content: center;
@@ -214,6 +231,73 @@
   border-radius: 10px;
   filter: drop-shadow(0px 0px 15px #f2b705);
 }
+.encounters-modale{
+  z-index: 20;
+  border: 1px solid #08F57E;
+  position: absolute;
+  left: 0%;
+  width: 20rem;
+  height: 20rem;
+  background-color: #333635;
+  border-radius: 10px;
+  padding: 1rem 4rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  overflow-x: auto;
+  &-deletIcon{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 50px;
+    aspect-ratio: 1/1;
+  }
+}
+.one-encounter{
+  margin: .5rem 0;
+}
+.encounter-form{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #08F57E;
+  border-radius: 10px;
+  margin: 1rem;
+  color: white;
+  &:hover{
+    color: black;
+    background-color: #08F57E;
+    transition: all .2s;
+    filter : drop-shadow(0px 0px 15px #08F57E);
+  }
+  
+
+  &-label-container{
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-submit-btn{
+    width: 20px;
+    aspect-ratio: 1/1;
+    border: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: .2rem;
+  }
+  &-desc{
+    padding: 1rem;
+    width: 100%;
+    border-radius: 10px;
+  }
+}
+.encounter-closed{
+  background-color: #08F57E;
+  border-radius: 10px;
+}
+
 
 @media screen and (min-width: 425px) {
   .one-tournament-container{

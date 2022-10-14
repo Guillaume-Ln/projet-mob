@@ -1,7 +1,16 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { actionClearTournamentParticipants, actionIsModerator, actionIsParticipant } from '../../actions';
+import {
+  actionAllEncountersDone,
+  actionCheckRaz,
+  actionClearInputCreateTournament,
+  actionClearTournamentParticipants,
+  actionEncountersListModaleIsOpen,
+  actionIsModerator,
+  actionIsParticipant,
+  actionTournamentStarted,
+} from '../../actions';
 import './style.scss';
 import TournamentCard from './TournamentCard';
 
@@ -15,7 +24,12 @@ function Tournaments() {
     if (location.pathname === '/tournaments') {
       dispatch(actionClearTournamentParticipants());
       dispatch(actionIsParticipant(false));
+      dispatch(actionTournamentStarted(false));
       dispatch(actionIsModerator(false));
+      dispatch(actionEncountersListModaleIsOpen(false));
+      dispatch(actionCheckRaz());
+      dispatch(actionAllEncountersDone(false));
+      dispatch(actionClearInputCreateTournament());
     }
   }, []);
 

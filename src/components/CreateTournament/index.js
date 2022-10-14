@@ -11,6 +11,7 @@ import {
   actionChangeSelectTypeCreateTournament,
   actionChangeInputDescriptionCreateTournament,
 } from 'src/actions';
+import { useNavigate } from 'react-router-dom';
 
 function CreateTournament() {
   const inputNameCreateTournament = useSelector((state) => state.inputCreateTournament.label);
@@ -31,6 +32,7 @@ function CreateTournament() {
     (state) => state.inputCreateTournament.description,
   );
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleChangeName = (event) => {
     dispatch(
@@ -78,7 +80,9 @@ function CreateTournament() {
     event.preventDefault();
     dispatch(
       actionSaveCreateTournament(),
+      actionClearInputCreateTournament(),
     );
+    navigate('/mytournaments/');
   };
 
   const handleReset = (event) => {

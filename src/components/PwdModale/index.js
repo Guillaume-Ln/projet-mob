@@ -64,7 +64,7 @@ function ModalePwd() {
       <h3 className="modalePwd-title">Suppression du compte</h3>
       <p className="modalePwd-description">Attention cette action est irréversible !<br /> Pour pouvoir supprimer définitivement votre compte, veuillez entrer votre mot de passe:</p>
       {errorMessage !== '' && <p className="error-message">{errorMessage}</p>}
-      <label className="modalePwd-input" htmlFor="inputConfirmPassword">
+      <label className="modalePwd-input" htmlFor="inputPwd">
         <input value={inputDeleteAccountPwdValue} onChange={handleChangeDeleteAccountPwd} required="" minLength="8" id="inputPwd" type="password" name="password" placeholder="Mot de passe" autoComplete="off" className="modalePwd-input-password" />
       </label>
       <button className="modalePwd-button" onClick={handleSubmitClick} type="button">Valider</button>
