@@ -82,7 +82,7 @@ function CreateTournament() {
       actionSaveCreateTournament(),
       actionClearInputCreateTournament(),
     );
-    navigate('/');
+    navigate('/mytournaments/');
   };
 
   const handleReset = (event) => {
