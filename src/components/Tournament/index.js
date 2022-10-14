@@ -297,7 +297,7 @@ function Tournament() {
       {isConnected && (
       <section className="participants">
         {participants.map((participant, index) => (
-          <Participant onClick={() => navigate(`profiles/${participant.id}`)} key={participant.nickname} index={index} participant={participant} idTournament={id} />
+          <Participant key={participant.nickname} index={index} participant={participant} idTournament={id} />
         ))}
       </section>
       )}
