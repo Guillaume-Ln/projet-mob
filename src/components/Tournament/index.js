@@ -38,6 +38,7 @@ import {
 } from '../../actions';
 import Participant from './Participant';
 import EncountersModale from './EncountersModale';
+import EncounterBracket from './EncounterBracket';
 
 function Tournament() {
   const navigate = useNavigate();
@@ -62,6 +63,10 @@ function Tournament() {
   const endOfTournament = useSelector((state) => state.endOfTournament);
   const { id } = useParams(); // on récupère l'ID du tournoi
   const tournamentId = parseInt(id, 10);
+
+  // console.log('participants', participants);
+  // console.log('encountersList', encountersList);
+  // console.log('encountersListTournamentByIdWithUsers', encountersListTournamentByIdWithUsers);
 
   useEffect(() => {
     // if (encountersList.length > 0) {
@@ -98,7 +103,7 @@ function Tournament() {
     encountersList.forEach((encounter) => {
       if (encounter.winner !== null) {
         dispatch(actionCheck(1));
-        console.log('check+1)');
+        // console.log('check+1)');
       }
     });
   }, [encountersList]);
@@ -152,11 +157,11 @@ function Tournament() {
     * création du Xième tour de rencontre (création de rencontre par rapport a la liste existance de participants restant)
     */
     if (!allEncountersDone) {
-      console.log('les recontre ne sont pas encore toutes validées');
+      // console.log('les recontre ne sont pas encore toutes validées');
     }
     if (allEncountersDone) {
-      console.log('les rencontre sont closed, le tournois continu');
-      console.log(participants, encountersList);
+      // console.log('les rencontre sont closed, le tournois continu');
+      // console.log(participants, encountersList);
       const losers = [];
       const winnersProfile = [...participants];
       // eslint-disable-next-line array-callback-return
@@ -360,6 +365,15 @@ function Tournament() {
           {!editTournament && (
             <>
               <div className="row r1">
+                {encountersList.map((encounter) => {
+                  const participantsIdToThisEncounter = encountersListTournamentByIdWithUsers.filter((encounterWithId) => encounterWithId.encounter_id === encounter.id);
+
+                  return (
+                    <EncounterBracket key={encounter.id} encounter={encounter} participantsIdToThisEncounter={participantsIdToThisEncounter} />
+                  );
+                })}
+              </div>
+              {/* <div className="row r1">
                 <div className="encounter e1">
                   <div className="player p1">1</div>
                   <div className="player p2">2</div>
@@ -399,7 +413,7 @@ function Tournament() {
                   <div className="player p1">2</div>
                   <div className="player p2">7</div>
                 </div>
-              </div>
+              </div> */}
             </>
           )}
           {encountersListModaleIsOpen && (
