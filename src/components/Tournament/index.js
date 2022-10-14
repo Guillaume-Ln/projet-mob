@@ -128,12 +128,14 @@ function Tournament() {
   const handleUnRegisterClick = () => {
     dispatch(actionRemoveUserFromTournament(tournamentId, user.id));
   };
+
   const handleCreateEncounters = () => {
     if (dataTournament && participants) {
       getTournamentLine(participants, dataTournament.id, localStorage.getItem('authorization')); // la fonction pour créer une ligne de tournoi par rapport au participants inscrit a ce tournoi
       dispatch(actionTournamentStarted(true));
     }
   };
+
   const handleEncounters = () => {
     /*
     * au clique on ouvre une modale
@@ -274,7 +276,6 @@ function Tournament() {
     <main className="main-tournament">
       {/* partie formulaire a revoir quand un composant aura été fait */}
       {editTournament && (
-
       <article className="patch-info-tournament">
         <form onSubmit={handleSubmit} className="creation-input-container">
           <div className="creation-input-group">
@@ -324,10 +325,10 @@ function Tournament() {
             <button onClick={handleSubmit} type="submit" className="creation-button">Valider</button>
             <button onClick={handleCancel} type="button" className="creation-button">Annuler</button>
             <button onClick={handleDeleteTournament} type="button" className="creation-button">Supprimer le tournoi</button>
+            { !tournamentStarted && <button onClick={handleCreateEncounters} type="button" className="creation-button">Créer les rencontres</button> }
           </div>
-
-          </form>
-        </article>
+        </form>
+      </article>
       )}
       {/* fin partie formulaire a revoir quand un composant aura été fait */}
       <div className="top">
