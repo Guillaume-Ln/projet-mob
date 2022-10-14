@@ -30,6 +30,8 @@ import {
   AJAX_DELETE_TOURNAMENT,
   AJAX_DELETE_PROFILE,
   AJAX_PATCH_PROFILE_PWD,
+  AJAX_LEADERBOARD_LAST_REGISTERED,
+  actionSaveLeaderboardLastRegistered,
 } from '../actions';
 
 const yourJWTToken = localStorage.getItem('authorization');
@@ -333,6 +335,17 @@ const ajax = (store) => (next) => (action) => {
         })
         .then(() => {
           // always executed
+        });
+      break;
+    }
+    case AJAX_LEADERBOARD_LAST_REGISTERED: {
+      instance.get('/api/leaderboard/last-registered')
+        .then((response) => {
+          console.log('succes', response);
+          store.dispatch(actionSaveLeaderboardLastRegistered(response.data));
+        })
+        .catch((error) => {
+          console.log('Leaderboard_Register_list:', error);
         });
       break;
     }

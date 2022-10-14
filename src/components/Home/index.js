@@ -1,4 +1,5 @@
-/* import PropTypes from 'prop-types'; */
+/* eslint-disable max-len */
+import PropTypes from 'prop-types';
 
 import './style.scss';
 
@@ -10,11 +11,10 @@ import sloganLogo from 'src/assets/images/logo_mob.png';
 import { useEffect } from 'react';
 import TournamentCard from '../Tournaments/TournamentCard';
 
-function Home() {
+function Home({ lastRegistered }) {
   const tournaments = useSelector((state) => state.tournaments);
   useEffect(() => {
   }, []);
-
   return (
 
     <main className="main">
@@ -47,40 +47,54 @@ function Home() {
               <span className="material-symbols-rounded leaderboard-arrow">
                 arrow_circle_left
               </span>
-              <h4 className="main-tournament-leaderboard-categories-header-title">Nombre de victoires</h4>
+              <h4 className="main-tournament-leaderboard-categories-header-title">Dernières inscriptions</h4>
               <span className="material-symbols-rounded leaderboard-arrow">
                 arrow_circle_right
               </span>
             </div>
             <div className="main-tournament-leaderboard-game">
               <ul className="leaderboard">
-                <li className="leaderboard-list first">
-                  <span className="material-symbols-rounded color-gold">
-                    military_tech
-                  </span><p>1st : </p><span className="leaderboard-list-data">michel avec 9999 victoires.</span>
-                </li>
-                <li className="leaderboard-list second">
-                  <span className="material-symbols-rounded color-silver">
-                    military_tech
-                  </span><p>2nd : </p><span className="leaderboard-list-data">michel avec 666 victoires.</span>
-                </li>
-                <li className="leaderboard-list third">
-                  <span className="material-symbols-rounded color-copper">
-                    military_tech
-                  </span><p>3rd : </p><span className="leaderboard-list-data">michel avec 266 victoires.</span>
-                </li>
-                <li className="leaderboard-list"><p>4th : </p><span className="leaderboard-list-data">michel avec 173 victoires.</span></li>
-                <li className="leaderboard-list"><p>5th : </p><span className="leaderboard-list-data">michel avec 122 victoires.</span></li>
-                <li className="leaderboard-list"><p>6th : </p><span className="leaderboard-list-data">michel avec 99 victoires.</span></li>
-                <li className="leaderboard-list"><p>7th : </p><span className="leaderboard-list-data">michel avec 75 victoires.</span></li>
-                <li className="leaderboard-list"><p>8th : </p><span className="leaderboard-list-data">michel avec 52 victoires.</span></li>
-                <li className="leaderboard-list"><p>9th : </p><span className="leaderboard-list-data">michel avec 39 victoires.</span></li>
-                <li className="leaderboard-list"><p>10th : </p><span className="leaderboard-list-data">michel avec 38 victoires.</span></li>
-                <li className="leaderboard-list"><p>11th : </p><span className="leaderboard-list-data">michel avec 34 victoires.</span></li>
-                <li className="leaderboard-list"><p>12th : </p><span className="leaderboard-list-data">michel avec 34 victoires.</span></li>
-                <li className="leaderboard-list"><p>13th : </p><span className="leaderboard-list-data">michel avec 26 victoires.</span></li>
-                <li className="leaderboard-list"><p>14th : </p><span className="leaderboard-list-data">michel avec 25 victoires.</span></li>
-                <li className="leaderboard-list"><p>15th : </p><span className="leaderboard-list-data">michel avec 23 victoires.</span></li>
+
+                {lastRegistered.map((last, index) => {
+                  if (index === 0) {
+                    return (
+                      <li className="leaderboard-list first">
+                        <span className="material-symbols-rounded color-gold">
+                          military_tech
+                        </span><p>1st : </p><span className="leaderboard-list-data">{last.nickname}</span>
+                      </li>
+                    );
+                  }
+                  if (index === 1) {
+                    return (
+                      <li className="leaderboard-list second">
+                        <span className="material-symbols-rounded color-silver">
+                          military_tech
+                        </span><p>2nd : </p><span className="leaderboard-list-data">{last.nickname}</span>
+                      </li>
+                    );
+                  }
+                  if (index === 2) {
+                    return (
+                      <li className="leaderboard-list third">
+                        <span className="material-symbols-rounded color-copper">
+                          military_tech
+                        </span><p>3rd : </p><span className="leaderboard-list-data">{last.nickname}</span>
+                      </li>
+                    );
+                  }
+                  if (index >= 3) {
+                    return (
+                      <li className="leaderboard-list"><p>{index + 1}th : </p><span className="leaderboard-list-data">{last.nickname}</span></li>
+                    );
+                  }
+                })}
+
+                {/*
+
+                {lastRegistered.slice(3).forEach((element) => {
+                  ;
+                })} */}
               </ul>
             </div>
           </article>
@@ -91,8 +105,8 @@ function Home() {
   );
 }
 
-/* Home.propTypes = {
-
-}; */
+Home.propTypes = {
+  lastRegistered: PropTypes.array.isRequired,
+};
 
 export default Home;

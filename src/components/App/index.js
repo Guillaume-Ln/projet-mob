@@ -21,6 +21,7 @@ import {
   actionDisconnect,
   actionRefreshToken,
   actionRelogMe,
+  actionGetLeaderboardLastRegistered,
 } from '../../actions';
 
 // == Composant
@@ -29,9 +30,15 @@ function App() {
   const location = useLocation();
   const signinIsVisible = useSelector((state) => state.signinIsVisible);
   const signupIsVisible = useSelector((state) => state.signupIsVisible);
+  const lastRegistered = useSelector((state) => state.leaderboardLastRegistered);
 
   useEffect(() => {
     dispatch(actionAjaxTournaments());
+    dispatch(actionGetLeaderboardLastRegistered());
+  }, []);
+  useEffect(() => {
+    dispatch(actionAjaxTournaments());
+    dispatch(actionGetLeaderboardLastRegistered());
 
     if (localStorage.getItem('authorization')) {
       dispatch(actionRelogMe());
@@ -53,7 +60,7 @@ function App() {
         <Route path="/tournaments" element={<Tournaments />} />
         <Route path="/newtournament" element={<CreateTournament />} />
         <Route path="/mytournaments" element={<MyTournaments />} />
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home lastRegistered={lastRegistered} />} />
         <Route path="/tournaments/:id" element={<Tournament />} />
         <Route path="/profiles/:id" element={<Profile />} />
       </Routes>
