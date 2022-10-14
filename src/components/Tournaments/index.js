@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 import {
   actionAllEncountersDone,
   actionCheckRaz,
+  actionClearInputCreateTournament,
   actionClearTournamentParticipants,
   actionEncountersListModaleIsOpen,
   actionIsModerator,
@@ -28,6 +29,7 @@ function Tournaments() {
       dispatch(actionEncountersListModaleIsOpen(false));
       dispatch(actionCheckRaz());
       dispatch(actionAllEncountersDone(false));
+      dispatch(actionClearInputCreateTournament());
     }
   }, []);
 

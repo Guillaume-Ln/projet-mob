@@ -267,12 +267,9 @@ function Tournament() {
   const handleDeleteTournament = () => {
     if (confirm('Voulez vous vraiment supprimer ce tournoi?')) {
       dispatch(actionDeleteTournament(tournamentId));
-      if (confirm('Voulez vous vraiment supprimer ce tournoi ?')) {
-        dispatch(actionDeleteTournament(id));
-        dispatch(actionClearInputCreateTournament());
-        dispatch(actionEditTournament(false));
-        navigate('/tournaments');
-      }
+      dispatch(actionClearInputCreateTournament());
+      dispatch(actionEditTournament(false));
+      navigate('/mytournaments');
     }
   };
   // *******************/ partie formulaire fin
