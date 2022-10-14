@@ -274,57 +274,57 @@ function Tournament() {
     <main className="main-tournament">
       {/* partie formulaire a revoir quand un composant aura été fait */}
       {editTournament && (
-        <article className="creation-info">
-          <form onSubmit={handleSubmit} className="creation-input-container">
-            <div className="creation-input-group">
-              <label htmlFor="inputTournamentName" className="create-label">Nom du tournoi
-                <input value={inputNameCreateTournament} onChange={handleChangeName} required="" id="inputTournamentName" type="text" name="text" autoComplete="on" className="creation-input" />
-              </label>
-            </div>
-            <div className="creation-input-group">
-              <label htmlFor="inputGameName" className="create-label">Nom du jeu
-                <input value={inputGameCreateTournament} onChange={handleChangeGame} required="" id="inputGameName" type="text" name="text" autoComplete="off" className="creation-input" />
-              </label>
-            </div>
-            <div className="creation-input-group">
-              <label htmlFor="inputParticipantsNumbers" className="create-label">Nombre de Participants / Equipes
-                <input value={inputParticipantsNumbersCreateTournament} onChange={handleChangeParticipantsNumbers} required="" id="inputParticipantsNumbers" type="number" min="2" name="number" autoComplete="off" className="creation-input" />
-              </label>
-            </div>
-            <div className="creation-input-group">
-              <label htmlFor="inputDate" className="create-label">Date & Heure
-                <input value={inputDateCreateTournament} onChange={handleChangeDate} required="" id="inputDate" type="datetime-local" name="date" autoComplete="off" className="creation-input" />
-              </label>
-            </div>
-            {/* ajout de format et type */}
-            <div className="creation-input-group">
-              <label htmlFor="inputFormat" className="create-label">Format
-                <select value={selectFormatCreateTournament} onChange={handleChangeFormat} required="" id="inputFormat" type="text" name="text" autoComplete="off" className="creation-input">
-                  <option value="">--Choisissez une option--</option>
-                  <option value="single-elimination">single elimination</option>
-                </select>
-              </label>
-            </div>
-            <div className="creation-input-group">
-              <label htmlFor="inputType" className="create-label">Type
-                <select value={selectTypeCreateTournament} onChange={handleChangeType} required="" id="inputType" type="text" name="text" autoComplete="off" className="creation-input">
-                  <option value="">--Choisissez une option--</option>
-                  <option value="privé">Privé</option>
-                  <option value="publique">Publique</option>
-                </select>
-              </label>
-            </div>
-            <div className="creation-input-group">
-              <label htmlFor="inputDescription" className="create-label">Description
-                <textarea value={inputDescriptionCreateTournament} onChange={handleChangeDescription} required="" id="inputDescription" type="text" name="text" autoComplete="off" className="creation-input" rows="5" />
-              </label>
-            </div>
-            <div className="button-group">
-              <button onClick={handleSubmit} type="submit" className="creation-button">Valider</button>
-              <button onClick={handleCancel} type="button" className="creation-button">Annuler</button>
-              <button onClick={handleDeleteTournament} type="button" className="creation-button">Supprimer le tournoi</button>
-              { !tournamentStarted && <button onClick={handleCreateEncounters} type="button" className="creation-button">Créer les rencontres</button> }
-            </div>
+
+      <article className="patch-info-tournament">
+        <form onSubmit={handleSubmit} className="creation-input-container">
+          <div className="creation-input-group">
+            <label htmlFor="inputTournamentName" className="create-label">Nom du tournoi
+              <input value={inputNameCreateTournament} onChange={handleChangeName} required="" id="inputTournamentName" type="text" name="text" autoComplete="on" className="creation-input" />
+            </label>
+          </div>
+          <div className="creation-input-group">
+            <label htmlFor="inputGameName" className="create-label">Nom du jeu
+              <input value={inputGameCreateTournament} onChange={handleChangeGame} required="" id="inputGameName" type="text" name="text" autoComplete="off" className="creation-input" />
+            </label>
+          </div>
+          <div className="creation-input-group">
+            <label htmlFor="inputParticipantsNumbers" className="create-label">Nombre de Participants / Equipes
+              <input value={inputParticipantsNumbersCreateTournament} onChange={handleChangeParticipantsNumbers} required="" id="inputParticipantsNumbers" type="number" min="2" name="number" autoComplete="off" className="creation-input" />
+            </label>
+          </div>
+          <div className="creation-input-group">
+            <label htmlFor="inputDate" className="create-label">Date & Heure
+              <input value={inputDateCreateTournament} onChange={handleChangeDate} required="" id="inputDate" type="datetime-local" name="date" autoComplete="off" className="creation-input" />
+            </label>
+          </div>
+          {/* ajout de format et type */}
+          <div className="creation-input-group">
+            <label htmlFor="inputFormat" className="create-label">Format
+              <select value={selectFormatCreateTournament} onChange={handleChangeFormat} required="" id="inputFormat" type="text" name="text" autoComplete="off" className="creation-input">
+                <option value="">--Choisissez une option--</option>
+                <option value="single-elimination">single elimination</option>
+              </select>
+            </label>
+          </div>
+          <div className="creation-input-group">
+            <label htmlFor="inputType" className="create-label">Type
+              <select value={selectTypeCreateTournament} onChange={handleChangeType} required="" id="inputType" type="text" name="text" autoComplete="off" className="creation-input">
+                <option value="">--Choisissez une option--</option>
+                <option value="privé">Privé</option>
+                <option value="publique">Publique</option>
+              </select>
+            </label>
+          </div>
+          <div className="creation-input-group">
+            <label htmlFor="inputDescription" className="create-label">Description
+              <textarea value={inputDescriptionCreateTournament} onChange={handleChangeDescription} required="" id="inputDescription" type="text" name="text" autoComplete="off" className="creation-input" rows="5" />
+            </label>
+          </div>
+          <div className="button-group">
+            <button onClick={handleSubmit} type="submit" className="creation-button">Valider</button>
+            <button onClick={handleCancel} type="button" className="creation-button">Annuler</button>
+            <button onClick={handleDeleteTournament} type="button" className="creation-button">Supprimer le tournoi</button>
+          </div>
 
           </form>
         </article>
