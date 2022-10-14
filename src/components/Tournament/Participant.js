@@ -28,7 +28,7 @@ function Participant({ index, participant, idTournament }) {
   return (
     <>
       { editTournament && <div onClick={handleParticipantClic} className="participant live"><img className="detIcone-profile" src={deleteIcon} alt="deletIcon" /><span className="participant-number">{index}-</span><span className="participant-nickname">{participant.nickname}</span></div> }
-      { !editTournament && <div onClick={handleParticipantClic} className="participant live"><span className="participant-number">{index}-</span><span className="participant-nickname">{participant.nickname}</span></div> }
+      { !editTournament && <div onClick={handleParticipantClic} className="participant live"><span className="participant-number">{index + 1}-</span><span className="participant-nickname">{participant.nickname}</span></div> }
     </>
   );
 }
