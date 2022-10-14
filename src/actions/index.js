@@ -408,6 +408,85 @@ export const CONTACT_MODALE = 'CONTACT_MODALE';
 export const actionContactModale = () => ({
   type: CONTACT_MODALE,
 });
+export const AJAX_TOURNAMENT_STARTED = 'AJAX_TOURNAMENT_STARTED';
+
+export const actionTournamentStarted = (bool) => ({
+  type: AJAX_TOURNAMENT_STARTED,
+  value: bool,
+});
+export const AJAX_ENCOUNTER_TOURNAMENT_LIST = 'AJAX_ENCOUNTER_TOURNAMENT_LIST';
+
+export const actionGetEncountersList = (tournamentId) => ({
+  type: AJAX_ENCOUNTER_TOURNAMENT_LIST,
+  tournamentId,
+});
+export const SAVE_ENCOUNTERS_LIST = 'SAVE_ENCOUNTERS_LIST';
+
+export const actionSaveEncountersList = (array) => ({
+  type: SAVE_ENCOUNTERS_LIST,
+  value: array,
+});
+export const ENCOUNTERS_LIST_MODALE = 'ENCOUNTERS_LIST_MODALE';
+
+export const actionEncountersListModaleIsOpen = (bool) => ({
+  type: ENCOUNTERS_LIST_MODALE,
+  value: bool,
+});
+export const AJAX_ENCOUNTERS_LIST_BY_TOURNAMENT_ID = 'AJAX_ENCOUNTERS_LIST_BY_TOURNAMENT_ID';
+
+export const actionGetEncountersListByTournamentId = (id) => ({
+  type: AJAX_ENCOUNTERS_LIST_BY_TOURNAMENT_ID,
+  value: id,
+});
+export const SAVE_ENCOUNTERS_TOURNAMENT_LIST_BY_ID_WITH_USERS = 'SAVE_ENCOUNTERS_TOURNAMENT_LIST_BY_ID_WITH_USER';
+
+export const actactionSaveEncountersListByTournamentIdWithUsersion = (array) => ({
+  type: SAVE_ENCOUNTERS_TOURNAMENT_LIST_BY_ID_WITH_USERS,
+  value: array,
+});
+export const SAVE_PLAYER1 = 'SAVE_PLAYER1';
+
+export const actionSavePlayer1 = (data) => ({
+  type: SAVE_PLAYER1,
+  value: data,
+});
+export const SAVE_PLAYER2 = 'SAVE_PLAYER2';
+
+export const actionSavePlayer2 = (data) => ({
+  type: SAVE_PLAYER2,
+  value: data,
+});
+export const AJAX_PATCH_ENCOUNTER = 'AJAX_PATCH_ENCOUNTER';
+
+export const actionPlayerWinLose = (encounterId, winner, loser) => ({
+  type: AJAX_PATCH_ENCOUNTER,
+  encounterId,
+  winner,
+  loser,
+});
+export const CHECK = 'CHECK';
+
+export const actionCheck = (numb) => ({
+  type: CHECK,
+  value: numb,
+});
+export const ALL_ENCOUNTERS_DONE = 'ALL_ENCOUNTERS_DONE';
+
+export const actionAllEncountersDone = (bool) => ({
+  type: ALL_ENCOUNTERS_DONE,
+  value: bool,
+});
+export const CHECK_RAZ = 'CHECK_RAZ';
+
+export const actionCheckRaz = () => ({
+  type: CHECK_RAZ,
+});
+export const END_OF_TOURNAMENT = 'END_OF_TOURNAMENT';
+
+export const actionEndOfTournament = (bool) => ({
+  type: END_OF_TOURNAMENT,
+  value: bool,
+});
 
 export const ABOUT_MODALE = 'ABOUT_MODALE';
 export const actionAboutModale = () => ({

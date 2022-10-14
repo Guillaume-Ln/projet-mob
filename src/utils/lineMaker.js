@@ -1,9 +1,10 @@
 /* eslint-disable no-console */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable max-len */
+import participantRandomizerPicker from './participantRandomizerPicker';
+
 const dayjs = require('dayjs');
 const axios = require('axios').default;
-const participantRandomizerPicker = require('./participantRandomizerPicker');
 
 // Le but de cette fonction est de créer ligne de rencontre
 // dans le but de pouvoir automatiser les rencontre par "tours" (ligne) pour un tournoi précis
@@ -65,8 +66,6 @@ const getTournamentLine = (participantsList, tournamentId, token) => {
     lineMaker(randomizedList, tournamentId, token);
     randomizedList.splice(0, 2);
   } while (randomizedList.length >= 1);
+  return console.log('good');
 };
-
-getTournamentLine();
-
-module.exports = getTournamentLine;
+export default getTournamentLine;

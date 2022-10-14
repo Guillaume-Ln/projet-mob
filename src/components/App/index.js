@@ -22,6 +22,7 @@ import {
   actionRefreshToken,
   actionRelogMe,
 } from '../../actions';
+import Encounters from '../Encounters';
 
 // == Composant
 function App() {
@@ -56,6 +57,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/tournaments/:id" element={<Tournament />} />
         <Route path="/profiles/:id" element={<Profile />} />
+        <Route path="/tournaments/:tournamentId/encounter/:encounterId" element={<Encounters />} />
       </Routes>
       <Footer />
     </div>
