@@ -60,6 +60,9 @@ import {
   END_OF_TOURNAMENT,
   ABOUT_MODALE,
   TERMS_OF_USE_MODALE,
+  SAVE_LEADERBOARD_LAST_REGISTERED,
+  // ? action pour factoriser tous les change input - A VOIR
+  // ? CHANGE_INPUT_CREATE_TOURNAMENT,
 } from '../actions';
 
 const initialState = {
@@ -98,6 +101,7 @@ const initialState = {
   },
   tournaments: [],
   myTournaments: [],
+  leaderboardLastRegistered: [],
   isLoading: false,
   isErrored: false,
   errorMessage: '',
@@ -644,6 +648,11 @@ function reducer(state = initialState, action = {}) {
       return {
         ...state,
         modaleTermsOfUse: !state.modaleTermsOfUse,
+      };
+    case SAVE_LEADERBOARD_LAST_REGISTERED:
+      return {
+        ...state,
+        leaderboardLastRegistered: action.value,
       };
     default:
       return state;

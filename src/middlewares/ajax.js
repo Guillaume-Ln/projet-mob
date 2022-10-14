@@ -35,6 +35,8 @@ import {
   AJAX_PATCH_ENCOUNTER,
   AJAX_DELETE_PROFILE,
   AJAX_PATCH_PROFILE_PWD,
+  AJAX_LEADERBOARD_LAST_REGISTERED,
+  actionSaveLeaderboardLastRegistered,
   AJAX_PATCH_PROFILE_INFO,
 
 } from '../actions';
@@ -330,6 +332,17 @@ const ajax = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error);
+        });
+      break;
+    }
+    case AJAX_LEADERBOARD_LAST_REGISTERED: {
+      instance.get('/api/leaderboard/last-registered')
+        .then((response) => {
+          console.log('succes', response);
+          store.dispatch(actionSaveLeaderboardLastRegistered(response.data));
+        })
+        .catch((error) => {
+          console.log('Leaderboard_Register_list:', error);
         });
       break;
     }

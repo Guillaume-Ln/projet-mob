@@ -497,3 +497,14 @@ export const TERMS_OF_USE_MODALE = 'TERMS_OF_USE_MODALE';
 export const actionTermsOfUseModale = () => ({
   type: TERMS_OF_USE_MODALE,
 });
+
+export const AJAX_LEADERBOARD_LAST_REGISTERED = 'AJAX_LEADERBOARD_LAST_REGISTERED';
+export const actionGetLeaderboardLastRegistered = () => ({
+  type: AJAX_LEADERBOARD_LAST_REGISTERED,
+});
+
+export const SAVE_LEADERBOARD_LAST_REGISTERED = 'SAVE_LEADERBOARD_LAST_REGISTERED';
+export const actionSaveLeaderboardLastRegistered = (array) => ({
+  type: SAVE_LEADERBOARD_LAST_REGISTERED,
+  value: array,
+});
