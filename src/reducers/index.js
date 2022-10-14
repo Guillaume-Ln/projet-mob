@@ -58,6 +58,8 @@ import {
   CHECK,
   CHECK_RAZ,
   END_OF_TOURNAMENT,
+  ABOUT_MODALE,
+  TERMS_OF_USE_MODALE,
 } from '../actions';
 
 const initialState = {
@@ -71,8 +73,6 @@ const initialState = {
   encountersListModaleIsOpen: false,
   encountersList: [],
   tournamentStarted: false,
-  ABOUT_MODALE,
-  TERMS_OF_USE_MODALE,
   modalePwd: false,
   modaleNewPwd: false,
   modaleUpdate: false,
