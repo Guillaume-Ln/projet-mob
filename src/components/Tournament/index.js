@@ -64,9 +64,9 @@ function Tournament() {
   const tournamentId = parseInt(id, 10);
 
   useEffect(() => {
-    if (encountersList.length > 0) {
-      dispatch(actionTournamentStarted(true));
-    }
+    // if (encountersList.length > 0) {
+    //   dispatch(actionTournamentStarted(true));
+    // }
     if (check === encountersList.length) {
       dispatch(actionAllEncountersDone(true));
       // * on dit que le tournois est pret a passer au nouveau tour.
