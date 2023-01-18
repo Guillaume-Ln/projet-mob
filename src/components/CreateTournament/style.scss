@@ -1,3 +1,10 @@
+option {
+  color: #000000;
+  border: #08F57E;
+}
+.creation-input {
+  caret-color: #08F57E;
+}
 
 .create-label {
   position: relative;
@@ -20,6 +27,7 @@
   padding: 0 .2em;
   color: #08F57E;
 }
+
 
  /* *******************************main */
 
@@ -91,7 +99,8 @@
   background: none;
   padding: 1rem;
   font-size: .8rem;
-  color: #f5f5f5;
+  // color: #f5f5f5;
+  color: #08F57E;
   transition: border 150ms cubic-bezier(0.4,0,0.2,1);
   width: 100%;
 
