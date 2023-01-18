@@ -37,6 +37,7 @@ import {
   IS_MODERATOR,
   IS_PARTICIPANT,
   EDIT_TOURNAMENT,
+  SAVE_ALL_PROFILES,
   PWD_MODALE,
   NEW_PWD_MODALE,
   MODALE_UPDATE,
@@ -144,6 +145,7 @@ const initialState = {
     createpassword: '',
     confirmpassword: '',
   },
+  dataSearch: [],
   dataProfile: {
     id: '',
     firstname: '',
@@ -506,6 +508,10 @@ function reducer(state = initialState, action = {}) {
         ...state,
         editTournament: action.value,
       };
+    case SAVE_ALL_PROFILES:
+      return {
+        ...state,
+        dataSearch: action.value,
     case PWD_MODALE:
       return {
         ...state,

@@ -58,6 +58,43 @@
 }
 
 
+.search {
+  position:absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+  border: 1px solid #08f57f;
+  top: 3.5rem;
+  max-height: 80vh;
+  width: 203px;
+  overflow-y: scroll;
+  background-color: #3d4351e8;
+  // backdrop-filter: blur(5px);
+  border-radius: 10px;
+  
+  &-title {
+    padding: 0.5rem 0.5rem 0.5rem;
+    color: #08F57E;
+    border-bottom: #08F57E 1px solid;
+    text-align: center;
+  }
+  
+  &-result {
+    padding: 0.5rem;
+    gap: 0.5rem;
+    // background-color: #3d4351c9;
+    // backdrop-filter: blur(50px);
+    
+
+    &:hover {
+      background-color:#08f57fa2;
+      color: #F3F400;
+    }
+
+  }
+
+};
 
 @media screen and (min-width: 375px) {
 }
@@ -121,6 +158,9 @@
   .header-search{
     display: flex;
     align-items: center;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    
     gap: 1rem;
   }
   .header-account{

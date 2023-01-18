@@ -28,6 +28,9 @@ import {
   PATCH_TOURNAMENT,
   AJAX_REMOVE_USER_FROM_TOURNAMENT,
   AJAX_DELETE_TOURNAMENT,
+  AJAX_PROFILES,
+  actionSaveAllProfiles,
+
   AJAX_ENCOUNTER_TOURNAMENT_LIST,
   actionSaveEncountersList,
   AJAX_ENCOUNTERS_LIST_BY_TOURNAMENT_ID,
@@ -38,7 +41,6 @@ import {
   AJAX_LEADERBOARD_LAST_REGISTERED,
   actionSaveLeaderboardLastRegistered,
   AJAX_PATCH_PROFILE_INFO,
-
 } from '../actions';
 
 const yourJWTToken = localStorage.getItem('authorization');
@@ -346,6 +348,21 @@ const ajax = (store) => (next) => (action) => {
         });
       break;
     }
+    case AJAX_PROFILES:
+      instance.get('/api/profiles')
+        .then((response) => {
+          // handle success
+          store.dispatch(actionSaveAllProfiles(response.data));
+        })
+        .catch((error) => {
+          // handle error
+          console.log('Ajax profiles ', error.code);
+        })
+        .then(() => {
+          // always executed
+        });
+      break;
+
     case AJAX_ENCOUNTER_TOURNAMENT_LIST: {
       instance.get(`/api/encounters/tournaments/${action.tournamentId}`, {
       })
