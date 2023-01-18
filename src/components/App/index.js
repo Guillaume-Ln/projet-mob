@@ -12,7 +12,18 @@ import Home from '../Home';
 import CreateTournament from '../CreateTournament';
 import Tournaments from '../Tournaments';
 import Tournament from '../Tournament';
-import { actionAjaxTournaments, actionRelogMe } from '../../actions';
+import MyTournaments from '../MyTournaments';
+import Profile from '../Profile';
+
+// == Import actions
+import {
+  actionAjaxTournaments,
+  actionDisconnect,
+  actionRefreshToken,
+  actionRelogMe,
+  actionGetLeaderboardLastRegistered,
+} from '../../actions';
+import Encounters from '../Encounters';
 
 // == Composant
 function App() {
@@ -20,13 +31,24 @@ function App() {
   const location = useLocation();
   const signinIsVisible = useSelector((state) => state.signinIsVisible);
   const signupIsVisible = useSelector((state) => state.signupIsVisible);
+  const lastRegistered = useSelector((state) => state.leaderboardLastRegistered);
 
   useEffect(() => {
     dispatch(actionAjaxTournaments());
+    dispatch(actionGetLeaderboardLastRegistered());
+  }, []);
+  useEffect(() => {
+    dispatch(actionAjaxTournaments());
+    dispatch(actionGetLeaderboardLastRegistered());
 
     if (localStorage.getItem('authorization')) {
-      // console.log('call api/me');
       dispatch(actionRelogMe());
+    }
+    else {
+      dispatch(actionDisconnect());
+      if (localStorage.getItem('authorizationRefreshToken')) {
+        dispatch(actionRefreshToken());
+      }
     }
   }, [location.pathname]);
   return (
@@ -38,8 +60,11 @@ function App() {
         <Route path="*" element={<Error404 />} />
         <Route path="/tournaments" element={<Tournaments />} />
         <Route path="/newtournament" element={<CreateTournament />} />
-        <Route path="/" element={<Home />} />
+        <Route path="/mytournaments" element={<MyTournaments />} />
+        <Route path="/" element={<Home lastRegistered={lastRegistered} />} />
         <Route path="/tournaments/:id" element={<Tournament />} />
+        <Route path="/profiles/:id" element={<Profile />} />
+        <Route path="/tournaments/:tournamentId/encounter/:encounterId" element={<Encounters />} />
       </Routes>
       <Footer />
     </div>

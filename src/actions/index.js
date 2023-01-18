@@ -16,8 +16,6 @@ export const IS_LOADING = 'IS_LOADING';
 export const AJAX_SAVE_CREATE_TOURNAMENT = 'AJAX_SAVE_CREATE_TOURNAMENT';
 export const CHANGE_INPUT_NAME_CREATE_TOURNAMENT = 'CHANGE_INPUT_NAME_CREATE_TOURNAMENT';
 export const CHANGE_INPUT_GAME_CREATE_TOURNAMENT = 'CHANGE_INPUT_GAME_CREATE_TOURNAMENT';
-// eslint-disable-next-line max-len
-/* export const CHANGE_INPUT_MODERATOR_CREATE_TOURNAMENT = 'CHANGE_INPUT_MODERATOR_CREATE_TOURNAMENT'; */
 export const CHANGE_INPUT_MAX_PLAYER_COUNT_CREATE_TOURNAMENT = 'CHANGE_INPUT_MAX_PLAYER_COUNT_CREATE_TOURNAMENT';
 export const CHANGE_INPUT_DATE_CREATE_TOURNAMENT = 'CHANGE_INPUT_DATE_CREATE_TOURNAMENT';
 export const CHANGE_SELECT_FORMAT_CREATE_TOURNAMENT = 'CHANGE_SELECT_FORMAT_CREATE_TOURNAMENT';
@@ -119,11 +117,6 @@ export const actionChangeInputGameCreateTournament = (newValue) => ({
   value: newValue,
 });
 
-/* export const actionChangeInputModeratorCreateTournament = (newValue) => ({
-  type: CHANGE_INPUT_MODERATOR_CREATE_TOURNAMENT,
-  value: newValue,
-}); */
-
 export const actionChangeInputMaxPlayerCountCreateTournament = (newValue) => ({
   type: CHANGE_INPUT_MAX_PLAYER_COUNT_CREATE_TOURNAMENT,
   value: newValue,
@@ -156,6 +149,7 @@ export const actionChangeInputDescriptionCreateTournament = (newValue) => ({
   key:key,
   value: newValue
 }) */
+
 // export des actions de la page inscription
 
 export const CHANGE_INPUT_NAME_VALUE = 'CHANGE_INPUT_NAME_VALUE';
@@ -216,28 +210,53 @@ export const actionIsCreated = () => ({
 });
 
 export const AJAX_TOURNAMENTS = 'AJAX_TOURNAMENTS';
-
 export const actionAjaxTournaments = () => ({
   type: AJAX_TOURNAMENTS,
 });
-export const SAVE_TOURNAMENTS = 'SAVE_TOURNAMENTS';
 
+export const SAVE_TOURNAMENTS = 'SAVE_TOURNAMENTS';
 export const actionSaveTournaments = (array) => ({
   type: SAVE_TOURNAMENTS,
   value: array,
 });
-export const AJAX_TOURNAMENT_BY_ID = 'AJAX_TOURNAMENT_BY_ID';
 
+export const AJAX_TOURNAMENT_BY_ID = 'AJAX_TOURNAMENT_BY_ID';
 export const actionTournamentById = (id) => ({
   type: AJAX_TOURNAMENT_BY_ID,
   id: id,
 });
-export const SAVE_DATA_TOURNAMENT = 'SAVE_DATA_TOURNAMENT';
 
+export const SAVE_DATA_TOURNAMENT = 'SAVE_DATA_TOURNAMENT';
 export const actionSaveDataTournament = (obj) => ({
   type: SAVE_DATA_TOURNAMENT,
   value: obj,
 });
+export const AJAX_MY_TOURNAMENTS = 'AJAX_MY_TOURNAMENTS';
+export const actionAjaxMyTournaments = (id) => ({
+  type: AJAX_MY_TOURNAMENTS,
+  id: id,
+});
+
+export const SAVE_MY_TOURNAMENTS = 'SAVE_MY_TOURNAMENTS';
+export const actionSaveMyTournaments = (array) => ({
+  type: SAVE_MY_TOURNAMENTS,
+  value: array,
+});
+
+// export des actions de la page profile
+
+export const GET_PROFILE_BY_ID = 'GET_PROFILE_BY_ID';
+export const actionGetProfileById = (id) => ({
+  type: GET_PROFILE_BY_ID,
+  id: id,
+});
+
+export const SAVE_DATA_PROFILE = 'SAVE_DATA_PROFILE';
+export const actionSaveDataProfile = (obj) => ({
+  type: SAVE_DATA_PROFILE,
+  value: obj,
+});
+
 export const AJAX_PARTICIPANTS = 'AJAX_PARTICIPANTS';
 
 export const actionParticipants = (id) => ({
@@ -296,28 +315,208 @@ export const actionIsParticipant = (bool) => ({
   type: IS_PARTICIPANT,
   value: bool,
 });
-export const EDIT_TOURNAMENT = 'EDIT_TOURNAMENT';
 
+export const EDIT_TOURNAMENT = 'EDIT_TOURNAMENT';
 export const actionEditTournament = (bool) => ({
   type: EDIT_TOURNAMENT,
   value: bool,
 });
-export const PATCH_TOURNAMENT = 'PATCH_TOURNAMENT';
 
+export const PATCH_TOURNAMENT = 'PATCH_TOURNAMENT';
 export const actionPatchTournament = (id) => ({
   type: PATCH_TOURNAMENT,
   tournamentId: id,
 });
-export const AJAX_REMOVE_USER_FROM_TOURNAMENT = 'AJAX_REMOVE_USER_FROM_TOURNAMENT';
 
+export const AJAX_REMOVE_USER_FROM_TOURNAMENT = 'AJAX_REMOVE_USER_FROM_TOURNAMENT';
 export const actionRemoveUserFromTournament = (idTournament, idUser) => ({
   type: AJAX_REMOVE_USER_FROM_TOURNAMENT,
   idTournament,
   idUser,
 });
-export const AJAX_DELETE_TOURNAMENT = 'AJAX_DELETE_TOURNAMENT';
 
+export const AJAX_DELETE_TOURNAMENT = 'AJAX_DELETE_TOURNAMENT';
 export const actionDeleteTournament = (id) => ({
   type: AJAX_DELETE_TOURNAMENT,
   idTournament: id,
+});
+
+export const AJAX_DELETE_PROFILE = 'AJAX_DELETE_PROFILE';
+export const actionDeleteProfile = (id) => ({
+  type: AJAX_DELETE_PROFILE,
+  idProfile: id,
+});
+
+export const PWD_MODALE = 'PWD_MODALE';
+export const actionPwdModale = () => ({
+  type: PWD_MODALE,
+});
+
+export const CHANGE_INPUT_DELETE_PWD_VALUE = 'CHANGE_INPUT_DELETE_PWD_VALUE';
+export const actionChangeDeleteAccountPwdValue = (newValue) => ({
+  type: CHANGE_INPUT_DELETE_PWD_VALUE,
+  value: newValue,
+});
+
+export const AJAX_PATCH_PROFILE_PWD = 'AJAX_PATCH_PROFILE_PWD';
+export const actionPatchProfilePwd = (id) => ({
+  type: AJAX_PATCH_PROFILE_PWD,
+  idProfile: id,
+});
+
+export const AJAX_PATCH_PROFILE_INFO = 'AJAX_PATCH_PROFILE_INFO';
+export const actionUpdateProfileInfo = (id) => ({
+  type: AJAX_PATCH_PROFILE_INFO,
+  idProfile: id,
+});
+
+export const NEW_PWD_MODALE = 'NEW_PWD_MODALE';
+export const actionNewPwdModale = () => ({
+  type: NEW_PWD_MODALE,
+});
+
+export const CHANGE_INPUT_ACTUAL_PWD_VALUE = 'CHANGE_INPUT_ACTUAL_PWD_VALUE';
+export const actionChangeAccountActualPwdValue = (newValue) => ({
+  type: CHANGE_INPUT_ACTUAL_PWD_VALUE,
+  value: newValue,
+});
+
+export const CHANGE_INPUT_NEW_PWD_VALUE = 'CHANGE_INPUT_NEW_PWD_VALUE';
+export const actionChangeAccountNewPwdValue = (newValue) => ({
+  type: CHANGE_INPUT_NEW_PWD_VALUE,
+  value: newValue,
+});
+
+export const MODALE_UPDATE = 'MODALE_UPDATE';
+export const actionModaleUpdate = () => ({
+  type: MODALE_UPDATE,
+});
+
+export const CHANGE_INPUT_UPDATE_AVATAR_VALUE = 'CHANGE_INPUT_UPDATE_AVATAR_VALUE';
+export const actionChangeUpdateAccountAvatarValue = (newValue) => ({
+  type: CHANGE_INPUT_UPDATE_AVATAR_VALUE,
+  value: newValue,
+});
+
+export const CHANGE_INPUT_UPDATE_NICKNAME_VALUE = 'CHANGE_INPUT_UPDATE_NICKNAME_VALUE';
+export const actionChangeUpdateAccountNicknameValue = (newValue) => ({
+  type: CHANGE_INPUT_UPDATE_NICKNAME_VALUE,
+  value: newValue,
+});
+
+export const CHANGE_INPUT_UPDATE_FIRSTNAME_VALUE = 'CHANGE_INPUT_UPDATE_FIRSTNAME_VALUE';
+export const actionChangeUpdateAccountFirstnameValue = (newValue) => ({
+  type: CHANGE_INPUT_UPDATE_FIRSTNAME_VALUE,
+  value: newValue,
+});
+
+export const CHANGE_INPUT_UPDATE_LASTNAME_VALUE = 'CHANGE_INPUT_UPDATE_LASTNAME_VALUE';
+export const actionChangeUpdateAccountLastnameValue = (newValue) => ({
+  type: CHANGE_INPUT_UPDATE_LASTNAME_VALUE,
+  value: newValue,
+});
+
+export const CONTACT_MODALE = 'CONTACT_MODALE';
+export const actionContactModale = () => ({
+  type: CONTACT_MODALE,
+});
+export const AJAX_TOURNAMENT_STARTED = 'AJAX_TOURNAMENT_STARTED';
+
+export const actionTournamentStarted = (bool) => ({
+  type: AJAX_TOURNAMENT_STARTED,
+  value: bool,
+});
+export const AJAX_ENCOUNTER_TOURNAMENT_LIST = 'AJAX_ENCOUNTER_TOURNAMENT_LIST';
+
+export const actionGetEncountersList = (tournamentId) => ({
+  type: AJAX_ENCOUNTER_TOURNAMENT_LIST,
+  tournamentId,
+});
+export const SAVE_ENCOUNTERS_LIST = 'SAVE_ENCOUNTERS_LIST';
+
+export const actionSaveEncountersList = (array) => ({
+  type: SAVE_ENCOUNTERS_LIST,
+  value: array,
+});
+export const ENCOUNTERS_LIST_MODALE = 'ENCOUNTERS_LIST_MODALE';
+
+export const actionEncountersListModaleIsOpen = (bool) => ({
+  type: ENCOUNTERS_LIST_MODALE,
+  value: bool,
+});
+export const AJAX_ENCOUNTERS_LIST_BY_TOURNAMENT_ID = 'AJAX_ENCOUNTERS_LIST_BY_TOURNAMENT_ID';
+
+export const actionGetEncountersListByTournamentId = (id) => ({
+  type: AJAX_ENCOUNTERS_LIST_BY_TOURNAMENT_ID,
+  value: id,
+});
+export const SAVE_ENCOUNTERS_TOURNAMENT_LIST_BY_ID_WITH_USERS = 'SAVE_ENCOUNTERS_TOURNAMENT_LIST_BY_ID_WITH_USER';
+
+export const actactionSaveEncountersListByTournamentIdWithUsersion = (array) => ({
+  type: SAVE_ENCOUNTERS_TOURNAMENT_LIST_BY_ID_WITH_USERS,
+  value: array,
+});
+export const SAVE_PLAYER1 = 'SAVE_PLAYER1';
+
+export const actionSavePlayer1 = (data) => ({
+  type: SAVE_PLAYER1,
+  value: data,
+});
+export const SAVE_PLAYER2 = 'SAVE_PLAYER2';
+
+export const actionSavePlayer2 = (data) => ({
+  type: SAVE_PLAYER2,
+  value: data,
+});
+export const AJAX_PATCH_ENCOUNTER = 'AJAX_PATCH_ENCOUNTER';
+
+export const actionPlayerWinLose = (encounterId, winner, loser) => ({
+  type: AJAX_PATCH_ENCOUNTER,
+  encounterId,
+  winner,
+  loser,
+});
+export const CHECK = 'CHECK';
+
+export const actionCheck = (numb) => ({
+  type: CHECK,
+  value: numb,
+});
+export const ALL_ENCOUNTERS_DONE = 'ALL_ENCOUNTERS_DONE';
+
+export const actionAllEncountersDone = (bool) => ({
+  type: ALL_ENCOUNTERS_DONE,
+  value: bool,
+});
+export const CHECK_RAZ = 'CHECK_RAZ';
+
+export const actionCheckRaz = () => ({
+  type: CHECK_RAZ,
+});
+export const END_OF_TOURNAMENT = 'END_OF_TOURNAMENT';
+
+export const actionEndOfTournament = (bool) => ({
+  type: END_OF_TOURNAMENT,
+  value: bool,
+});
+
+export const ABOUT_MODALE = 'ABOUT_MODALE';
+export const actionAboutModale = () => ({
+  type: ABOUT_MODALE,
+});
+
+export const TERMS_OF_USE_MODALE = 'TERMS_OF_USE_MODALE';
+export const actionTermsOfUseModale = () => ({
+  type: TERMS_OF_USE_MODALE,
+});
+
+export const AJAX_LEADERBOARD_LAST_REGISTERED = 'AJAX_LEADERBOARD_LAST_REGISTERED';
+export const actionGetLeaderboardLastRegistered = () => ({
+  type: AJAX_LEADERBOARD_LAST_REGISTERED,
+});
+
+export const SAVE_LEADERBOARD_LAST_REGISTERED = 'SAVE_LEADERBOARD_LAST_REGISTERED';
+export const actionSaveLeaderboardLastRegistered = (array) => ({
+  type: SAVE_LEADERBOARD_LAST_REGISTERED,
+  value: array,
 });

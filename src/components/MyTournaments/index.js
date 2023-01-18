@@ -1,7 +1,10 @@
-import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import TournamentCard from '../Tournaments/TournamentCard';
+import '../Tournaments/style.scss';
 import {
+  actionAjaxMyTournaments,
   actionAllEncountersDone,
   actionCheckRaz,
   actionClearInputCreateTournament,
@@ -11,17 +14,16 @@ import {
   actionIsParticipant,
   actionTournamentStarted,
 } from '../../actions';
-import './style.scss';
-import TournamentCard from './TournamentCard';
 
-function Tournaments() {
+function MyTournaments() {
   const dispatch = useDispatch();
   const location = useLocation();
-
-  // eslint-disable-next-line max-len
-  // ! en attendant de faire mieu, quand l'utilisateur revient sur la liste des tournois, les infos des participants sont effacer pour éviter de les cumulés et le status modérateur est enlever pour qu'un user ne puisse pas voir le bouton de modération
+  const myTournaments = useSelector((state) => state.myTournaments);
+  const id = useSelector((state) => state.user.id);
+  // console.log('myTournaments', myTournaments);
   useEffect(() => {
-    if (location.pathname === '/tournaments') {
+    dispatch(actionAjaxMyTournaments(id));
+    if (location.pathname === '/mytournaments') {
       dispatch(actionClearTournamentParticipants());
       dispatch(actionIsParticipant(false));
       dispatch(actionTournamentStarted(false));
@@ -33,15 +35,15 @@ function Tournaments() {
     }
   }, []);
 
-  const tournaments = useSelector((state) => state.tournaments);
   return (
     <main className="main-tournaments">
-      <h2 className="main-tournaments-title">Les tournois du moment</h2>
+      <h2 className="main-tournaments-title">Mes tournois</h2>
       <section className="main-tournaments-pannel">
-        {tournaments.map((tournament) => <TournamentCard key={tournament.id} {...tournament} />)}
+        {myTournaments.map(
+          (tournament) => <TournamentCard key={tournament.id} {...tournament} />,
+        )}
       </section>
     </main>
   );
 }
-
-export default Tournaments;
+export default MyTournaments;

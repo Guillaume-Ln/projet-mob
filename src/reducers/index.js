@@ -7,6 +7,7 @@ import {
   CHANGE_INPUT_SEARCH_VALUE,
   SIGNIN_IS_VISIBLE,
   SIGNUP_IS_VISIBLE,
+  SAVE_DATA_PROFILE,
   CHANGE_INPUT_NAME_VALUE,
   CHANGE_INPUT_FIRSTNAME_VALUE,
   CHANGE_INPUT_NICKNAME_VALUE,
@@ -21,7 +22,6 @@ import {
   AJAX_SAVE_CREATE_TOURNAMENT,
   CHANGE_INPUT_NAME_CREATE_TOURNAMENT,
   CHANGE_INPUT_GAME_CREATE_TOURNAMENT,
-  /*   CHANGE_INPUT_MODERATOR_CREATE_TOURNAMENT, */
   CHANGE_INPUT_MAX_PLAYER_COUNT_CREATE_TOURNAMENT,
   CHANGE_INPUT_DATE_CREATE_TOURNAMENT,
   CHANGE_SELECT_FORMAT_CREATE_TOURNAMENT,
@@ -30,6 +30,7 @@ import {
   CLEAR_INPUT_CREATE_TOURNAMENT,
   SAVE_TOURNAMENTS,
   SAVE_DATA_TOURNAMENT,
+  SAVE_MY_TOURNAMENTS,
   SAVE_DATA_PARTICIPANTS,
   SAVE_USER_PROFIL,
   CLEAR_TOURNAMENT_PARTICIPANTS,
@@ -37,11 +38,51 @@ import {
   IS_PARTICIPANT,
   EDIT_TOURNAMENT,
   SAVE_ALL_PROFILES,
+  PWD_MODALE,
+  NEW_PWD_MODALE,
+  MODALE_UPDATE,
+  CHANGE_INPUT_DELETE_PWD_VALUE,
+  CHANGE_INPUT_ACTUAL_PWD_VALUE,
+  CHANGE_INPUT_NEW_PWD_VALUE,
+  CHANGE_INPUT_UPDATE_AVATAR_VALUE,
+  CHANGE_INPUT_UPDATE_NICKNAME_VALUE,
+  CHANGE_INPUT_UPDATE_FIRSTNAME_VALUE,
+  CHANGE_INPUT_UPDATE_LASTNAME_VALUE,
+  CONTACT_MODALE,
+  AJAX_TOURNAMENT_STARTED,
+  SAVE_ENCOUNTERS_LIST,
+  ENCOUNTERS_LIST_MODALE,
+  SAVE_ENCOUNTERS_TOURNAMENT_LIST_BY_ID_WITH_USERS,
+  SAVE_PLAYER1,
+  SAVE_PLAYER2,
+  ALL_ENCOUNTERS_DONE,
+  CHECK,
+  CHECK_RAZ,
+  END_OF_TOURNAMENT,
+  ABOUT_MODALE,
+  TERMS_OF_USE_MODALE,
+  SAVE_LEADERBOARD_LAST_REGISTERED,
   // ? action pour factoriser tous les change input - A VOIR
   // ? CHANGE_INPUT_CREATE_TOURNAMENT,
 } from '../actions';
 
 const initialState = {
+  endOfTournament: false,
+  allEncountersDone: false,
+  check: 0,
+  player1: '',
+  player2: '',
+  encountersListTournamentByIdWithUsers: [],
+  encounterModaleIsOpen: false,
+  encountersListModaleIsOpen: false,
+  encountersList: [],
+  tournamentStarted: false,
+  modalePwd: false,
+  modaleNewPwd: false,
+  modaleUpdate: false,
+  modaleContact: false,
+  modaleAbout: false,
+  modaleTermsOfUse: false,
   editTournament: false,
   isParticipant: false,
   isModerator: false,
@@ -60,6 +101,8 @@ const initialState = {
     user_id: null,
   },
   tournaments: [],
+  myTournaments: [],
+  leaderboardLastRegistered: [],
   isLoading: false,
   isErrored: false,
   errorMessage: '',
@@ -94,7 +137,6 @@ const initialState = {
     type: '',
     description: '',
   },
-
   inputSignup: {
     name: '',
     firstname: '',
@@ -104,6 +146,33 @@ const initialState = {
     confirmpassword: '',
   },
   dataSearch: [],
+  dataProfile: {
+    id: '',
+    firstname: '',
+    lastname: '',
+    nickname: '',
+    mail: '',
+    trophies: '',
+    honor_point: '',
+    team: '',
+    role: '',
+    avatar: '',
+    created_at: '',
+    updated_at: '',
+  },
+  inputDeleteAccount: {
+    deletepwd: '',
+  },
+  inputPatchAccount: {
+    actualpwd: '',
+    newpwd: '',
+  },
+  inputUpdateAccount: {
+    nickname: '',
+    firstname: '',
+    lastname: '',
+    avatar: '',
+  },
 };
 
 function reducer(state = initialState, action = {}) {
@@ -248,6 +317,7 @@ function reducer(state = initialState, action = {}) {
       };
     case DISCONNECT:
       localStorage.removeItem('authorization');
+      localStorage.removeItem('authorizationRefreshToken');
       return {
         ...state,
         isLoadind: false,
@@ -299,7 +369,11 @@ function reducer(state = initialState, action = {}) {
         ...state,
         isLoading: action.value,
       };
-
+    case SAVE_DATA_PROFILE:
+      return {
+        ...state,
+        dataProfile: action.value,
+      };
       // SAVE_CREATE TOURNAMENT
     case AJAX_SAVE_CREATE_TOURNAMENT:
       return {
@@ -324,15 +398,6 @@ function reducer(state = initialState, action = {}) {
           game: action.value,
         },
       };
-
-      /*     case CHANGE_INPUT_MODERATOR_CREATE_TOURNAMENT:
-      return {
-        ...state,
-        inputCreateTournament: {
-          ...state.inputCreateTournament,
-          user_id: action.value,
-        },
-      }; */
 
     case CHANGE_INPUT_MAX_PLAYER_COUNT_CREATE_TOURNAMENT:
       return {
@@ -404,6 +469,13 @@ function reducer(state = initialState, action = {}) {
         ...state,
         dataTournament: action.value,
       };
+    case SAVE_MY_TOURNAMENTS:
+      return {
+        ...state,
+        myTournaments: action.value,
+      };
+      // ? A VOIR POUR LA FACTORISATION des CHANGE_INPUT
+      // case CHANGE_INPUT_CREATE_TOURNAMENT:
     case SAVE_DATA_PARTICIPANTS:
       // console.log(action.value);
       return {
@@ -440,6 +512,153 @@ function reducer(state = initialState, action = {}) {
       return {
         ...state,
         dataSearch: action.value,
+    case PWD_MODALE:
+      return {
+        ...state,
+        modalePwd: !state.modalePwd,
+      };
+    case NEW_PWD_MODALE:
+      return {
+        ...state,
+        modaleNewPwd: !state.modaleNewPwd,
+      };
+    case MODALE_UPDATE:
+      return {
+        ...state,
+        modaleUpdate: !state.modaleUpdate,
+      };
+    case CHANGE_INPUT_DELETE_PWD_VALUE:
+      return {
+        ...state,
+        inputDeleteAccount: {
+          deletepwd: action.value,
+        },
+      };
+    case CHANGE_INPUT_ACTUAL_PWD_VALUE:
+      return {
+        ...state,
+        inputPatchAccount: {
+          actualpwd: action.value,
+          newpwd: state.inputPatchAccount.newpwd,
+        },
+      };
+    case CHANGE_INPUT_NEW_PWD_VALUE:
+      return {
+        ...state,
+        inputPatchAccount: {
+          actualpwd: state.inputPatchAccount.actualpwd,
+          newpwd: action.value,
+        },
+      };
+    case CHANGE_INPUT_UPDATE_AVATAR_VALUE:
+      return {
+        ...state,
+        inputUpdateAccount: {
+          nickname: state.inputUpdateAccount.nickname,
+          firstname: state.inputUpdateAccount.firstname,
+          lastname: state.inputUpdateAccount.lastname,
+          avatar: action.value,
+        },
+      };
+    case CHANGE_INPUT_UPDATE_NICKNAME_VALUE:
+      return {
+        ...state,
+        inputUpdateAccount: {
+          nickname: action.value,
+          firstname: state.inputUpdateAccount.firstname,
+          lastname: state.inputUpdateAccount.lastname,
+          avatar: state.inputUpdateAccount.avatar,
+        },
+      };
+    case CHANGE_INPUT_UPDATE_FIRSTNAME_VALUE:
+      return {
+        ...state,
+        inputUpdateAccount: {
+          nickname: state.inputUpdateAccount.nickname,
+          firstname: action.value,
+          lastname: state.inputUpdateAccount.lastname,
+          avatar: state.inputUpdateAccount.avatar,
+        },
+      };
+    case CHANGE_INPUT_UPDATE_LASTNAME_VALUE:
+      return {
+        ...state,
+        inputUpdateAccount: {
+          nickname: state.inputUpdateAccount.nickname,
+          firstname: state.inputUpdateAccount.firstname,
+          lastname: action.value,
+          avatar: state.inputUpdateAccount.avatar,
+        },
+      };
+    case CONTACT_MODALE:
+      return {
+        ...state,
+        modaleContact: !state.modaleContact,
+      };
+    case AJAX_TOURNAMENT_STARTED:
+      return {
+        ...state,
+        tournamentStarted: action.value,
+      };
+    case SAVE_ENCOUNTERS_LIST:
+      return {
+        ...state,
+        encountersList: action.value,
+      };
+    case ENCOUNTERS_LIST_MODALE:
+      return {
+        ...state,
+        encountersListModaleIsOpen: action.value,
+      };
+    case SAVE_ENCOUNTERS_TOURNAMENT_LIST_BY_ID_WITH_USERS:
+      return {
+        ...state,
+        encountersListTournamentByIdWithUsers: action.value,
+      };
+    case SAVE_PLAYER1:
+      return {
+        ...state,
+        player1: action.value,
+      };
+    case SAVE_PLAYER2:
+      return {
+        ...state,
+        player2: action.value,
+      };
+    case CHECK:
+      return {
+        ...state,
+        check: state.check + action.value,
+      };
+    case ALL_ENCOUNTERS_DONE:
+      return {
+        ...state,
+        allEncountersDone: action.value,
+      };
+    case CHECK_RAZ:
+      return {
+        ...state,
+        check: 0,
+      };
+    case END_OF_TOURNAMENT:
+      return {
+        ...state,
+        endOfTournament: action.value,
+      };
+    case ABOUT_MODALE:
+      return {
+        ...state,
+        modaleAbout: !state.modaleAbout,
+      };
+    case TERMS_OF_USE_MODALE:
+      return {
+        ...state,
+        modaleTermsOfUse: !state.modaleTermsOfUse,
+      };
+    case SAVE_LEADERBOARD_LAST_REGISTERED:
+      return {
+        ...state,
+        leaderboardLastRegistered: action.value,
       };
     default:
       return state;

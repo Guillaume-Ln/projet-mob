@@ -10,6 +10,66 @@
   gap: 1rem;
   width: 95%;
 }
+
+.patch-info-tournament{
+  padding-top: 1rem;
+  position: absolute;
+  z-index: 10;
+  top: 3.2%;
+  left: 0%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 49.5%;
+  height: 86%;
+  border-radius: 10px;
+  border: 1px solid #08F57E;
+  background-color: #364561;
+}
+
+.moderation-input {
+  border: solid 1.5px #08F57E;
+  border-radius: 1rem;
+  background: none;
+  padding: 1rem;
+  font-size: .8rem;
+  // color: #f5f5f5;
+  color: #08F57E;
+  transition: border 150ms cubic-bezier(0.4,0,0.2,1);
+  width: 100%;
+
+&-container{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+&-group{
+  display: block;
+  position: relative;
+  width: 80%;
+  gap: 2rem;
+  /* left: -20px; */
+}
+}
+
+.moderation-button {
+  display: flex;
+  width: 10rem;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.button-group {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  padding-top: 1rem;
+  }
+
 .top{
   display: flex;
   justify-content: center;
@@ -179,6 +239,12 @@
   max-width: 90%;
   height: 50px;
 }
+.participant:hover{
+  transform: scale(1.02);
+  filter: drop-shadow(0px 0px 15px #f4f40029);
+  border: 1px solid #F3F400;
+  transition: all .2s;
+}
 .participant-number{
   min-width: 10%;
   text-align: center;
@@ -208,6 +274,73 @@
   border-radius: 10px;
   filter: drop-shadow(0px 0px 15px #f2b705);
 }
+.encounters-modale{
+  z-index: 20;
+  border: 1px solid #08F57E;
+  position: absolute;
+  left: 0%;
+  width: 20rem;
+  height: 20rem;
+  background-color: #333635;
+  border-radius: 10px;
+  padding: 1rem 4rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  overflow-x: auto;
+  &-deletIcon{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 50px;
+    aspect-ratio: 1/1;
+  }
+}
+.one-encounter{
+  margin: .5rem 0;
+}
+.encounter-form{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #08F57E;
+  border-radius: 10px;
+  margin: 1rem;
+  color: white;
+  &:hover{
+    color: black;
+    background-color: #08F57E;
+    transition: all .2s;
+    filter : drop-shadow(0px 0px 15px #08F57E);
+  }
+  
+
+  &-label-container{
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-submit-btn{
+    width: 20px;
+    aspect-ratio: 1/1;
+    border: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: .2rem;
+  }
+  &-desc{
+    padding: 1rem;
+    width: 100%;
+    border-radius: 10px;
+  }
+}
+.encounter-closed{
+  background-color: #08F57E;
+  border-radius: 10px;
+}
+
 
 @media screen and (min-width: 425px) {
   .one-tournament-container{
@@ -227,6 +360,18 @@
   }
   .button-moderate{
     font-size: 1.2rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .moderation-input-container{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 2rem;
+    width: 100%;
   }
 }
 
@@ -318,5 +463,47 @@
     filter: drop-shadow(0 0 10px #08F57E);
     font-size: .8rem;
   }
+
+  .moderation-input-container{
+    gap: 5rem;
+  }
   
+  .moderation-input-group{
+    display: flex;
+    position: relative;
+    width: 20%;
+    left: -20px;
+  }
+  .input {
+    border: solid 1.5px #08F57E;
+    border-radius: 1rem;
+    background: none;
+    padding: 1rem;
+    font-size: .8rem;
+    color: #f5f5f5;
+    transition: border 150ms cubic-bezier(0.4,0,0.2,1);
+    width: 100%;
+  }
+  
+  .create-label{
+    position: absolute;
+    left: 15px;
+    color: #e8e8e8;
+    width: 100%;
+  }
+  .button-group {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    padding-top: 3rem;
+    }
+  
+}
+
+@media screen and (min-width: 1920px){
+
+}
+@media screen and (min-width: 2540px){
+
 }

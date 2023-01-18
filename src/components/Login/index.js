@@ -36,7 +36,6 @@ function Login() {
     dispatch(actionIsLoading(true)); // on entre en chargement
     dispatch(actionLogin()); // on demande a ce loggué
   };
-
   const handleCancelClick = () => {
     dispatch(actionSigninIsVisible(false)); // on ferme la modale
     dispatch(actionClearInputLogin()); // on néttoie les inputs login/password
@@ -64,7 +63,7 @@ function Login() {
               </div>
               <div className="input-group">
                 <label htmlFor="inputPassword" className="input-group-label">
-                  <input value={inputPasswordValue} onChange={handleChangePassword} required="" id="inputPassword" type="password" name="password" placeholder="Mot de passe" autoComplete="off" className="input-connection" />
+                  <input value={inputPasswordValue} onChange={handleChangePassword} required="" minLength="8" id="inputPassword" type="password" name="password" placeholder="Mot de passe" autoComplete="off" className="input-connection" />
                 </label>
               </div>
               <button type="submit" className="connection-button">Se connecter</button>

@@ -1,0 +1,51 @@
+.modaleTermsOfUse{
+  color: #08F57E;
+  border-radius: 10px;
+  position: absolute;
+  bottom: 10%;
+  width: 70%;
+  height: 80vh;
+  background-color: #364561;
+  border: 1px solid #08F57E;
+  display: block;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  overflow-y: scroll;
+
+  &-deletIcon{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 50px;
+    aspect-ratio: 1/1;
+  }
+  &-deletIcon:hover{
+    transform: scale(1.2);
+  }
+  &-title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: 800;
+    margin: 1rem;
+  }
+  &-description{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 80%;
+    padding-left: 2rem;
+    padding-bottom: 1rem;
+    gap: 1rem;
+
+
+  }
+  &-button{
+    display: flex;
+    justify-content: center;
+    margin: 1rem;
+  }
+}
